@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { INITIAL_ARTWORKS } from './data/artworksData';
-import { fetchBackendArtworks, toggleLikeBackend, toggleSaveBackend, postCommentBackend } from './services/api';
+import { fetchBackendArtworks, toggleLikeBackend, toggleSaveBackend, postCommentBackend, getCurrentUser, logoutUser } from './services/api';
 import Header from './components/Header';
 import ArtworkCard from './components/ArtworkCard';
 import BottomNavBar from './components/BottomNavBar';
@@ -10,6 +10,7 @@ import ArtistProfileModal from './components/ArtistProfileModal';
 import SavedGalleryModal from './components/SavedGalleryModal';
 import ShareModal from './components/ShareModal';
 import SearchModal from './components/SearchModal';
+import AuthModal from './components/AuthModal';
 
 export default function App() {
   const [artworks, setArtworks] = useState(INITIAL_ARTWORKS);
@@ -31,9 +32,30 @@ export default function App() {
   const [activeArtistName, setActiveArtistName] = useState(null);
   const [showSavedModal, setShowSavedModal] = useState(false);
   const [showSearchModal, setShowSearchModal] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const [shareArtwork, setShareArtwork] = useState(null);
 
+  const [currentUser, setCurrentUser] = useState(null);
+
   const containerRef = useRef(null);
+
+  // Load User Profile on Mount
+  useEffect(() => {
+    async function loadUser() {
+      const stored = localStorage.getItem('scrolls_user');
+      if (stored) {
+        try {
+          setCurrentUser(JSON.parse(stored));
+        } catch (e) {}
+      }
+      const verified = await getCurrentUser();
+      if (verified) {
+        setCurrentUser(verified);
+        localStorage.setItem('scrolls_user', JSON.stringify(verified));
+      }
+    }
+    loadUser();
+  }, []);
 
   useEffect(() => {
     async function loadArtworks() {
@@ -98,118 +120,85 @@ export default function App() {
       });
     }, observerOptions);
 
-    const cards = containerRef.current?.querySelectorAll('.reel-card-wrapper');
-    cards?.forEach((card) => observer.observe(card));
+    const sections = containerRef.current?.querySelectorAll('.reel-card-section');
+    sections?.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
   }, [filteredArtworks]);
 
-  const activeArtwork = artworks.find((a) => a.id === activeArtworkId) || artworks[0];
+  const currentArtwork = artworks.find((a) => a.id === activeArtworkId) || artworks[0];
 
   useEffect(() => {
+    if (!currentArtwork) return;
+
     if (!audioRef.current) {
-      audioRef.current = new Audio();
+      audioRef.current = new Audio(currentArtwork.audioUrl);
       audioRef.current.loop = true;
+    } else {
+      audioRef.current.src = currentArtwork.audioUrl;
     }
 
-    if (activeArtwork && activeArtwork.audioUrl) {
-      audioRef.current.src = activeArtwork.audioUrl;
-      if (!isMuted) {
-        audioRef.current
-          .play()
-          .then(() => setIsPlayingAudio(true))
-          .catch(() => setIsPlayingAudio(false));
-      } else {
-        audioRef.current.pause();
-        setIsPlayingAudio(false);
-      }
+    if (!isMuted) {
+      audioRef.current.play().then(() => setIsPlayingAudio(true)).catch(() => setIsPlayingAudio(false));
+    } else {
+      audioRef.current.pause();
+      setIsPlayingAudio(false);
     }
   }, [activeArtworkId, isMuted]);
 
   const toggleMute = () => {
-    const nextMuted = !isMuted;
-    setIsMuted(nextMuted);
-
-    if (!nextMuted && audioRef.current) {
-      audioRef.current
-        .play()
-        .then(() => setIsPlayingAudio(true))
-        .catch(() => setIsPlayingAudio(false));
-    } else if (audioRef.current) {
+    if (!audioRef.current) return;
+    if (isMuted) {
+      audioRef.current.play().then(() => {
+        setIsMuted(false);
+        setIsPlayingAudio(true);
+      }).catch(() => {});
+    } else {
       audioRef.current.pause();
+      setIsMuted(true);
       setIsPlayingAudio(false);
     }
   };
 
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
-
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        scrollToRelative(1);
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        scrollToRelative(-1);
-      } else if (e.code === 'Space') {
-        e.preventDefault();
-        toggleMute();
-      } else if (e.key.toLowerCase() === 'l') {
-        toggleLike(activeArtworkId);
-      } else if (e.key.toLowerCase() === 's') {
-        toggleSave(activeArtworkId);
-      } else if (e.key.toLowerCase() === 'c') {
-        setActiveCommentsArtId(activeArtworkId);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeArtworkId, isMuted, filteredArtworks]);
-
-  const scrollToRelative = (delta) => {
-    const idx = filteredArtworks.findIndex((a) => a.id === activeArtworkId);
-    if (idx === -1) return;
-
-    const nextIdx = Math.max(0, Math.min(filteredArtworks.length - 1, idx + delta));
-    const targetArtwork = filteredArtworks[nextIdx];
-
-    if (targetArtwork) {
-      const el = containerRef.current?.querySelector(`[data-artwork-id="${targetArtwork.id}"]`);
-      el?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const scrollToArtworkId = (id) => {
-    const el = containerRef.current?.querySelector(`[data-artwork-id="${id}"]`);
-    el?.scrollIntoView({ behavior: 'smooth' });
-    setActiveArtworkId(id);
-  };
-
-  const toggleLike = async (artId) => {
+  const toggleLike = async (id) => {
     setLikedIds((prev) => {
       const next = new Set(prev);
-      if (next.has(artId)) {
-        next.delete(artId);
+      if (next.has(id)) {
+        next.delete(id);
       } else {
-        next.add(artId);
+        next.add(id);
       }
       return next;
     });
-    await toggleLikeBackend(artId);
+
+    setArtworks((prev) =>
+      prev.map((art) => {
+        if (art.id === id) {
+          const currentlyLiked = likedIds.has(id);
+          return {
+            ...art,
+            likesCount: currentlyLiked ? art.likesCount - 1 : art.likesCount + 1
+          };
+        }
+        return art;
+      })
+    );
+
+    await toggleLikeBackend(id);
   };
 
-  const toggleSave = async (artId) => {
+  const toggleSave = async (id) => {
     setSavedIds((prev) => {
       const next = new Set(prev);
-      if (next.has(artId)) {
-        next.delete(artId);
+      if (next.has(id)) {
+        next.delete(id);
       } else {
-        next.add(artId);
+        next.add(id);
       }
       return next;
     });
-    await toggleSaveBackend(artId);
+
+    await toggleSaveBackend(id);
   };
 
   const toggleFollowArtist = (artistName) => {
@@ -224,28 +213,46 @@ export default function App() {
     });
   };
 
-  const handleAddComment = async (artId, text) => {
+  const handleAddComment = async (artworkId, text) => {
+    const userAuthor = currentUser ? currentUser.username : 'Curator';
+
     setArtworks((prev) =>
       prev.map((art) => {
-        if (art.id !== artId) return art;
-        const newComment = {
-          id: `c_${Date.now()}`,
-          user: 'You',
-          avatar: '✨',
-          text,
-          time: 'Just now',
-          likes: 0
-        };
-        return {
-          ...art,
-          comments: [newComment, ...art.comments]
-        };
+        if (art.id === artworkId) {
+          const newComment = {
+            id: Date.now(),
+            user: userAuthor,
+            avatar: userAuthor[0].toUpperCase(),
+            time: 'Just now',
+            text,
+            likes: 0
+          };
+          return {
+            ...art,
+            comments: [newComment, ...(art.comments || [])]
+          };
+        }
+        return art;
       })
     );
-    await postCommentBackend(artId, text);
+
+    await postCommentBackend(artworkId, text, userAuthor);
+  };
+
+  const scrollToArtworkId = (id) => {
+    const el = containerRef.current?.querySelector(`[data-artwork-id="${id}"]`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+      setActiveArtworkId(id);
+    }
   };
 
   const savedArtworks = artworks.filter((a) => savedIds.has(a.id));
+
+  const handleLogout = () => {
+    logoutUser();
+    setCurrentUser(null);
+  };
 
   return (
     <div className="app-viewport">
@@ -256,6 +263,8 @@ export default function App() {
         isMuted={isMuted}
         onToggleMute={toggleMute}
         onOpenSearch={() => setShowSearchModal(true)}
+        onOpenProfile={() => setShowAuthModal(true)}
+        currentUser={currentUser}
       />
 
       {/* Vertical Snap-Scroll Reel Feed */}
@@ -294,6 +303,8 @@ export default function App() {
         savedCount={savedIds.size}
         onOpenSaved={() => setShowSavedModal(true)}
         onOpenSearch={() => setShowSearchModal(true)}
+        onOpenProfile={() => setShowAuthModal(true)}
+        currentUser={currentUser}
       />
 
       {/* Modals & Drawers */}
@@ -349,6 +360,16 @@ export default function App() {
           artworks={artworks}
           onClose={() => setShowSearchModal(false)}
           onSelectArtwork={scrollToArtworkId}
+        />
+      )}
+
+      {showAuthModal && (
+        <AuthModal
+          currentUser={currentUser}
+          onLoginSuccess={(user) => setCurrentUser(user)}
+          onLogout={handleLogout}
+          onClose={() => setShowAuthModal(false)}
+          savedCount={savedIds.size}
         />
       )}
     </div>

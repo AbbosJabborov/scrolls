@@ -1,14 +1,14 @@
 import React from 'react';
 import { Compass, BookOpen, Search, User } from 'lucide-react';
 
-export default function BottomNavBar({ activeTab, onTabChange, savedCount, onOpenSaved, onOpenSearch }) {
+export default function BottomNavBar({ activeTab, onTabChange, savedCount, onOpenSaved, onOpenSearch, onOpenProfile, currentUser }) {
   return (
     <nav className="fixed bottom-0 left-0 w-full z-50 bg-[#121212]/95 backdrop-blur-md border-t border-white/10 flex justify-around items-center px-2 py-2 md:hidden">
       {/* Discover / Feed */}
       <button
         type="button"
         onClick={() => onTabChange('for-you')}
-        className={`flex flex-col items-center justify-center py-1 w-16 bg-transparent border-0 outline-none transition-colors ${
+        className={`flex flex-col items-center justify-center py-1 w-16 bg-transparent border-0 outline-none transition-colors cursor-pointer ${
           activeTab === 'for-you' ? 'text-white font-semibold' : 'text-white/60 hover:text-white'
         }`}
       >
@@ -20,7 +20,7 @@ export default function BottomNavBar({ activeTab, onTabChange, savedCount, onOpe
       <button
         type="button"
         onClick={onOpenSaved}
-        className="flex flex-col items-center justify-center py-1 w-16 bg-transparent border-0 outline-none text-white/60 hover:text-white transition-colors relative"
+        className="flex flex-col items-center justify-center py-1 w-16 bg-transparent border-0 outline-none text-white/60 hover:text-white transition-colors relative cursor-pointer"
       >
         <BookOpen size={22} />
         <span className="text-[10px] mt-1 tracking-wider uppercase">Museum</span>
@@ -35,20 +35,22 @@ export default function BottomNavBar({ activeTab, onTabChange, savedCount, onOpe
       <button
         type="button"
         onClick={onOpenSearch}
-        className="flex flex-col items-center justify-center py-1 w-16 bg-transparent border-0 outline-none text-white/60 hover:text-white transition-colors"
+        className="flex flex-col items-center justify-center py-1 w-16 bg-transparent border-0 outline-none text-white/60 hover:text-white transition-colors cursor-pointer"
       >
         <Search size={22} />
         <span className="text-[10px] mt-1 tracking-wider uppercase">Search</span>
       </button>
 
-      {/* Profile */}
+      {/* Profile / Account */}
       <button
         type="button"
-        onClick={onOpenSaved}
-        className="flex flex-col items-center justify-center py-1 w-16 bg-transparent border-0 outline-none text-white/60 hover:text-white transition-colors"
+        onClick={onOpenProfile}
+        className="flex flex-col items-center justify-center py-1 w-16 bg-transparent border-0 outline-none text-white/60 hover:text-white transition-colors cursor-pointer relative"
       >
-        <User size={22} />
-        <span className="text-[10px] mt-1 tracking-wider uppercase">Profile</span>
+        <User size={22} className={currentUser ? 'text-[#c5a059]' : ''} />
+        <span className="text-[10px] mt-1 tracking-wider uppercase">
+          {currentUser ? currentUser.username.substring(0, 7) : 'Profile'}
+        </span>
       </button>
     </nav>
   );
