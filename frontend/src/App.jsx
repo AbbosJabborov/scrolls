@@ -4,34 +4,30 @@ import { fetchBackendArtworks, toggleLikeBackend, toggleSaveBackend, postComment
 import Header from './components/Header';
 import FilterBar from './components/FilterBar';
 import ArtworkCard from './components/ArtworkCard';
+import BottomNavBar from './components/BottomNavBar';
 import CommentsDrawer from './components/CommentsDrawer';
 import ArtworkDetailModal from './components/ArtworkDetailModal';
 import ArtistProfileModal from './components/ArtistProfileModal';
 import SavedGalleryModal from './components/SavedGalleryModal';
 import ShareModal from './components/ShareModal';
 import SearchModal from './components/SearchModal';
-import { Volume2, VolumeX, Sparkles } from 'lucide-react';
+import { Volume2, Sparkles } from 'lucide-react';
 
 export default function App() {
-  // State management
   const [artworks, setArtworks] = useState(INITIAL_ARTWORKS);
   const [selectedCategory, setSelectedCategory] = useState('All Classics');
   const [activeTab, setActiveTab] = useState('for-you');
 
-  // Active item in feed
   const [activeArtworkId, setActiveArtworkId] = useState(INITIAL_ARTWORKS[0].id);
 
-  // Social user state
   const [likedIds, setLikedIds] = useState(new Set());
   const [savedIds, setSavedIds] = useState(new Set());
   const [followedArtists, setFollowedArtists] = useState(new Set());
 
-  // Audio system state
   const [isMuted, setIsMuted] = useState(true);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const audioRef = useRef(null);
 
-  // Active Modals & Drawers
   const [activeCommentsArtId, setActiveCommentsArtId] = useState(null);
   const [activeDetailArtId, setActiveDetailArtId] = useState(null);
   const [activeArtistName, setActiveArtistName] = useState(null);
@@ -39,12 +35,10 @@ export default function App() {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [shareArtwork, setShareArtwork] = useState(null);
 
-  // Toast notifications
   const [toasts, setToasts] = useState([]);
 
   const containerRef = useRef(null);
 
-  // Fetch artworks from Backend API
   useEffect(() => {
     async function loadArtworks() {
       const backendData = await fetchBackendArtworks(selectedCategory);
@@ -86,7 +80,6 @@ export default function App() {
     loadArtworks();
   }, [selectedCategory]);
 
-  // Filter artworks by category
   const filteredArtworks = artworks.filter((art) => {
     if (selectedCategory === 'All Classics') return true;
     return art.category === selectedCategory;
@@ -100,7 +93,6 @@ export default function App() {
     }, 2800);
   };
 
-  // Scroll detection via IntersectionObserver
   useEffect(() => {
     const observerOptions = {
       root: containerRef.current,
@@ -124,7 +116,6 @@ export default function App() {
     return () => observer.disconnect();
   }, [filteredArtworks]);
 
-  // Audio track synchronization when active artwork changes
   const activeArtwork = artworks.find((a) => a.id === activeArtworkId) || artworks[0];
 
   useEffect(() => {
@@ -147,7 +138,6 @@ export default function App() {
     }
   }, [activeArtworkId, isMuted]);
 
-  // Toggle global audio play/mute
   const toggleMute = () => {
     const nextMuted = !isMuted;
     setIsMuted(nextMuted);
@@ -169,7 +159,6 @@ export default function App() {
     }
   };
 
-  // Keyboard navigation & shortcuts
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
@@ -215,7 +204,6 @@ export default function App() {
     setActiveArtworkId(id);
   };
 
-  // Social action handlers with API calls
   const toggleLike = async (artId) => {
     setLikedIds((prev) => {
       const next = new Set(prev);
@@ -296,7 +284,7 @@ export default function App() {
         ))}
       </div>
 
-      {/* Header Bar */}
+      {/* Desktop & Top Header Bar */}
       <Header
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -348,28 +336,25 @@ export default function App() {
         )}
       </main>
 
+      {/* Mobile Bottom Navigation Bar (Google Stitches) */}
+      <BottomNavBar
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        savedCount={savedIds.size}
+        onOpenSaved={() => setShowSavedModal(true)}
+        onOpenSearch={() => setShowSearchModal(true)}
+      />
+
       {/* Floating Audio Tap Banner if Muted */}
       {isMuted && (
         <div
           onClick={toggleMute}
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-30 bg-amber-500/90 hover:bg-amber-400 text-black font-bold text-xs px-4 py-2 rounded-full backdrop-blur-md shadow-2xl flex items-center gap-2 cursor-pointer transition-all hover:scale-105"
+          className="fixed bottom-16 md:bottom-6 left-1/2 -translate-x-1/2 z-30 bg-amber-500/90 hover:bg-amber-400 text-black font-bold text-xs px-4 py-2 rounded-full backdrop-blur-md shadow-2xl flex items-center gap-2 cursor-pointer transition-all hover:scale-105"
         >
           <Volume2 size={16} />
           <span>Tap to unmute classical soundtrack</span>
         </div>
       )}
-
-      {/* Keyboard Shortcut Hint Pill */}
-      <div className="keyboard-hint-pill hidden md:flex">
-        <span>Use</span>
-        <span className="kbd-key">↑</span>
-        <span className="kbd-key">↓</span>
-        <span>to scroll |</span>
-        <span className="kbd-key">Space</span>
-        <span>audio |</span>
-        <span className="kbd-key">L</span>
-        <span>like</span>
-      </div>
 
       {/* Modals & Drawers */}
       {activeCommentsArtId && (
