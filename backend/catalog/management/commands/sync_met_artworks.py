@@ -8,41 +8,41 @@ CLASSICAL_SOUNDTRACKS = [
     {
         "audio_title": "Chopin — Nocturne Op. 9 No. 2",
         "audio_composer": "Frédéric Chopin",
-        "audio_url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Chopin_-_Nocturne_Op._9_No._2_%28orchestral%29.ogg"
+        "audio_url": "/audio/chopin.mp3"
     },
     {
         "audio_title": "Debussy — Clair de Lune",
         "audio_composer": "Claude Debussy",
-        "audio_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Clair_de_lune_%28Claude_Debussy%29_Suite_bergamasque.ogg"
+        "audio_url": "/audio/debussy.mp3"
     },
     {
         "audio_title": "Beethoven — Moonlight Sonata",
         "audio_composer": "Ludwig van Beethoven",
-        "audio_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Beethoven_Moonlight_Sonata_movement_1.ogg"
+        "audio_url": "/audio/beethoven.mp3"
     },
     {
         "audio_title": "Vivaldi — Four Seasons (Spring)",
         "audio_composer": "Antonio Vivaldi",
-        "audio_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Vivaldi_Spring_mvt_1_Allegro_John_Harrison_violin.ogg"
+        "audio_url": "/audio/vivaldi.mp3"
     },
     {
         "audio_title": "Bach — Air on the G String",
         "audio_composer": "Johann Sebastian Bach",
-        "audio_url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Air_on_the_G_String_from_Suite_No._3_in_D_major_BWV_1068.ogg"
+        "audio_url": "/audio/bach.mp3"
     },
     {
         "audio_title": "Satie — Gymnopédie No. 1",
         "audio_composer": "Erik Satie",
-        "audio_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/Gymnopedie_No_1.ogg"
+        "audio_url": "/audio/satie.mp3"
     }
 ]
 
 DEFAULT_ARTIST_PHOTOS = [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Klimt.jpg/800px-Klimt.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/b/b2/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch_1921.jpg/800px-Edvard_Munch_1921.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Claude_Monet_1899_Nadar_crop.jpg/800px-Claude_Monet_1899_Nadar_crop.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Cropped_Meervelt.jpg/800px-Cropped_Meervelt.jpg"
+    "/artists/klimt.jpg",
+    "/artists/vangogh.jpg",
+    "/artists/munch.jpg",
+    "/artists/monet.jpg",
+    "/artists/vermeer.jpg"
 ]
 
 CURATED_PAINTINGS = [
