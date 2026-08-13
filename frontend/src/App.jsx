@@ -7,7 +7,7 @@ import BottomNavBar from './components/BottomNavBar';
 import CommentsDrawer from './components/CommentsDrawer';
 import ArtworkDetailModal from './components/ArtworkDetailModal';
 import ArtistProfileModal from './components/ArtistProfileModal';
-import SavedGalleryModal from './components/SavedGalleryModal';
+import SavedGalleryPage from './components/SavedGalleryPage';
 import ShareModal from './components/ShareModal';
 import SearchModal from './components/SearchModal';
 import AuthModal from './components/AuthModal';
@@ -30,7 +30,6 @@ export default function App() {
   const [activeCommentsArtId, setActiveCommentsArtId] = useState(null);
   const [activeDetailArtId, setActiveDetailArtId] = useState(null);
   const [activeArtistName, setActiveArtistName] = useState(null);
-  const [showSavedModal, setShowSavedModal] = useState(false);
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [shareArtwork, setShareArtwork] = useState(null);
@@ -104,6 +103,8 @@ export default function App() {
   });
 
   useEffect(() => {
+    if (activeTab !== 'for-you') return;
+
     const observerOptions = {
       root: containerRef.current,
       threshold: 0.6
@@ -124,12 +125,18 @@ export default function App() {
     sections?.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
-  }, [filteredArtworks]);
+  }, [filteredArtworks, activeTab]);
 
   const currentArtwork = artworks.find((a) => a.id === activeArtworkId) || artworks[0];
 
   useEffect(() => {
-    if (!currentArtwork) return;
+    if (!currentArtwork || activeTab !== 'for-you') {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        setIsPlayingAudio(false);
+      }
+      return;
+    }
 
     if (!audioRef.current) {
       audioRef.current = new Audio(currentArtwork.audioUrl);
@@ -144,7 +151,7 @@ export default function App() {
       audioRef.current.pause();
       setIsPlayingAudio(false);
     }
-  }, [activeArtworkId, isMuted]);
+  }, [activeArtworkId, isMuted, activeTab]);
 
   const toggleMute = () => {
     if (!audioRef.current) return;
@@ -240,11 +247,14 @@ export default function App() {
   };
 
   const scrollToArtworkId = (id) => {
-    const el = containerRef.current?.querySelector(`[data-artwork-id="${id}"]`);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-      setActiveArtworkId(id);
-    }
+    setActiveTab('for-you');
+    setTimeout(() => {
+      const el = containerRef.current?.querySelector(`[data-artwork-id="${id}"]`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        setActiveArtworkId(id);
+      }
+    }, 50);
   };
 
   const savedArtworks = artworks.filter((a) => savedIds.has(a.id));
@@ -259,7 +269,8 @@ export default function App() {
       {/* Top Header Bar */}
       <Header
         savedCount={savedIds.size}
-        onOpenSaved={() => setShowSavedModal(true)}
+        onSelectTab={setActiveTab}
+        activeTab={activeTab}
         isMuted={isMuted}
         onToggleMute={toggleMute}
         onOpenSearch={() => setShowSearchModal(true)}
@@ -267,41 +278,49 @@ export default function App() {
         currentUser={currentUser}
       />
 
-      {/* Vertical Snap-Scroll Reel Feed */}
-      <main className="feed-snap-container" ref={containerRef}>
-        {filteredArtworks.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-full text-slate-400">
-            <p className="text-lg">No artworks found.</p>
-          </div>
-        ) : (
-          filteredArtworks.map((artwork) => (
-            <section key={artwork.id} className="reel-card-section">
-              <ArtworkCard
-                artwork={artwork}
-                isLiked={likedIds.has(artwork.id)}
-                isSaved={savedIds.has(artwork.id)}
-                isFollowingArtist={followedArtists.has(artwork.artist)}
-                onToggleLike={toggleLike}
-                onToggleSave={toggleSave}
-                onToggleFollowArtist={toggleFollowArtist}
-                onOpenComments={(id) => setActiveCommentsArtId(id)}
-                onOpenDetail={(id) => setActiveDetailArtId(id)}
-                onOpenArtistProfile={(name) => setActiveArtistName(name)}
-                onOpenShare={(art) => setShareArtwork(art)}
-                isPlayingAudio={isPlayingAudio && activeArtworkId === artwork.id}
-                onToggleAudio={toggleMute}
-              />
-            </section>
-          ))
-        )}
-      </main>
+      {/* Main View Area: Reel Feed vs Dedicated Museum Page */}
+      {activeTab === 'museum' ? (
+        <SavedGalleryPage
+          savedArtworks={savedArtworks}
+          onSelectArtwork={scrollToArtworkId}
+          onRemoveSave={toggleSave}
+          onGoToDiscover={() => setActiveTab('for-you')}
+        />
+      ) : (
+        <main className="feed-snap-container" ref={containerRef}>
+          {filteredArtworks.length === 0 ? (
+            <div className="flex flex-col items-center justify-center h-full text-slate-400">
+              <p className="text-lg">No artworks found.</p>
+            </div>
+          ) : (
+            filteredArtworks.map((artwork) => (
+              <section key={artwork.id} className="reel-card-section" data-artwork-id={artwork.id}>
+                <ArtworkCard
+                  artwork={artwork}
+                  isLiked={likedIds.has(artwork.id)}
+                  isSaved={savedIds.has(artwork.id)}
+                  isFollowingArtist={followedArtists.has(artwork.artist)}
+                  onToggleLike={toggleLike}
+                  onToggleSave={toggleSave}
+                  onToggleFollowArtist={toggleFollowArtist}
+                  onOpenComments={(id) => setActiveCommentsArtId(id)}
+                  onOpenDetail={(id) => setActiveDetailArtId(id)}
+                  onOpenArtistProfile={(name) => setActiveArtistName(name)}
+                  onOpenShare={(art) => setShareArtwork(art)}
+                  isPlayingAudio={isPlayingAudio && activeArtworkId === artwork.id}
+                  onToggleAudio={toggleMute}
+                />
+              </section>
+            ))
+          )}
+        </main>
+      )}
 
-      {/* Mobile Bottom Navigation Bar (Google Stitches) */}
+      {/* Mobile Bottom Navigation Bar */}
       <BottomNavBar
         activeTab={activeTab}
         onTabChange={setActiveTab}
         savedCount={savedIds.size}
-        onOpenSaved={() => setShowSavedModal(true)}
         onOpenSearch={() => setShowSearchModal(true)}
         onOpenProfile={() => setShowAuthModal(true)}
         currentUser={currentUser}
@@ -335,15 +354,6 @@ export default function App() {
           onToggleFollow={toggleFollowArtist}
           onClose={() => setActiveArtistName(null)}
           onSelectArtwork={scrollToArtworkId}
-        />
-      )}
-
-      {showSavedModal && (
-        <SavedGalleryModal
-          savedArtworks={savedArtworks}
-          onClose={() => setShowSavedModal(false)}
-          onSelectArtwork={scrollToArtworkId}
-          onRemoveSave={toggleSave}
         />
       )}
 
