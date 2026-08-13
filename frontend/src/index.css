@@ -5,27 +5,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Stitches Color Tokens */
   --color-surface: #fdf8f8;
-  --color-surface-dim: #ddd9d8;
-  --color-surface-container-low: #f7f3f2;
-  --color-surface-container: #f1edec;
-  --color-surface-container-high: #ebe7e6;
-  --color-surface-container-highest: #e5e2e1;
   --color-on-surface: #1c1b1b;
-  --color-on-surface-variant: #444748;
-  --color-outline: #747878;
   --color-outline-variant: #c4c7c7;
-  
   --color-primary: #000000;
-  --color-on-primary: #ffffff;
   --color-accent-gold: #c5a059;
   --color-secondary-fixed: #ffdea5;
-  --color-secondary-container: #fed488;
   --color-dark-bg: #1a1a1a;
   --color-warm-ivory: #f9f7f2;
 
-  /* Typography Families */
   --font-serif: 'Bodoni Moda', Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
@@ -35,6 +23,19 @@
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Strict Button & Input Resets */
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 html, body {
@@ -56,21 +57,15 @@ html, body {
 
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
-::-webkit-scrollbar-track {
+  width: 0px;
+  height: 0px;
   background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(197, 160, 89, 0.4);
-  border-radius: 2px;
 }
 
 /* Stitches Typography Helpers */
 .font-display-lg {
   font-family: var(--font-serif);
-  font-size: 3.5rem;
+  font-size: 3rem;
   line-height: 1.1;
   letter-spacing: -0.02em;
   font-weight: 400;
@@ -78,38 +73,37 @@ html, body {
 
 .font-headline-lg {
   font-family: var(--font-serif);
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   line-height: 1.2;
   font-weight: 400;
 }
 
 .font-headline-md {
   font-family: var(--font-serif);
-  font-size: 1.85rem;
+  font-size: 1.75rem;
   line-height: 1.3;
   font-weight: 400;
 }
 
 .font-title-lg {
   font-family: var(--font-sans);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 600;
   line-height: 1.5;
-  letter-spacing: 0.01em;
 }
 
 .font-body-lg {
   font-family: var(--font-sans);
-  font-size: 1.125rem;
+  font-size: 1.05rem;
   font-weight: 400;
   line-height: 1.6;
 }
 
 .font-body-md {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .font-label-caps {
@@ -123,12 +117,12 @@ html, body {
 
 .font-label-sm {
   font-family: var(--font-sans);
-  font-size: 0.8125rem;
+  font-size: 0.8rem;
   font-weight: 500;
   line-height: 1.4;
 }
 
-/* App Viewport & Frame */
+/* App Viewport */
 .app-viewport {
   position: relative;
   width: 100vw;
@@ -139,7 +133,7 @@ html, body {
   overflow: hidden;
 }
 
-/* Editorial Frame Container */
+/* Editorial Frame */
 .editorial-frame {
   border: 1px solid #e5e1da;
   padding: 16px;
@@ -162,22 +156,172 @@ html, body {
   top: 0;
   left: 0;
   right: 0;
-  height: 64px;
+  height: 56px;
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
-  background: linear-gradient(to bottom, rgba(26, 26, 26, 0.9) 0%, rgba(26, 26, 26, 0) 100%);
-  backdrop-filter: blur(8px);
+  padding: 0 16px;
+  background: linear-gradient(to bottom, rgba(26, 26, 26, 0.95) 0%, rgba(26, 26, 26, 0) 100%);
 }
 
-.header-brand {
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.logo-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #c5a059;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
   font-family: var(--font-serif);
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   color: var(--color-warm-ivory);
+}
+
+.logo-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 2px 6px;
+  background: rgba(197, 160, 89, 0.2);
+  color: var(--color-accent-gold);
+  border: 1px solid var(--color-accent-gold);
+  border-radius: 4px;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-tab {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 4px 8px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.nav-tab.active {
+  color: #ffffff;
+}
+
+.nav-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 2px;
+  background: var(--color-accent-gold);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-icon-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.header-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.saved-badge-count {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: #c5a059;
+  color: #000;
+  font-size: 0.65rem;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Category Filter Bar */
+.filter-bar {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  pointer-events: none;
+}
+
+.filter-pills-container {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  pointer-events: auto;
+  max-width: 100vw;
+  padding: 4px 12px;
+}
+
+.filter-pills-container::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-pill {
+  white-space: nowrap;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.filter-pill.active {
+  background: var(--color-accent-gold);
+  border-color: var(--color-accent-gold);
+  color: #000000;
 }
 
 /* Snap Scroll Feed Container */
@@ -206,13 +350,12 @@ html, body {
   overflow: hidden;
 }
 
-/* Desktop layout container (TikTok phone aspect on desktop) */
 .reel-card-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
   max-width: 520px;
-  background: #111111;
+  background: #0d0d0d;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -221,7 +364,7 @@ html, body {
 
 @media (min-width: 768px) {
   .reel-card-wrapper {
-    height: calc(100vh - 72px);
+    height: calc(100vh - 64px);
     margin-top: 56px;
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
@@ -237,11 +380,12 @@ html, body {
   height: 100%;
   z-index: 1;
   overflow: hidden;
-  background: #000;
+  background: #0a0a0a;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  padding: 12px;
 }
 
 .artwork-img-main {
@@ -249,18 +393,10 @@ html, body {
   z-index: 2;
   width: 100%;
   height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.ken-burns-active {
-  animation: kenburns 28s ease-in-out infinite alternate;
-}
-
-@keyframes kenburns {
-  0% { transform: scale(1) translate(0, 0); }
-  50% { transform: scale(1.06) translate(-1%, -1%); }
-  100% { transform: scale(1.03) translate(1%, 1%); }
+  transition: transform 0.4s ease;
 }
 
 /* Card Overlays */
@@ -269,8 +405,8 @@ html, body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 320px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0) 100%);
+  height: 340px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
   z-index: 5;
   pointer-events: none;
 }
@@ -278,41 +414,35 @@ html, body {
 /* Stitches TikTok Right Action Rail */
 .action-rail-stitches {
   position: absolute;
-  right: 16px;
-  bottom: 100px;
+  right: 14px;
+  bottom: 90px;
   z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
 }
 
-/* Avatar Circle & Follow Plus Button */
 .artist-avatar-container {
   position: relative;
   cursor: pointer;
 }
 
 .artist-avatar-img {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-  transition: transform 0.2s ease;
-}
-
-.artist-avatar-container:hover .artist-avatar-img {
-  transform: scale(1.06);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
 }
 
 .artist-follow-plus-btn {
   position: absolute;
   bottom: -4px;
   right: -2px;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--color-accent-gold);
   color: #000;
@@ -320,11 +450,9 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-  transition: all 0.2s ease;
 }
 
 .artist-follow-plus-btn.following {
@@ -332,33 +460,26 @@ html, body {
   color: #fff;
 }
 
-/* Action Items */
 .action-btn-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   cursor: pointer;
-  background: none;
+  background: transparent;
   border: none;
   color: #ffffff;
-  transition: transform 0.2s ease;
-}
-
-.action-btn-item:hover {
-  transform: scale(1.1);
 }
 
 .action-icon-wrap {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
 }
 
 .action-icon-wrap.liked {
@@ -368,13 +489,13 @@ html, body {
 
 .action-icon-wrap.saved {
   color: var(--color-accent-gold);
-  background: rgba(197, 160, 89, 0.2);
+  background: rgba(197, 160, 89, 0.25);
 }
 
 /* Vinyl Audio Disc */
 .vinyl-disc {
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: radial-gradient(circle, #222 30%, #111 70%, #050505 100%);
   border: 2px solid rgba(255, 255, 255, 0.3);
@@ -382,7 +503,6 @@ html, body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-top: 4px;
 }
 
 .vinyl-disc.playing {
@@ -398,19 +518,19 @@ html, body {
 /* Bottom Left Info Editorial Card */
 .card-info-editorial {
   position: absolute;
-  left: 20px;
-  bottom: 28px;
-  right: 84px;
+  left: 16px;
+  bottom: 80px;
+  right: 76px;
   z-index: 10;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   color: #ffffff;
 }
 
 .artwork-title-serif {
   font-family: var(--font-serif);
-  font-size: 1.65rem;
+  font-size: 1.5rem;
   font-weight: 400;
   letter-spacing: -0.01em;
   text-transform: uppercase;
@@ -421,7 +541,7 @@ html, body {
 .artist-tag-chip {
   display: inline-flex;
   align-items: center;
-  padding: 3px 8px;
+  padding: 2px 6px;
   border: 1px solid rgba(255, 255, 255, 0.4);
   font-size: 0.7rem;
   font-weight: 600;
@@ -434,26 +554,20 @@ html, body {
 .read-story-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-secondary-fixed);
   border-b: 1px solid var(--color-secondary-fixed);
-  padding-bottom: 2px;
+  padding-bottom: 1px;
   width: fit-content;
   margin-top: 4px;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.read-story-link:hover {
-  color: #ffffff;
-  border-color: #ffffff;
-}
-
-/* Modal Backdrops & Warm Ivory Sheets */
+/* Modals & Overlays */
 .modal-overlay-ivory {
   position: fixed;
   inset: 0;
@@ -478,10 +592,9 @@ html, body {
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
-/* Toast Notifications */
 .toast-container {
   position: fixed;
-  top: 80px;
+  top: 70px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 120;
@@ -492,15 +605,14 @@ html, body {
 }
 
 .toast-item {
-  background: rgba(26, 26, 26, 0.92);
+  background: rgba(26, 26, 26, 0.95);
   border: 1px solid var(--color-accent-gold);
   color: var(--color-warm-ivory);
-  padding: 8px 16px;
+  padding: 6px 14px;
   border-radius: 20px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }

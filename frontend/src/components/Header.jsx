@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bookmark, Volume2, VolumeX, Sparkles, Search, Compass } from 'lucide-react';
+import { Bookmark, Volume2, VolumeX, Sparkles, Search } from 'lucide-react';
 
 export default function Header({
   activeTab,
@@ -15,7 +15,7 @@ export default function Header({
       {/* Brand Logo */}
       <div className="logo-container">
         <div className="logo-icon-wrap">
-          <Sparkles className="w-5 h-5 text-white" size={20} color="#fff" />
+          <Sparkles size={18} className="text-black" />
         </div>
         <div className="flex flex-col">
           <span className="logo-text">Scrolls</span>
@@ -26,12 +26,14 @@ export default function Header({
       {/* Center Feed Tabs */}
       <div className="header-center">
         <button
+          type="button"
           className={`nav-tab ${activeTab === 'for-you' ? 'active' : ''}`}
           onClick={() => setActiveTab('for-you')}
         >
           For You
         </button>
         <button
+          type="button"
           className={`nav-tab ${activeTab === 'trending' ? 'active' : ''}`}
           onClick={() => setActiveTab('trending')}
         >
@@ -43,6 +45,7 @@ export default function Header({
       <div className="header-actions">
         {/* Search trigger */}
         <button
+          type="button"
           className="header-icon-btn"
           onClick={onOpenSearch}
           title="Search Artworks & Artists"
@@ -52,15 +55,17 @@ export default function Header({
 
         {/* Global Mute / Unmute Classical Audio */}
         <button
+          type="button"
           className="header-icon-btn"
           onClick={onToggleMute}
           title={isMuted ? 'Unmute Classical Music' : 'Mute Classical Music'}
         >
-          {isMuted ? <VolumeX size={18} color="#ef4444" /> : <Volume2 size={18} color="#f59e0b" />}
+          {isMuted ? <VolumeX size={18} className="text-rose-400" /> : <Volume2 size={18} className="text-amber-400" />}
         </button>
 
         {/* Saved Gallery Drawer Trigger */}
         <button
+          type="button"
           className="header-icon-btn"
           onClick={onOpenSaved}
           title="Saved Masterpieces"

@@ -278,7 +278,7 @@ export default function App() {
       <div className="toast-container">
         {toasts.map((t) => (
           <div key={t.id} className="toast-item">
-            <Sparkles size={14} className="text-amber-400" />
+            <Sparkles size={14} className="text-[#c5a059]" />
             <span>{t.message}</span>
           </div>
         ))}
@@ -307,8 +307,9 @@ export default function App() {
           <div className="flex flex-col items-center justify-center h-full text-slate-400">
             <p className="text-lg">No artworks found in this category.</p>
             <button
+              type="button"
               onClick={() => setSelectedCategory('All Classics')}
-              className="mt-4 px-4 py-2 bg-amber-500 text-black font-bold rounded-xl"
+              className="mt-4 px-4 py-2 bg-[#c5a059] text-black font-bold rounded-xl"
             >
               Reset Category
             </button>
@@ -347,13 +348,14 @@ export default function App() {
 
       {/* Floating Audio Tap Banner if Muted */}
       {isMuted && (
-        <div
+        <button
+          type="button"
           onClick={toggleMute}
-          className="fixed bottom-16 md:bottom-6 left-1/2 -translate-x-1/2 z-30 bg-amber-500/90 hover:bg-amber-400 text-black font-bold text-xs px-4 py-2 rounded-full backdrop-blur-md shadow-2xl flex items-center gap-2 cursor-pointer transition-all hover:scale-105"
+          className="fixed bottom-14 md:bottom-6 left-1/2 -translate-x-1/2 z-30 bg-[#c5a059] text-black font-bold text-xs px-4 py-1.5 rounded-full shadow-2xl flex items-center gap-2 cursor-pointer transition-all hover:scale-105 border-0"
         >
-          <Volume2 size={16} />
+          <Volume2 size={14} />
           <span>Tap to unmute classical soundtrack</span>
-        </div>
+        </button>
       )}
 
       {/* Modals & Drawers */}
