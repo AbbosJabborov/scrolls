@@ -29,19 +29,6 @@ services:
     networks:
       - scrolls_net
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: scrolls_frontend
-    restart: always
-    ports:
-      - "3000:80"
-    depends_on:
-      - backend
-    networks:
-      - scrolls_net
-
   db:
     image: postgres:16-alpine
     container_name: scrolls_db
