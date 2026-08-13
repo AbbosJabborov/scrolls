@@ -1,7 +1,7 @@
 import React from 'react';
-import { Search, User, BookOpen } from 'lucide-react';
+import { Search, BookOpen } from 'lucide-react';
 
-export default function Header({ onOpenSearch, onOpenProfile, onSelectTab, activeTab, currentUser, savedCount = 0 }) {
+export default function Header({ onOpenSearch, onSelectTab, activeTab, savedCount = 0 }) {
   return (
     <header className="app-header flex items-center justify-between px-4 md:px-8 py-3 bg-[#121212]/95 backdrop-blur-md border-b border-white/10 fixed top-0 left-0 right-0 z-40">
       {/* Brand Logo - Dark Logo */}
@@ -16,7 +16,7 @@ export default function Header({ onOpenSearch, onOpenProfile, onSelectTab, activ
         />
       </div>
 
-      {/* Header Actions - Discover, Museum, Search & Curator Profile */}
+      {/* Header Actions - Search & Desktop Museum Link */}
       <div className="header-actions flex items-center gap-2 md:gap-4">
         {/* Desktop Museum Collection Tab */}
         <button
@@ -39,20 +39,6 @@ export default function Header({ onOpenSearch, onOpenProfile, onSelectTab, activ
           className="text-white/80 hover:text-[#c5a059] p-2 bg-transparent border-0 outline-none cursor-pointer transition-colors"
         >
           <Search size={22} />
-        </button>
-
-        <button
-          type="button"
-          onClick={onOpenProfile}
-          title={currentUser ? `Profile (@${currentUser.username})` : "Curator Sign In"}
-          className="text-white/80 hover:text-[#c5a059] p-2 bg-transparent border-0 outline-none cursor-pointer transition-colors flex items-center gap-1.5"
-        >
-          <User size={22} className={currentUser ? 'text-[#c5a059]' : ''} />
-          {currentUser && (
-            <span className="hidden md:inline font-label-caps text-[11px] text-[#c5a059] tracking-wider font-semibold">
-              @{currentUser.username}
-            </span>
-          )}
         </button>
       </div>
     </header>

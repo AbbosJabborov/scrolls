@@ -380,6 +380,9 @@ export default function App() {
           onLogout={handleLogout}
           onClose={() => setShowAuthModal(false)}
           savedCount={savedIds.size}
+          followedArtists={followedArtists}
+          onToggleFollowArtist={toggleFollowArtist}
+          onOpenArtistProfile={(name) => setActiveArtistName(name)}
         />
       )}
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Compass, BookOpen, Search, User } from 'lucide-react';
 
-export default function BottomNavBar({ activeTab, onTabChange, savedCount, onOpenSearch, onOpenProfile, currentUser }) {
+export default function BottomNavBar({ activeTab, onTabChange, onOpenSearch, onOpenProfile, currentUser }) {
   return (
     <nav className="fixed bottom-0 left-0 w-full z-50 bg-[#121212]/95 backdrop-blur-md border-t border-white/10 flex justify-around items-center px-2 py-2 md:hidden">
       {/* Discover / Feed */}
@@ -20,17 +20,12 @@ export default function BottomNavBar({ activeTab, onTabChange, savedCount, onOpe
       <button
         type="button"
         onClick={() => onTabChange('museum')}
-        className={`flex flex-col items-center justify-center py-1 w-16 bg-transparent border-0 outline-none transition-colors relative cursor-pointer ${
+        className={`flex flex-col items-center justify-center py-1 w-16 bg-transparent border-0 outline-none transition-colors cursor-pointer ${
           activeTab === 'museum' ? 'text-white font-semibold' : 'text-white/60 hover:text-white'
         }`}
       >
         <BookOpen size={22} className={activeTab === 'museum' ? 'text-[#ffdea5]' : ''} />
         <span className="text-[10px] mt-1 tracking-wider uppercase">Museum</span>
-        {savedCount > 0 && (
-          <span className="absolute top-0 right-3 bg-[#c5a059] text-black font-bold text-[9px] w-4 h-4 rounded-full flex items-center justify-center">
-            {savedCount}
-          </span>
-        )}
       </button>
 
       {/* Search */}
