@@ -15,10 +15,13 @@ export default function ArtworkCard({
   onOpenArtistProfile,
   onOpenShare,
   isPlayingAudio,
-  onToggleAudio
+  onToggleAudio,
+  themeMode = 'dark'
 }) {
   const [doubleTapHearts, setDoubleTapHearts] = useState([]);
   const lastTapRef = useRef(0);
+  const isDay = themeMode === 'day';
+  const defaultIconColor = isDay ? '#1c1b1b' : '#ffffff';
 
   const formatCount = (num) => {
     if (num >= 1000000) return (num / 1000000).toFixed(1) + 'm';
@@ -58,8 +61,8 @@ export default function ArtworkCard({
   };
 
   return (
-    <div className="reel-card-wrapper" data-artwork-id={artwork.id}>
-      {/* Heavy Blurred Ambient Artwork Background (Bending colors effect) */}
+    <div className={`reel-card-wrapper ${isDay ? 'day-mode-card' : ''}`} data-artwork-id={artwork.id}>
+      {/* Heavy Blurred Ambient Artwork Background */}
       <img
         src={artwork.imageUrl}
         alt=""
@@ -99,7 +102,7 @@ export default function ArtworkCard({
       <div className="action-rail-stitches">
         {/* Artist Profile Circle + Overlapping Follow Button */}
         <div className="artist-avatar-container" onClick={() => onOpenArtistProfile(artwork.artist)}>
-          <div className="w-[46px] h-[46px] rounded-full overflow-hidden border border-white/40 shadow-lg bg-[#222] flex items-center justify-center">
+          <div className="w-[46px] h-[46px] rounded-full overflow-hidden border border-current/20 shadow-lg bg-[#222] flex items-center justify-center">
             {artwork.artistPhoto ? (
               <img
                 src={artwork.artistPhoto}
@@ -136,10 +139,10 @@ export default function ArtworkCard({
             <Heart
               size={24}
               fill={isLiked ? '#fe2c55' : 'none'}
-              color={isLiked ? '#fe2c55' : '#ffffff'}
+              color={isLiked ? '#fe2c55' : defaultIconColor}
             />
           </div>
-          <span className="font-label-sm text-[12px] opacity-80 mt-1">
+          <span className="font-label-sm text-[12px] opacity-90 mt-1">
             {formatCount((artwork.likesCount || 12400) + (isLiked ? 1 : 0))}
           </span>
         </button>
@@ -152,9 +155,9 @@ export default function ArtworkCard({
           title="View Discussion"
         >
           <div className="action-icon-wrap">
-            <MessageCircle size={24} color="#ffffff" />
+            <MessageCircle size={24} color={defaultIconColor} />
           </div>
-          <span className="font-label-sm text-[12px] opacity-80 mt-1">
+          <span className="font-label-sm text-[12px] opacity-90 mt-1">
             {artwork.comments ? artwork.comments.length : 428}
           </span>
         </button>
@@ -170,7 +173,7 @@ export default function ArtworkCard({
             <Bookmark
               size={24}
               fill={isSaved ? '#c5a059' : 'none'}
-              color={isSaved ? '#c5a059' : '#ffffff'}
+              color={isSaved ? '#c5a059' : defaultIconColor}
             />
           </div>
         </button>
@@ -183,7 +186,7 @@ export default function ArtworkCard({
           title="Share Masterpiece"
         >
           <div className="action-icon-wrap">
-            <Share2 size={22} color="#ffffff" />
+            <Share2 size={22} color={defaultIconColor} />
           </div>
         </button>
 
@@ -213,10 +216,10 @@ export default function ArtworkCard({
           >
             {artwork.artist}
           </span>
-          <span className="font-label-sm text-xs text-white/70">· {artwork.year}</span>
+          <span className="font-label-sm text-xs opacity-75">· {artwork.year}</span>
         </div>
 
-        <p className="font-body-md text-xs text-white/70 line-clamp-2 max-w-sm font-light">
+        <p className="font-body-md text-xs opacity-80 line-clamp-2 max-w-sm font-light">
           {artwork.shortDescription}
         </p>
 
@@ -232,10 +235,12 @@ export default function ArtworkCard({
 
         {/* Audio Strip */}
         <div
-          className="flex items-center space-x-2 text-[11px] text-white/60 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-md w-fit mt-2 border border-white/10 cursor-pointer"
+          className={`flex items-center space-x-2 text-[11px] px-2.5 py-1 rounded-md w-fit mt-2 border cursor-pointer ${
+            isDay ? 'bg-black/5 text-black/80 border-black/10' : 'bg-black/40 text-white/60 border-white/10'
+          }`}
           onClick={onToggleAudio}
         >
-          <Music size={12} className="text-amber-400" />
+          <Music size={12} className="text-amber-500" />
           <span className="truncate max-w-[160px]">{artwork.audioTitle}</span>
         </div>
       </div>

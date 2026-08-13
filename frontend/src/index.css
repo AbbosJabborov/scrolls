@@ -34,6 +34,60 @@ body.day-mode {
   color: #1c1b1b !important;
 }
 
+body.day-mode .app-viewport {
+  background-color: #f9f7f2 !important;
+  color: #1c1b1b !important;
+}
+
+body.day-mode .reel-card-wrapper {
+  background-color: #f9f7f2 !important;
+  color: #1c1b1b !important;
+}
+
+body.day-mode .ambient-bg-blur {
+  opacity: 0.18 !important;
+  filter: blur(60px) brightness(1.2) saturate(1.2) !important;
+}
+
+body.day-mode .picture-frame-wrap {
+  background: #faf8f5 !important;
+  border-color: #c5a059 !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12), inset 0 0 0 1px rgba(0, 0, 0, 0.08) !important;
+}
+
+body.day-mode .card-overlay-bottom {
+  background: linear-gradient(to top, rgba(249, 247, 242, 0.96) 0%, rgba(249, 247, 242, 0.6) 65%, rgba(249, 247, 242, 0) 100%) !important;
+}
+
+body.day-mode .card-info-editorial {
+  color: #1c1b1b !important;
+}
+
+body.day-mode .artwork-title-serif {
+  color: #1c1b1b !important;
+  text-shadow: none !important;
+}
+
+body.day-mode .action-icon-wrap {
+  background: rgba(0, 0, 0, 0.06) !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  color: #1c1b1b !important;
+}
+
+body.day-mode .action-icon-wrap.liked {
+  background: rgba(254, 44, 85, 0.15) !important;
+  border-color: rgba(254, 44, 85, 0.4) !important;
+}
+
+body.day-mode .action-icon-wrap.saved {
+  background: rgba(197, 160, 89, 0.2) !important;
+  border-color: rgba(197, 160, 89, 0.5) !important;
+}
+
+body.day-mode .action-btn-item {
+  color: #1c1b1b !important;
+}
+
 .bg-var-bg {
   background-color: var(--var-bg);
 }

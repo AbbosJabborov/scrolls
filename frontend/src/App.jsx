@@ -345,6 +345,7 @@ export default function App() {
                   onOpenShare={(art) => setShareArtwork(art)}
                   isPlayingAudio={isPlayingAudio && activeArtworkId === artwork.id}
                   onToggleAudio={toggleMute}
+                  themeMode={themeMode}
                 />
               </section>
             ))
