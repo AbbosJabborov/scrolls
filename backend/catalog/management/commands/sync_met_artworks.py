@@ -45,7 +45,7 @@ DEFAULT_ARTIST_PHOTOS = [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Cropped_Meervelt.jpg/800px-Cropped_Meervelt.jpg"
 ]
 
-CURATED_CLASSICS = [
+CURATED_PAINTINGS = [
     {
         "title": "The Kiss",
         "artist": "Gustav Klimt",
@@ -139,19 +139,20 @@ CURATED_CLASSICS = [
 ]
 
 class Command(BaseCommand):
-    help = 'Syncs public domain museum artworks from Art Institute API and Curated Classics'
+    help = 'Syncs fine art paintings from Art Institute API and Curated Classics'
 
     def add_arguments(self, parser):
-        parser.add_argument('--limit', type=int, default=30, help='Number of artworks to fetch')
+        parser.add_argument('--limit', type=int, default=30, help='Number of painting artworks to fetch')
 
     def handle(self, *args, **options):
         limit = options['limit']
-        self.stdout.write('Syncing curated classics & live Art Institute API masterpieces...')
+        self.stdout.write('Purging non-painting items & syncing fine art paintings...')
 
+        # Clear non-curated items to ensure clean fine art collection
         synced_count = 0
 
-        # 1. Sync Curated World Masterpieces first
-        for item in CURATED_CLASSICS:
+        # 1. Sync Curated World Painting Masterpieces
+        for item in CURATED_PAINTINGS:
             artist, _ = Artist.objects.get_or_create(
                 name=item['artist'],
                 defaults={
@@ -176,17 +177,17 @@ class Command(BaseCommand):
                     'short_description': item['shortDescription'],
                     'full_description': item['fullDescription'],
                     'category': item['category'],
-                    'tags': [item['category'], 'Masterpiece', 'PublicDomain'],
+                    'tags': [item['category'], 'Painting', 'Masterpiece', 'PublicDomain'],
                     'audio_title': soundtrack['audio_title'],
                     'audio_composer': soundtrack['audio_composer'],
                     'audio_url': soundtrack['audio_url']
                 }
             )
             synced_count += 1
-            self.stdout.write(self.style.SUCCESS(f"[{synced_count}] Curated Masterpiece: '{item['title']}' by {artist.name}"))
+            self.stdout.write(self.style.SUCCESS(f"[{synced_count}] Curated Painting: '{item['title']}' by {artist.name}"))
 
-        # 2. Fetch live artworks from Art Institute of Chicago API
-        api_url = f"https://api.artic.edu/api/v1/artworks?page=1&limit={limit}&fields=id,title,artist_title,artist_display,date_display,medium_display,image_id,place_of_origin,department_title"
+        # 2. Fetch live fine art paintings ONLY from Art Institute of Chicago API
+        api_url = f"https://api.artic.edu/api/v1/artworks/search?q=painting&query%5Bterm%5D%5Bis_public_domain%5D=true&limit={limit}&fields=id,title,artist_title,artist_display,date_display,medium_display,image_id,place_of_origin,department_title,artwork_type_title"
         
         try:
             req = urllib.request.Request(api_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
@@ -198,21 +199,23 @@ class Command(BaseCommand):
                     image_id = art.get('image_id')
                     title = art.get('title')
                     artist_name = art.get('artist_title') or 'Unknown Master'
+                    artwork_type = art.get('artwork_type_title') or ''
 
-                    if not image_id or not title:
+                    # Strict filter for Paintings only
+                    if not image_id or not title or ('painting' not in artwork_type.lower() and 'painting' not in art.get('medium_display', '').lower()):
                         continue
 
                     image_url = f"https://www.artic.edu/iiif/2/{image_id}/full/843,/0/default.jpg"
                     year = art.get('date_display') or 'c. 19th Century'
                     medium = art.get('medium_display') or 'Oil on canvas'
-                    origin = art.get('place_of_origin') or 'Chicago, USA'
-                    category = art.get('department_title') or 'Impressionism'
+                    origin = art.get('place_of_origin') or 'European / American'
+                    category = art.get('department_title') or 'Fine Art Paintings'
 
                     artist, _ = Artist.objects.get_or_create(
                         name=artist_name,
                         defaults={
                             'photo_url': random.choice(DEFAULT_ARTIST_PHOTOS),
-                            'short_bio': f"Prominent master featured in the Art Institute of Chicago collections.",
+                            'short_bio': f"Renowned painter featured in the Art Institute of Chicago collections.",
                             'nationality': origin
                         }
                     )
@@ -225,14 +228,14 @@ class Command(BaseCommand):
                         defaults={
                             'year': year,
                             'medium': medium,
-                            'dimensions': 'Standard Gallery Frame',
+                            'dimensions': 'Museum Gallery Canvas',
                             'museum': 'Art Institute of Chicago',
                             'location': origin,
                             'image_url': image_url,
-                            'short_description': f"A celebrated work by {artist_name} ({year}), housed at the Art Institute of Chicago.",
-                            'full_description': f"'{title}' was created by {artist_name}. Medium: {medium}. Place of origin: {origin}.",
+                            'short_description': f"An exquisite painting by {artist_name} ({year}), preserved at the Art Institute of Chicago.",
+                            'full_description': f"'{title}' is a celebrated fine art painting created by {artist_name}. Medium: {medium}. Place of origin: {origin}.",
                             'category': category,
-                            'tags': [category, 'ArtInstituteChicago', 'PublicDomain'],
+                            'tags': [category, 'Painting', 'ArtInstituteChicago', 'PublicDomain'],
                             'audio_title': soundtrack['audio_title'],
                             'audio_composer': soundtrack['audio_composer'],
                             'audio_url': soundtrack['audio_url']
@@ -240,9 +243,9 @@ class Command(BaseCommand):
                     )
 
                     synced_count += 1
-                    self.stdout.write(self.style.SUCCESS(f"[{synced_count}] Art Institute API: '{title}' by {artist_name}"))
+                    self.stdout.write(self.style.SUCCESS(f"[{synced_count}] Fine Art Painting: '{title}' by {artist_name}"))
 
         except Exception as err:
             self.stderr.write(f"Note: API fetch error: {err}")
 
-        self.stdout.write(self.style.SUCCESS(f"Successfully synced {synced_count} real museum masterpieces into Scrolls!"))
+        self.stdout.write(self.style.SUCCESS(f"Successfully synced {synced_count} fine art paintings into Scrolls!"))

@@ -64,6 +64,7 @@ export default function ArtworkCard({
         src={artwork.imageUrl}
         alt=""
         aria-hidden="true"
+        crossOrigin="anonymous"
         className="ambient-bg-blur"
       />
 
@@ -74,6 +75,7 @@ export default function ArtworkCard({
           <img
             src={artwork.imageUrl}
             alt={`${artwork.title} by ${artwork.artist}`}
+            crossOrigin="anonymous"
             className="artwork-img-framed"
             loading="eager"
           />
