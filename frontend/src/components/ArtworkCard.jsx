@@ -99,11 +99,19 @@ export default function ArtworkCard({
       <div className="action-rail-stitches">
         {/* Artist Profile Circle + Overlapping Follow Button */}
         <div className="artist-avatar-container" onClick={() => onOpenArtistProfile(artwork.artist)}>
-          <img
-            src={artwork.artistPhoto}
-            alt={artwork.artist}
-            className="artist-avatar-img"
-          />
+          <div className="w-[46px] h-[46px] rounded-full overflow-hidden border border-white/40 shadow-lg bg-[#222] flex items-center justify-center">
+            {artwork.artistPhoto ? (
+              <img
+                src={artwork.artistPhoto}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <span className="text-xs font-bold text-[#c5a059]">
+                {artwork.artist ? artwork.artist[0] : 'A'}
+              </span>
+            )}
+          </div>
           <button
             type="button"
             className={`artist-follow-plus-btn ${isFollowingArtist ? 'following' : ''}`}

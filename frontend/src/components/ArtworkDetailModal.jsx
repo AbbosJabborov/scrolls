@@ -1,137 +1,144 @@
 import React from 'react';
-import { X, ExternalLink, Star, Bookmark, Share2, ArrowLeft } from 'lucide-react';
+import { Bookmark, Share2, ArrowLeft, Star, Info, BookOpen } from 'lucide-react';
 
 export default function ArtworkDetailModal({ artwork, onClose, onToggleLike, onToggleSave, isLiked, isSaved }) {
   if (!artwork) return null;
 
   return (
-    <div className="modal-overlay-ivory" onClick={onClose}>
+    <div className="modal-overlay-ivory z-50 flex justify-center items-center" onClick={onClose}>
       <div
-        className="modal-content-ivory overflow-y-auto max-h-[92vh] rounded-none"
+        className="modal-content-ivory w-full max-w-3xl h-full max-h-[95vh] overflow-y-auto bg-[#F9F7F2] text-[#1c1b1b] shadow-2xl flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Top Minimal Navigation */}
-        <div className="sticky top-0 z-20 flex justify-between items-center px-6 py-4 bg-[#F9F7F2]/90 backdrop-blur-md border-b border-[#E5E1DA]">
+        {/* Sticky Top Navigation */}
+        <div className="sticky top-0 z-30 flex justify-between items-center px-6 py-4 bg-[#F9F7F2]/95 backdrop-blur-md border-b border-[#E5E1DA]">
           <button
+            type="button"
             onClick={onClose}
-            className="flex items-center gap-2 text-black hover:opacity-75 font-label-caps text-xs transition-colors"
+            className="flex items-center gap-2 text-black hover:text-[#c5a059] font-label-caps text-xs font-semibold tracking-widest transition-colors cursor-pointer border-0 bg-transparent"
           >
             <ArrowLeft size={18} />
-            <span>Back to feed</span>
+            <span>BACK TO FEED</span>
           </button>
           <div className="flex items-center gap-3">
             <button
+              type="button"
               onClick={() => onToggleSave(artwork.id)}
-              className={`p-2 rounded-full border transition-colors ${
-                isSaved ? 'bg-amber-100 border-amber-500 text-amber-800' : 'border-[#E5E1DA] text-black hover:bg-black/5'
+              className={`p-2.5 rounded-full border transition-all cursor-pointer ${
+                isSaved ? 'bg-amber-100 border-[#c5a059] text-amber-900' : 'border-[#E5E1DA] text-black hover:bg-black/5'
               }`}
+              title={isSaved ? 'Saved in My Museum' : 'Save Artwork'}
             >
               <Bookmark size={18} fill={isSaved ? '#c5a059' : 'none'} />
             </button>
-            <button className="p-2 rounded-full border border-[#E5E1DA] text-black hover:bg-black/5">
+            <button
+              type="button"
+              onClick={() => {
+                if (navigator.share) {
+                  navigator.share({ title: artwork.title, url: window.location.href });
+                }
+              }}
+              className="p-2.5 rounded-full border border-[#E5E1DA] text-black hover:bg-black/5 cursor-pointer bg-transparent"
+            >
               <Share2 size={18} />
             </button>
           </div>
         </div>
 
-        <div className="p-6 md:p-12 max-w-4xl mx-auto">
-          {/* Main Hero Artwork Frame */}
-          <div className="editorial-frame mb-10 bg-black/5">
+        {/* Main Content Area */}
+        <div className="p-6 md:p-10 space-y-8 flex-1">
+          {/* Framed Image Container */}
+          <div className="bg-[#121212] p-4 rounded-xl shadow-lg border border-[#E5E1DA] text-center">
             <img
               src={artwork.imageUrl}
               alt={artwork.title}
-              className="w-full max-h-[70vh] object-contain mx-auto"
+              className="w-full max-h-[65vh] object-contain mx-auto rounded"
             />
             <div className="mt-3 text-right">
-              <span className="font-label-caps text-[11px] text-[#444748]">
-                {artwork.artist}, {artwork.year}
+              <span className="font-label-caps text-[11px] text-[#86847e] tracking-widest">
+                {artwork.artist.toUpperCase()}, {artwork.year}
               </span>
             </div>
           </div>
 
-          {/* Title & Metadata */}
-          <div className="mb-10">
-            <div className="flex flex-wrap gap-2 mb-4">
-              <span className="ghost-chip">{artwork.category}</span>
-              <span className="ghost-chip">Public Domain / CC0</span>
+          {/* Title & Curatorial Tags */}
+          <div className="space-y-3">
+            <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-1 bg-black/5 border border-[#E5E1DA] text-[11px] font-label-caps tracking-wider text-[#444748]">
+                {artwork.category || 'Fine Art Painting'}
+              </span>
+              <span className="px-3 py-1 bg-black/5 border border-[#E5E1DA] text-[11px] font-label-caps tracking-wider text-[#444748]">
+                PUBLIC DOMAIN / CC0
+              </span>
             </div>
-            <h1 className="font-display-lg text-4xl md:text-5xl text-black mb-3 font-normal">
+
+            <h1 className="font-serif text-3xl md:text-5xl text-black leading-tight tracking-normal font-normal">
               {artwork.title}
             </h1>
-            <p className="font-label-sm text-[#444748] italic mb-6">
-              Masterpiece from {artwork.museum}
+            <p className="font-sans text-sm text-[#86847e] italic">
+              Masterpiece from {artwork.museum || 'Art Institute of Chicago'}
             </p>
+          </div>
 
-            {/* Quick Specs 4-Column Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-6 border-y border-[#E5E1DA] text-sm">
-              <div>
-                <p className="font-label-caps text-[#444748] mb-1">Artist</p>
-                <p className="font-label-sm font-semibold text-black">{artwork.artist}</p>
-              </div>
-              <div>
-                <p className="font-label-caps text-[#444748] mb-1">Year</p>
-                <p className="font-label-sm font-semibold text-black">{artwork.year}</p>
-              </div>
-              <div>
-                <p className="font-label-caps text-[#444748] mb-1">Medium</p>
-                <p className="font-label-sm font-semibold text-black">{artwork.medium}</p>
-              </div>
-              <div>
-                <p className="font-label-caps text-[#444748] mb-1">Location</p>
-                <p className="font-label-sm font-semibold text-black">{artwork.location || artwork.museum}</p>
-              </div>
+          {/* Quick Specs 4-Column Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-5 bg-white border border-[#E5E1DA] rounded-xl text-xs">
+            <div>
+              <p className="font-label-caps text-[#86847e] text-[10px] tracking-wider mb-1">ARTIST</p>
+              <p className="font-sans font-semibold text-black text-sm">{artwork.artist}</p>
+            </div>
+            <div>
+              <p className="font-label-caps text-[#86847e] text-[10px] tracking-wider mb-1">YEAR</p>
+              <p className="font-sans font-semibold text-black text-sm">{artwork.year}</p>
+            </div>
+            <div>
+              <p className="font-label-caps text-[#86847e] text-[10px] tracking-wider mb-1">MEDIUM</p>
+              <p className="font-sans font-semibold text-black text-sm">{artwork.medium}</p>
+            </div>
+            <div>
+              <p className="font-label-caps text-[#86847e] text-[10px] tracking-wider mb-1">LOCATION</p>
+              <p className="font-sans font-semibold text-black text-sm">{artwork.location || artwork.museum}</p>
             </div>
           </div>
 
           {/* The Story Section */}
-          <section className="mb-10">
-            <h2 className="font-headline-md text-2xl text-black mb-4">The Story</h2>
-            <div className="font-body-lg text-base text-[#444748] leading-relaxed space-y-4">
-              <p>{artwork.fullDescription || artwork.shortDescription}</p>
-            </div>
-          </section>
-
-          {/* Why is this famous? Highlight Box */}
-          <section className="mb-10 relative p-6 md:p-8 bg-[#f7f3f2] border border-[#c5a059]">
-            <div className="absolute top-0 left-0 w-full h-1 bg-[#c5a059]"></div>
-            <h2 className="font-headline-md text-xl text-black mb-3 flex items-center gap-2">
-              <Star size={20} className="text-[#c5a059]" fill="#c5a059" />
-              <span>Why is this famous?</span>
+          <section className="space-y-3 bg-white p-6 rounded-xl border border-[#E5E1DA]">
+            <h2 className="font-serif text-2xl text-black flex items-center gap-2">
+              <BookOpen size={20} className="text-[#c5a059]" />
+              <span>The Story</span>
             </h2>
-            <p className="font-body-md text-sm text-[#444748] leading-relaxed">
-              {artwork.title} is renowned for its iconic composition and historical significance within the {artwork.category} movement. Its timeless beauty continues to influence artists worldwide.
+            <p className="font-sans text-sm text-[#444748] leading-relaxed">
+              {artwork.fullDescription || artwork.shortDescription}
             </p>
           </section>
 
-          {/* Technical Details Section */}
-          <section className="mb-10">
-            <h2 className="font-headline-md text-2xl text-black mb-4">Technical Details</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-[#444748]">
-              <div className="border-b border-[#E5E1DA] pb-3">
-                <h3 className="font-title-lg text-base text-black mb-1">Materials</h3>
-                <p>{artwork.medium}</p>
+          {/* Why is this famous? Highlight Box */}
+          <section className="p-6 bg-[#FAF7F0] border-l-4 border-[#c5a059] rounded-r-xl border border-[#E5E1DA] space-y-3">
+            <h2 className="font-serif text-xl text-black flex items-center gap-2">
+              <Star size={20} className="text-[#c5a059]" fill="#c5a059" />
+              <span>Why is this famous?</span>
+            </h2>
+            <p className="font-sans text-sm text-[#444748] leading-relaxed">
+              {artwork.title} is renowned for its iconic composition, subtle light play, and historical significance within the {artwork.category} movement. Its timeless beauty continues to inspire artists worldwide.
+            </p>
+          </section>
+
+          {/* Technical Details */}
+          <section className="space-y-3 bg-white p-6 rounded-xl border border-[#E5E1DA]">
+            <h2 className="font-serif text-xl text-black flex items-center gap-2">
+              <Info size={19} className="text-[#86847e]" />
+              <span>Technical Details</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-[#444748]">
+              <div>
+                <span className="font-semibold text-black block">Dimensions:</span>
+                <span>{artwork.dimensions || 'Standard Gallery Canvas'}</span>
               </div>
-              <div className="border-b border-[#E5E1DA] pb-3">
-                <h3 className="font-title-lg text-base text-black mb-1">Dimensions</h3>
-                <p>{artwork.dimensions || 'Standard Canvas'}</p>
+              <div>
+                <span className="font-semibold text-black block">License:</span>
+                <span>{artwork.license || 'Public Domain / CC0'}</span>
               </div>
             </div>
           </section>
-
-          {/* External References */}
-          {artwork.sourceUrl && (
-            <div className="pt-6 border-t border-[#E5E1DA] flex justify-between items-center">
-              <a
-                href={artwork.sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-label-caps text-xs text-black border-b border-black pb-1 hover:text-[#c5a059] hover:border-[#c5a059] transition-colors"
-              >
-                <span>Read official museum archival record</span>
-                <ExternalLink size={14} />
-              </a>
-            </div>
-          )}
         </div>
       </div>
     </div>
