@@ -144,6 +144,31 @@ export default function App() {
 
   const currentArtwork = artworks.find((a) => a.id === activeArtworkId) || artworks[0];
 
+  // Auto-unlock audio on first user gesture (touch/click) to bypass browser autoplay restrictions
+  useEffect(() => {
+    const unlockAudioOnUserGesture = () => {
+      if (audioRef.current && isMuted && currentArtwork) {
+        if (!audioRef.current.src || !audioRef.current.src.endsWith(currentArtwork.audioUrl)) {
+          audioRef.current.src = currentArtwork.audioUrl || '/audio/chopin.mp3';
+        }
+        audioRef.current.play().then(() => {
+          setIsMuted(false);
+          setIsPlayingAudio(true);
+        }).catch(() => {});
+      }
+      window.removeEventListener('click', unlockAudioOnUserGesture);
+      window.removeEventListener('touchstart', unlockAudioOnUserGesture);
+    };
+
+    window.addEventListener('click', unlockAudioOnUserGesture);
+    window.addEventListener('touchstart', unlockAudioOnUserGesture);
+
+    return () => {
+      window.removeEventListener('click', unlockAudioOnUserGesture);
+      window.removeEventListener('touchstart', unlockAudioOnUserGesture);
+    };
+  }, [currentArtwork, isMuted]);
+
   useEffect(() => {
     if (!currentArtwork || activeTab !== 'for-you') {
       if (audioRef.current) {
@@ -183,12 +208,25 @@ export default function App() {
   }, [activeArtworkId, isMuted, activeTab]);
 
   const toggleMute = () => {
-    if (!audioRef.current) return;
+    if (!audioRef.current) {
+      audioRef.current = new Audio(currentArtwork?.audioUrl || '/audio/chopin.mp3');
+      audioRef.current.loop = true;
+    }
+
     if (isMuted) {
+      if (currentArtwork && currentArtwork.audioUrl) {
+        audioRef.current.src = currentArtwork.audioUrl;
+      }
       audioRef.current.play().then(() => {
         setIsMuted(false);
         setIsPlayingAudio(true);
-      }).catch(() => {});
+      }).catch(() => {
+        audioRef.current.src = '/audio/chopin.mp3';
+        audioRef.current.play().then(() => {
+          setIsMuted(false);
+          setIsPlayingAudio(true);
+        }).catch(() => setIsPlayingAudio(false));
+      });
     } else {
       audioRef.current.pause();
       setIsMuted(true);

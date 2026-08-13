@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Heart, Bookmark, MessageCircle, Share2, Plus, Check, ArrowRight, Music } from 'lucide-react';
+import { Heart, Bookmark, MessageCircle, Share2, Plus, Check, ArrowRight, Music, Play, VolumeX } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function ArtworkCard({
@@ -24,12 +24,6 @@ export default function ArtworkCard({
   const defaultIconColor = isDay ? '#1c1b1b' : '#ffffff';
   const FALLBACK_ARTWORK = 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&q=80';
   const FALLBACK_ARTIST = '/artists/klimt.jpg';
-
-  const formatCount = (num) => {
-    if (num >= 1000000) return (num / 1000000).toFixed(1) + 'm';
-    if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
-    return num;
-  };
 
   const handleMediaClick = (e) => {
     const now = Date.now();
@@ -154,9 +148,6 @@ export default function ArtworkCard({
               color={isLiked ? '#fe2c55' : defaultIconColor}
             />
           </div>
-          <span className="font-label-sm text-[12px] opacity-90 mt-1">
-            {formatCount((artwork.likesCount || 12400) + (isLiked ? 1 : 0))}
-          </span>
         </button>
 
         {/* Comment Button */}
@@ -169,9 +160,6 @@ export default function ArtworkCard({
           <div className="action-icon-wrap">
             <MessageCircle size={24} color={defaultIconColor} />
           </div>
-          <span className="font-label-sm text-[12px] opacity-90 mt-1">
-            {artwork.comments ? artwork.comments.length : 428}
-          </span>
         </button>
 
         {/* Save / Bookmark Button */}
@@ -205,7 +193,10 @@ export default function ArtworkCard({
         {/* Classical Audio Spinning Disc */}
         <div
           className={`vinyl-disc ${isPlayingAudio ? 'playing' : ''}`}
-          onClick={onToggleAudio}
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleAudio();
+          }}
           title={isPlayingAudio ? 'Pause Classical Soundtrack' : 'Play Classical Soundtrack'}
         >
           <img
@@ -245,15 +236,42 @@ export default function ArtworkCard({
           <ArrowRight size={14} />
         </button>
 
-        {/* Audio Strip */}
+        {/* Interactive Audio Strip with Live Animated Sound Waves */}
         <div
-          className={`flex items-center space-x-2 text-[11px] px-2.5 py-1 rounded-md w-fit mt-2 border cursor-pointer ${
-            isDay ? 'bg-black/5 text-black/80 border-black/10' : 'bg-black/40 text-white/60 border-white/10'
+          className={`flex items-center space-x-2 text-[11px] px-3 py-1.5 rounded-full w-fit mt-2.5 border cursor-pointer transition-all shadow-md ${
+            isPlayingAudio
+              ? 'bg-[#c5a059]/20 text-[#c5a059] border-[#c5a059]/50 shadow-[#c5a059]/10 font-bold'
+              : isDay
+              ? 'bg-black/5 text-black/80 border-black/15 hover:bg-black/10'
+              : 'bg-black/50 text-white/80 border-white/15 hover:bg-black/70'
           }`}
-          onClick={onToggleAudio}
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleAudio();
+          }}
+          title={isPlayingAudio ? 'Pause Classical Soundtrack' : 'Play Classical Soundtrack'}
         >
-          <Music size={12} className="text-amber-500" />
-          <span className="truncate max-w-[160px]">{artwork.audioTitle}</span>
+          <div className="flex items-center gap-1">
+            {isPlayingAudio ? (
+              <div className="flex items-end gap-[2px] h-3 w-3">
+                <span className="eq-bar eq-bar-1 bg-[#c5a059]" />
+                <span className="eq-bar eq-bar-2 bg-[#c5a059]" />
+                <span className="eq-bar eq-bar-3 bg-[#c5a059]" />
+              </div>
+            ) : (
+              <Play size={11} className="text-amber-500 fill-amber-500" />
+            )}
+          </div>
+
+          <Music size={12} className={isPlayingAudio ? 'text-[#c5a059] animate-pulse' : 'text-amber-500'} />
+          
+          <span className="truncate max-w-[170px] font-medium tracking-wide">
+            {artwork.audioTitle || 'Classical Soundtrack'}
+          </span>
+
+          <span className="text-[9px] font-bold uppercase tracking-wider opacity-70 ml-1">
+            {isPlayingAudio ? '• PLAYING' : '• PLAY'}
+          </span>
         </div>
       </div>
     </div>

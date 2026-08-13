@@ -90,23 +90,18 @@ export default function ArtistProfileModal({
           {sampleWork.birthDeath || '18th–19th Century'} · {sampleWork.nationality || 'Master Painter'}
         </p>
 
-        {/* TikTok-Style Stats Rail */}
+        {/* Clean Museum Stats Rail */}
         <div className="flex items-center justify-center space-x-8 my-4 py-3 border-y border-current/10 w-full max-w-sm">
-          <div className="text-center">
-            <p className="font-bold text-sm font-serif text-[#c5a059]">148.5K</p>
-            <p className="text-[10px] opacity-60 uppercase tracking-wider mt-0.5">Followers</p>
-          </div>
-          <div className="h-6 w-[1px] bg-current/10" />
           <div className="text-center">
             <p className="font-bold text-sm font-serif text-[#c5a059]">{artistWorks.length}</p>
             <p className="text-[10px] opacity-60 uppercase tracking-wider mt-0.5">Masterpieces</p>
           </div>
           <div className="h-6 w-[1px] bg-current/10" />
-          <div className="text-center max-w-[100px]">
+          <div className="text-center max-w-[160px]">
             <p className="font-bold text-sm font-serif text-[#c5a059] truncate">
               {sampleWork.museum ? sampleWork.museum.split(' ')[0] : 'Gallery'}
             </p>
-            <p className="text-[10px] opacity-60 uppercase tracking-wider mt-0.5 truncate">Collection</p>
+            <p className="text-[10px] opacity-60 uppercase tracking-wider mt-0.5 truncate">Primary Museum</p>
           </div>
         </div>
 
