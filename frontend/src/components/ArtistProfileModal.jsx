@@ -37,6 +37,10 @@ export default function ArtistProfileModal({
                 src={sampleWork.artistPhoto}
                 alt={artistName}
                 className="w-24 h-24 rounded-full object-cover border-4 border-amber-500/50 shadow-2xl"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = '/artists/klimt.jpg';
+                }}
               />
               <span className="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-emerald-500 border-2 border-black flex items-center justify-center text-white text-xs font-bold" title="Verified Master">
                 ✓
@@ -104,6 +108,10 @@ export default function ArtistProfileModal({
                     src={work.imageUrl}
                     alt={work.title}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=400&q=80';
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90 p-2 flex flex-col justify-end">
                     <span className="font-serif text-xs font-bold text-white truncate">

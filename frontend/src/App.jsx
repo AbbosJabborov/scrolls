@@ -79,7 +79,7 @@ export default function App() {
           id: String(item.id),
           title: item.title,
           artist: item.artist_name || 'Unknown Master',
-          artistPhoto: item.artist_photo || 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Klimt.jpg/800px-Klimt.jpg',
+          artistPhoto: item.artist_photo || '/artists/klimt.jpg',
           artistBio: item.artist_bio || '',
           birthDeath: item.birth_death || '',
           nationality: item.nationality || '',
@@ -100,7 +100,7 @@ export default function App() {
           sharesCount: 1200,
           audioTitle: item.audio_title || 'Classical Symphony',
           audioComposer: item.audio_composer || '',
-          audioUrl: item.audio_url || 'https://upload.wikimedia.org/wikipedia/commons/6/6c/Chopin_-_Nocturne_Op._9_No._2_%28orchestral%29.ogg',
+          audioUrl: item.audio_url || '/audio/chopin.mp3',
           comments: []
         }));
         setArtworks(transformed);
@@ -140,7 +140,7 @@ export default function App() {
     sections?.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
-  }, [filteredArtworks, activeTab]);
+  }, [artworks, activeTab]);
 
   const currentArtwork = artworks.find((a) => a.id === activeArtworkId) || artworks[0];
 
@@ -154,14 +154,28 @@ export default function App() {
     }
 
     if (!audioRef.current) {
-      audioRef.current = new Audio(currentArtwork.audioUrl);
+      audioRef.current = new Audio();
       audioRef.current.loop = true;
-    } else {
+    }
+
+    audioRef.current.onerror = () => {
+      // If external online audio fails or gets blocked by ORB, failover gracefully
+      if (audioRef.current && !audioRef.current.src.endsWith('/audio/chopin.mp3')) {
+        audioRef.current.src = '/audio/chopin.mp3';
+        if (!isMuted) {
+          audioRef.current.play().then(() => setIsPlayingAudio(true)).catch(() => setIsPlayingAudio(false));
+        }
+      }
+    };
+
+    if (audioRef.current.src !== currentArtwork.audioUrl && !currentArtwork.audioUrl.endsWith(audioRef.current.src)) {
       audioRef.current.src = currentArtwork.audioUrl;
     }
 
     if (!isMuted) {
-      audioRef.current.play().then(() => setIsPlayingAudio(true)).catch(() => setIsPlayingAudio(false));
+      audioRef.current.play().then(() => setIsPlayingAudio(true)).catch(() => {
+        setIsPlayingAudio(false);
+      });
     } else {
       audioRef.current.pause();
       setIsPlayingAudio(false);

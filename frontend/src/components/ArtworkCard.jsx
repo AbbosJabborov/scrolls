@@ -22,6 +22,8 @@ export default function ArtworkCard({
   const lastTapRef = useRef(0);
   const isDay = themeMode === 'day';
   const defaultIconColor = isDay ? '#1c1b1b' : '#ffffff';
+  const FALLBACK_ARTWORK = 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&q=80';
+  const FALLBACK_ARTIST = '/artists/klimt.jpg';
 
   const formatCount = (num) => {
     if (num >= 1000000) return (num / 1000000).toFixed(1) + 'm';
@@ -68,6 +70,10 @@ export default function ArtworkCard({
         alt=""
         aria-hidden="true"
         className="ambient-bg-blur"
+        onError={(e) => {
+          e.currentTarget.onerror = null;
+          e.currentTarget.src = FALLBACK_ARTWORK;
+        }}
       />
 
       {/* Main Content Area with Picture Frame */}
@@ -79,6 +85,10 @@ export default function ArtworkCard({
             alt={`${artwork.title} by ${artwork.artist}`}
             className="artwork-img-framed"
             loading="eager"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = FALLBACK_ARTWORK;
+            }}
           />
         </div>
 
@@ -106,6 +116,10 @@ export default function ArtworkCard({
                 src={artwork.artistPhoto}
                 alt=""
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = FALLBACK_ARTIST;
+                }}
               />
             ) : (
               <span className="text-xs font-bold text-[#c5a059]">

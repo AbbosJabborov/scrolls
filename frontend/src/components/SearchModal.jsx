@@ -66,6 +66,10 @@ export default function SearchModal({ artworks, onClose, onSelectArtwork }) {
                     src={work.imageUrl}
                     alt={work.title}
                     className="w-14 h-16 object-cover rounded flex-shrink-0 bg-black"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=400&q=80';
+                    }}
                   />
                   <div className="flex-1 min-w-0">
                     <h3 className="font-serif font-bold text-white text-sm truncate group-hover:text-[#c5a059] transition-colors">
