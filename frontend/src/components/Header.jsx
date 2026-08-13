@@ -1,54 +1,27 @@
 import React from 'react';
-import { Bookmark, Volume2, VolumeX, Sparkles, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 
-export default function Header({
-  savedCount,
-  onOpenSaved,
-  isMuted,
-  onToggleMute,
-  onOpenSearch
-}) {
+export default function Header({ onOpenSearch }) {
   return (
     <header className="app-header">
-      {/* Brand Logo */}
+      {/* Brand Logo Image Only */}
       <div className="logo-container">
-        <div className="logo-icon-wrap">
-          <Sparkles size={18} className="text-black" />
-        </div>
-        <span className="logo-text">Scrolls</span>
+        <img
+          src="/logo/logo_beige.png"
+          alt="Scrolls Logo"
+          className="h-7 w-auto object-contain"
+        />
       </div>
 
-      {/* Header Actions */}
+      {/* Header Actions - Search Only, Borderless */}
       <div className="header-actions">
-        {/* Search trigger */}
         <button
           type="button"
-          className="header-icon-btn"
           onClick={onOpenSearch}
           title="Search Artworks & Artists"
+          className="text-white hover:text-[#c5a059] p-2 bg-transparent border-0 outline-none cursor-pointer transition-colors"
         >
-          <Search size={18} />
-        </button>
-
-        {/* Global Mute / Unmute Classical Audio */}
-        <button
-          type="button"
-          className="header-icon-btn"
-          onClick={onToggleMute}
-          title={isMuted ? 'Unmute Classical Music' : 'Mute Classical Music'}
-        >
-          {isMuted ? <VolumeX size={18} className="text-rose-400" /> : <Volume2 size={18} className="text-amber-400" />}
-        </button>
-
-        {/* Saved Gallery Drawer Trigger */}
-        <button
-          type="button"
-          className="header-icon-btn"
-          onClick={onOpenSaved}
-          title="Saved Masterpieces"
-        >
-          <Bookmark size={18} />
-          {savedCount > 0 && <span className="saved-badge-count">{savedCount}</span>}
+          <Search size={22} />
         </button>
       </div>
     </header>
