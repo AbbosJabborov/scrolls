@@ -2,8 +2,6 @@ import React from 'react';
 import { Bookmark, Volume2, VolumeX, Sparkles, Search } from 'lucide-react';
 
 export default function Header({
-  activeTab,
-  setActiveTab,
   savedCount,
   onOpenSaved,
   isMuted,
@@ -17,28 +15,7 @@ export default function Header({
         <div className="logo-icon-wrap">
           <Sparkles size={18} className="text-black" />
         </div>
-        <div className="flex flex-col">
-          <span className="logo-text">Scrolls</span>
-        </div>
-        <span className="logo-badge">Reels</span>
-      </div>
-
-      {/* Center Feed Tabs */}
-      <div className="header-center">
-        <button
-          type="button"
-          className={`nav-tab ${activeTab === 'for-you' ? 'active' : ''}`}
-          onClick={() => setActiveTab('for-you')}
-        >
-          For You
-        </button>
-        <button
-          type="button"
-          className={`nav-tab ${activeTab === 'trending' ? 'active' : ''}`}
-          onClick={() => setActiveTab('trending')}
-        >
-          Masterpieces
-        </button>
+        <span className="logo-text">Scrolls</span>
       </div>
 
       {/* Header Actions */}

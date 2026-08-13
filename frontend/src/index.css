@@ -156,19 +156,19 @@ html, body {
   top: 0;
   left: 0;
   right: 0;
-  height: 56px;
+  height: 54px;
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  background: linear-gradient(to bottom, rgba(26, 26, 26, 0.95) 0%, rgba(26, 26, 26, 0) 100%);
+  background: linear-gradient(to bottom, rgba(15, 15, 15, 0.9) 0%, rgba(15, 15, 15, 0) 100%);
 }
 
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   cursor: pointer;
 }
 
@@ -184,65 +184,25 @@ html, body {
 
 .logo-text {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--color-warm-ivory);
 }
 
-.logo-badge {
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 2px 6px;
-  background: rgba(197, 160, 89, 0.2);
-  color: var(--color-accent-gold);
-  border: 1px solid var(--color-accent-gold);
-  border-radius: 4px;
-}
-
-.header-center {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.nav-tab {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.6);
-  padding: 4px 8px;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.nav-tab.active {
-  color: #ffffff;
-}
-
-.nav-tab.active::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 16px;
-  height: 2px;
-  background: var(--color-accent-gold);
-}
-
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .header-icon-btn {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -270,58 +230,6 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* Category Filter Bar */
-.filter-bar {
-  position: absolute;
-  top: 56px;
-  left: 0;
-  right: 0;
-  z-index: 40;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 12px;
-  pointer-events: none;
-}
-
-.filter-pills-container {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  pointer-events: auto;
-  max-width: 100vw;
-  padding: 4px 12px;
-}
-
-.filter-pills-container::-webkit-scrollbar {
-  display: none;
-}
-
-.filter-pill {
-  white-space: nowrap;
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.7);
-  cursor: pointer;
-  backdrop-filter: blur(6px);
-  transition: all 0.2s ease;
-}
-
-.filter-pill:hover {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-.filter-pill.active {
-  background: var(--color-accent-gold);
-  border-color: var(--color-accent-gold);
-  color: #000000;
 }
 
 /* Snap Scroll Feed Container */
@@ -355,7 +263,7 @@ html, body {
   width: 100%;
   height: 100%;
   max-width: 520px;
-  background: #0d0d0d;
+  background: #000000;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -364,39 +272,64 @@ html, body {
 
 @media (min-width: 768px) {
   .reel-card-wrapper {
-    height: calc(100vh - 64px);
-    margin-top: 56px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    height: 100vh;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
   }
 }
 
-/* Artwork Background Image */
+/* Dynamic Ambient Blurry Color Bending Wallpaper */
+.ambient-bg-blur {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: calc(100% + 40px);
+  height: calc(100% + 40px);
+  object-fit: cover;
+  filter: blur(55px) brightness(0.4) saturate(1.4);
+  transform: scale(1.2);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* Main Media Container & Picture Frame */
 .artwork-media-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 2;
   overflow: hidden;
-  background: #0a0a0a;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 12px;
+  padding: 60px 16px 140px 16px;
 }
 
-.artwork-img-main {
+.picture-frame-wrap {
   position: relative;
-  z-index: 2;
+  z-index: 3;
+  max-width: 94%;
+  max-height: 60vh;
+  padding: 6px;
+  background: #0d0d0d;
+  border: 2px solid #c5a059;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.artwork-img-framed {
   width: 100%;
   height: 100%;
-  max-width: 100%;
-  max-height: 100%;
+  max-height: 54vh;
   object-fit: contain;
-  transition: transform 0.4s ease;
+  display: block;
 }
 
 /* Card Overlays */
@@ -405,22 +338,22 @@ html, body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 340px;
+  height: 320px;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
   z-index: 5;
   pointer-events: none;
 }
 
-/* Stitches TikTok Right Action Rail */
+/* Action Rail */
 .action-rail-stitches {
   position: absolute;
   right: 14px;
-  bottom: 90px;
+  bottom: 80px;
   z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
 }
 
 .artist-avatar-container {
@@ -429,8 +362,8 @@ html, body {
 }
 
 .artist-avatar-img {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   object-fit: cover;
   border: 1.5px solid rgba(255, 255, 255, 0.4);
@@ -475,7 +408,8 @@ html, body {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -484,12 +418,14 @@ html, body {
 
 .action-icon-wrap.liked {
   color: #fe2c55;
-  background: rgba(254, 44, 85, 0.2);
+  background: rgba(254, 44, 85, 0.25);
+  border-color: rgba(254, 44, 85, 0.5);
 }
 
 .action-icon-wrap.saved {
   color: var(--color-accent-gold);
   background: rgba(197, 160, 89, 0.25);
+  border-color: rgba(197, 160, 89, 0.5);
 }
 
 /* Vinyl Audio Disc */
@@ -519,7 +455,7 @@ html, body {
 .card-info-editorial {
   position: absolute;
   left: 16px;
-  bottom: 80px;
+  bottom: 72px;
   right: 76px;
   z-index: 10;
   display: flex;
@@ -530,7 +466,7 @@ html, body {
 
 .artwork-title-serif {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 400;
   letter-spacing: -0.01em;
   text-transform: uppercase;
@@ -590,29 +526,4 @@ html, body {
   position: relative;
   margin: 20px auto;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-}
-
-.toast-container {
-  position: fixed;
-  top: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 120;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  pointer-events: none;
-}
-
-.toast-item {
-  background: rgba(26, 26, 26, 0.95);
-  border: 1px solid var(--color-accent-gold);
-  color: var(--color-warm-ivory);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 6px;
 }

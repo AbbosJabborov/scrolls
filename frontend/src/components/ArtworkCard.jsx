@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Heart, Bookmark, MessageCircle, Share2, Plus, Check, ArrowRight, Music, MapPin } from 'lucide-react';
+import { Heart, Bookmark, MessageCircle, Share2, Plus, Check, ArrowRight, Music } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function ArtworkCard({
@@ -59,14 +59,25 @@ export default function ArtworkCard({
 
   return (
     <div className="reel-card-wrapper" data-artwork-id={artwork.id}>
-      {/* Background Media Container */}
+      {/* Heavy Blurred Ambient Artwork Background (Bending colors effect) */}
+      <img
+        src={artwork.imageUrl}
+        alt=""
+        aria-hidden="true"
+        className="ambient-bg-blur"
+      />
+
+      {/* Main Content Area with Picture Frame */}
       <div className="artwork-media-container" onClick={handleMediaClick}>
-        <img
-          src={artwork.imageUrl}
-          alt={`${artwork.title} by ${artwork.artist}`}
-          className="artwork-img-main ken-burns-active"
-          loading="eager"
-        />
+        {/* Elegant Museum Picture Frame Container */}
+        <div className="picture-frame-wrap">
+          <img
+            src={artwork.imageUrl}
+            alt={`${artwork.title} by ${artwork.artist}`}
+            className="artwork-img-framed"
+            loading="eager"
+          />
+        </div>
 
         {doubleTapHearts.map((h) => (
           <div
@@ -79,10 +90,10 @@ export default function ArtworkCard({
         ))}
       </div>
 
-      {/* Card Overlays */}
+      {/* Vignette Gradient Overlay */}
       <div className="card-overlay-bottom" />
 
-      {/* Right Action Rail (Stitches Google Layout) */}
+      {/* Right Action Rail */}
       <div className="action-rail-stitches">
         {/* Artist Profile Circle + Overlapping Follow Button */}
         <div className="artist-avatar-container" onClick={() => onOpenArtistProfile(artwork.artist)}>
@@ -92,6 +103,7 @@ export default function ArtworkCard({
             className="artist-avatar-img"
           />
           <button
+            type="button"
             className={`artist-follow-plus-btn ${isFollowingArtist ? 'following' : ''}`}
             onClick={(e) => {
               e.stopPropagation();
@@ -105,6 +117,7 @@ export default function ArtworkCard({
 
         {/* Like Button */}
         <button
+          type="button"
           className="action-btn-item"
           onClick={() => onToggleLike(artwork.id)}
           title="Like Artwork"
@@ -123,6 +136,7 @@ export default function ArtworkCard({
 
         {/* Comment Button */}
         <button
+          type="button"
           className="action-btn-item"
           onClick={() => onOpenComments(artwork.id)}
           title="View Discussion"
@@ -137,6 +151,7 @@ export default function ArtworkCard({
 
         {/* Save / Bookmark Button */}
         <button
+          type="button"
           className="action-btn-item"
           onClick={() => onToggleSave(artwork.id)}
           title="Save to Collection"
@@ -152,6 +167,7 @@ export default function ArtworkCard({
 
         {/* Share Button */}
         <button
+          type="button"
           className="action-btn-item"
           onClick={() => onOpenShare(artwork)}
           title="Share Masterpiece"
@@ -175,7 +191,7 @@ export default function ArtworkCard({
         </div>
       </div>
 
-      {/* Bottom Left Editorial Overlay (Google Stitches) */}
+      {/* Bottom Left Editorial Info Overlay */}
       <div className="card-info-editorial">
         {/* Title in Bodoni Moda Serif */}
         <h1 className="artwork-title-serif">{artwork.title}</h1>
@@ -194,8 +210,9 @@ export default function ArtworkCard({
           {artwork.shortDescription}
         </p>
 
-        {/* Read Full Story Button with arrow */}
+        {/* Read Full Story Button */}
         <button
+          type="button"
           className="read-story-link"
           onClick={() => onOpenDetail(artwork.id)}
         >

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { INITIAL_ARTWORKS } from './data/artworksData';
 import { fetchBackendArtworks, toggleLikeBackend, toggleSaveBackend, postCommentBackend } from './services/api';
 import Header from './components/Header';
-import FilterBar from './components/FilterBar';
 import ArtworkCard from './components/ArtworkCard';
 import BottomNavBar from './components/BottomNavBar';
 import CommentsDrawer from './components/CommentsDrawer';
@@ -11,7 +10,6 @@ import ArtistProfileModal from './components/ArtistProfileModal';
 import SavedGalleryModal from './components/SavedGalleryModal';
 import ShareModal from './components/ShareModal';
 import SearchModal from './components/SearchModal';
-import { Volume2, Sparkles } from 'lucide-react';
 
 export default function App() {
   const [artworks, setArtworks] = useState(INITIAL_ARTWORKS);
@@ -34,8 +32,6 @@ export default function App() {
   const [showSavedModal, setShowSavedModal] = useState(false);
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [shareArtwork, setShareArtwork] = useState(null);
-
-  const [toasts, setToasts] = useState([]);
 
   const containerRef = useRef(null);
 
@@ -84,14 +80,6 @@ export default function App() {
     if (selectedCategory === 'All Classics') return true;
     return art.category === selectedCategory;
   });
-
-  const showToast = (message) => {
-    const id = Date.now();
-    setToasts((prev) => [...prev, { id, message }]);
-    setTimeout(() => {
-      setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, 2800);
-  };
 
   useEffect(() => {
     const observerOptions = {
@@ -145,17 +133,11 @@ export default function App() {
     if (!nextMuted && audioRef.current) {
       audioRef.current
         .play()
-        .then(() => {
-          setIsPlayingAudio(true);
-          showToast(`Playing soundtrack: ${activeArtwork?.audioTitle || 'Classical'} 🎵`);
-        })
-        .catch(() => {
-          setIsPlayingAudio(false);
-        });
+        .then(() => setIsPlayingAudio(true))
+        .catch(() => setIsPlayingAudio(false));
     } else if (audioRef.current) {
       audioRef.current.pause();
       setIsPlayingAudio(false);
-      showToast('Soundtrack muted');
     }
   };
 
@@ -209,10 +191,8 @@ export default function App() {
       const next = new Set(prev);
       if (next.has(artId)) {
         next.delete(artId);
-        showToast('Removed from liked artworks');
       } else {
         next.add(artId);
-        showToast('Liked masterpiece! ❤️');
       }
       return next;
     });
@@ -224,10 +204,8 @@ export default function App() {
       const next = new Set(prev);
       if (next.has(artId)) {
         next.delete(artId);
-        showToast('Removed from saved collection');
       } else {
         next.add(artId);
-        showToast('Saved to your exhibition 🔖');
       }
       return next;
     });
@@ -239,10 +217,8 @@ export default function App() {
       const next = new Set(prev);
       if (next.has(artistName)) {
         next.delete(artistName);
-        showToast(`Unfollowed ${artistName}`);
       } else {
         next.add(artistName);
-        showToast(`Now following ${artistName} ✨`);
       }
       return next;
     });
@@ -266,7 +242,6 @@ export default function App() {
         };
       })
     );
-    showToast('Comment published! 💬');
     await postCommentBackend(artId, text);
   };
 
@@ -274,20 +249,8 @@ export default function App() {
 
   return (
     <div className="app-viewport">
-      {/* Toast Notifications */}
-      <div className="toast-container">
-        {toasts.map((t) => (
-          <div key={t.id} className="toast-item">
-            <Sparkles size={14} className="text-[#c5a059]" />
-            <span>{t.message}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* Desktop & Top Header Bar */}
+      {/* Top Header Bar */}
       <Header
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
         savedCount={savedIds.size}
         onOpenSaved={() => setShowSavedModal(true)}
         isMuted={isMuted}
@@ -295,24 +258,11 @@ export default function App() {
         onOpenSearch={() => setShowSearchModal(true)}
       />
 
-      {/* Category Filter Bar */}
-      <FilterBar
-        selectedCategory={selectedCategory}
-        onSelectCategory={setSelectedCategory}
-      />
-
       {/* Vertical Snap-Scroll Reel Feed */}
       <main className="feed-snap-container" ref={containerRef}>
         {filteredArtworks.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-slate-400">
-            <p className="text-lg">No artworks found in this category.</p>
-            <button
-              type="button"
-              onClick={() => setSelectedCategory('All Classics')}
-              className="mt-4 px-4 py-2 bg-[#c5a059] text-black font-bold rounded-xl"
-            >
-              Reset Category
-            </button>
+            <p className="text-lg">No artworks found.</p>
           </div>
         ) : (
           filteredArtworks.map((artwork) => (
@@ -345,18 +295,6 @@ export default function App() {
         onOpenSaved={() => setShowSavedModal(true)}
         onOpenSearch={() => setShowSearchModal(true)}
       />
-
-      {/* Floating Audio Tap Banner if Muted */}
-      {isMuted && (
-        <button
-          type="button"
-          onClick={toggleMute}
-          className="fixed bottom-14 md:bottom-6 left-1/2 -translate-x-1/2 z-30 bg-[#c5a059] text-black font-bold text-xs px-4 py-1.5 rounded-full shadow-2xl flex items-center gap-2 cursor-pointer transition-all hover:scale-105 border-0"
-        >
-          <Volume2 size={14} />
-          <span>Tap to unmute classical soundtrack</span>
-        </button>
-      )}
 
       {/* Modals & Drawers */}
       {activeCommentsArtId && (
@@ -402,7 +340,7 @@ export default function App() {
         <ShareModal
           artwork={shareArtwork}
           onClose={() => setShareArtwork(null)}
-          onShowToast={showToast}
+          onShowToast={() => {}}
         />
       )}
 
