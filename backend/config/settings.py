@@ -4,7 +4,7 @@ from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-_)-*#w+f1loa=49fkj28@kzp$mi&9&=u=tqgj%!@&8bq%&k4*7')
+SECRET_KEY = os.getenv('SECRET_KEY', 'scrolls_default_fallback_secret_key_2026')
 
 DEBUG = os.getenv('DEBUG', 'True').lower() in ('true', '1', 't')
 

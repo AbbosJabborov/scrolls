@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Modern Museum - Discover</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#ffdea5",
+                        "on-tertiary-container": "#86847e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#484742",
+                        "surface-variant": "#e5e2e1",
+                        "outline-variant": "#c4c7c7",
+                        "surface-bright": "#fdf8f8",
+                        "surface-dim": "#ddd9d8",
+                        "background": "#fdf8f8",
+                        "tertiary": "#000000",
+                        "secondary": "#775a19",
+                        "on-secondary-container": "#785a1a",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#cac6bf",
+                        "inverse-on-surface": "#f4f0ef",
+                        "primary": "#000000",
+                        "on-surface": "#1c1b1b",
+                        "surface-container-high": "#ebe7e6",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#fed488",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#fdf8f8",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-primary-container": "#858383",
+                        "tertiary-container": "#1c1c17",
+                        "tertiary-fixed": "#e6e2db",
+                        "on-surface-variant": "#444748",
+                        "on-background": "#1c1b1b",
+                        "primary-container": "#1c1b1b",
+                        "on-secondary-fixed": "#261900",
+                        "surface-tint": "#5f5e5e",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-primary-fixed-variant": "#474746",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#313030",
+                        "surface-container-low": "#f7f3f2",
+                        "on-tertiary-fixed": "#1c1c17",
+                        "outline": "#747878",
+                        "secondary-fixed-dim": "#e9c176",
+                        "inverse-primary": "#c8c6c5",
+                        "surface-container": "#f1edec",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "primary-fixed": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "unit": "8px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "headline-lg-mobile": ["Bodoni Moda"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Bodoni Moda"],
+                        "display-lg": ["Bodoni Moda"],
+                        "title-lg": ["Inter"],
+                        "headline-md": ["Bodoni Moda"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "label-sm": ["13px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "title-lg": ["20px", { "lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #F9F7F2;
+        }
+        .editorial-frame {
+            border: 1px solid #E5E1DA;
+            padding: 16px;
+        }
+        .ghost-chip {
+            border: 1px solid #E5E1DA;
+            background: transparent;
+        }
+    </style>
+</head>
+<body class="bg-[#F9F7F2] text-on-background antialiased min-h-screen pb-24 md:pb-0 pt-20">
+<!-- TopAppBar -->
+<header class="bg-transparent text-primary dark:text-on-primary font-headline-md text-headline-md docked full-width top-0 z-50 bg-gradient-to-b from-surface/40 to-transparent flat no shadows fixed left-0 w-full flex justify-between items-center px-6 py-4 md:hidden">
+<button class="scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined hover:text-secondary-fixed transition-colors duration-300">menu</span>
+</button>
+<span class="font-headline-md text-headline-md tracking-widest text-primary dark:text-on-primary">SCROLLS</span>
+<button class="scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined hover:text-secondary-fixed transition-colors duration-300">search</span>
+</button>
+</header>
+<!-- Desktop Nav (Hidden on Mobile) -->
+<nav class="hidden md:flex fixed top-0 left-0 w-full justify-between items-center px-margin-desktop py-8 z-50 bg-[#F9F7F2]/90 backdrop-blur-sm transition-all duration-300" id="desktop-nav">
+<span class="font-headline-md text-headline-md tracking-widest text-primary font-bold">SCROLLS</span>
+<div class="flex gap-8">
+<a class="font-label-sm text-label-sm text-primary border-b border-primary" href="#">Discover</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary-fixed transition-colors" href="#">Museum</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary-fixed transition-colors" href="#">Search</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary-fixed transition-colors" href="#">Profile</a>
+</div>
+</nav>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-8 md:mt-24">
+<!-- Search -->
+<section class="mb-16 md:mb-32">
+<div class="relative max-w-2xl mx-auto border-b border-primary group">
+<span class="material-symbols-outlined absolute left-0 bottom-3 text-on-surface-variant">search</span>
+<input class="w-full bg-transparent border-none pl-10 pr-4 py-3 font-label-caps text-label-caps focus:ring-0 focus:outline-none placeholder:text-on-tertiary-container text-primary pb-2 transition-all group-focus-within:border-b-2" placeholder="Search eras, artists, or collections..." type="text"/>
+</div>
+</section>
+<!-- Categories -->
+<section class="mb-24 md:mb-40">
+<h2 class="font-title-lg text-title-lg mb-8 text-primary uppercase tracking-widest">Curated Collections</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Category Card -->
+<div class="editorial-frame group cursor-pointer aspect-[3/4] md:aspect-square relative overflow-hidden bg-surface-container-highest">
+<div class="absolute inset-4 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A striking digital installation art piece featuring glowing, generative geometric shapes suspended in a vast, minimalist gallery space. The room is illuminated by high-key, soft white lighting that creates a bright, modern light-mode aesthetic. The artwork relies on a sophisticated palette of deep blacks and pristine whites, punctuated by intense accents of vibrant red. The mood is serene yet technologically advanced." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcY1aakbwkLmqjQIi0wp8dDT7twxgbOGRaM5MOh-T16I6QtKOaos3Yhx1675cZYjYjyg2eH32qeynpwFAzVZnedQkQlHndeXJdF7nJSU6Eq-0506KaPTfhYWkZY6MIBD0SNMG6kzmestupmB1yUJD_sqHPHENMdqDZRHqq5ZCX9zQ45hYSkGiLIaQE_yv91Lz0S3x3X8yPRoTL3ncyi_c8gq8VaaQteAfX22YMOqYXZTBazEynNYLBpg')"></div>
+<div class="absolute inset-4 bg-black/30 flex items-center justify-center transition-opacity duration-300 group-hover:bg-black/40">
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white text-center px-4">Renaissance</h3>
+</div>
+</div>
+<div class="editorial-frame group cursor-pointer aspect-[3/4] md:aspect-square relative overflow-hidden bg-surface-container-highest">
+<div class="absolute inset-4 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A dramatic high-contrast photograph of a classical marble sculpture bathed in chiaroscuro lighting. Deep shadows contrast sharply with bright, focused highlights on the carved stone. The composition is tight and intense, emphasizing the emotional depth and dynamic movement characteristic of Baroque art. The overall aesthetic is dark, moody, and highly textured, fitting a premium gallery setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDFXYM7CWxvabkmAqorntRCi1tsqvGS7Zg4Coq3q7YRC5VUrWZPPaxOcvRDxImOZjDiXOSceeHKCAnh8PJ3QLXphFME-_dz_e35rh14l5RLDpKqOIHcuie__uWTJBG6FWvyAF78zqLuUeK92JrgTJc_kveKxNPZsWhzfl51TT72oC0xjdbuIvakc74dxlKO74G13Dmz1Fc9e-CWEm-kl-koICMizdOduLUgoK1vhHHxXSEXtwC4ssOt_A')"></div>
+<div class="absolute inset-4 bg-black/30 flex items-center justify-center transition-opacity duration-300 group-hover:bg-black/40">
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white text-center px-4">Baroque</h3>
+</div>
+</div>
+<div class="editorial-frame group cursor-pointer aspect-[3/4] md:aspect-square relative overflow-hidden bg-surface-container-highest">
+<div class="absolute inset-4 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A soft, dreamlike photograph capturing dappled sunlight filtering through a verdant garden. The colors are pastel and muted—soft greens, pale blues, and warm whites. The image evokes the fleeting, atmospheric qualities of Impressionist painting, with a focus on light and color rather than sharp detail. The scene is tranquil and inviting, presented in a clean, modern frame." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFuG9ttxAsAY3QBTv0fJoJu3yXK-Xyuzh8K6E8n53U40ynT5tyszn2dlRZ-eYlJX2lSdXwZh8EFG4HIsH9k1lxE5FQDnClWBm4l7YcngHdYxNhaYra2vzB5fFgrX3a0MA2snXj2eDbGnremhYyTYCFgdqMDI1ZfJIroHWQt3tHrSeHpZY-3GvccnEVCbEnZBmsgqHnS8FSjnSZfB8FOl413xyvvrtWX050CiMs2U7ea3N4rWoaxBX7bw')"></div>
+<div class="absolute inset-4 bg-black/30 flex items-center justify-center transition-opacity duration-300 group-hover:bg-black/40">
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white text-center px-4">Impressionism</h3>
+</div>
+</div>
+<div class="editorial-frame group cursor-pointer aspect-[3/4] md:aspect-square relative overflow-hidden bg-surface-container-highest md:col-span-2 lg:col-span-1">
+<div class="absolute inset-4 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="An elegant, minimalist still life featuring a delicate porcelain bowl and a single sprig of cherry blossoms against a pristine white background. The lighting is soft and diffused, highlighting the subtle textures and elegant curves. The aesthetic is clean, precise, and highly curated, reflecting traditional Japanese artistic principles within a contemporary, high-end gallery context." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCZpz3s6_ndwh6mGsU1d2VPKzcwiWHBqtUEEy0KK6zMt7mb7jYS9zJ4B3hk-aRGqhIP1z_xD2fMotrWxzK__C-vbHN7m9cw_1Z91KfaDDUl9xiseSQsmJdGmgXr3YSzVg6s_Gx3lC4nv-Sx_c0GeDiazUgcIkIWgaPAonpirkxBGUu30nLn8WESxDBxvZMlvhmZ_QG3uaIqqRbmUU7R5uaam6M9dT8bkIja8WqlUTez2KgJ40-_xXNLOA')"></div>
+<div class="absolute inset-4 bg-black/30 flex items-center justify-center transition-opacity duration-300 group-hover:bg-black/40">
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white text-center px-4">Japanese Art</h3>
+</div>
+</div>
+<div class="editorial-frame group cursor-pointer aspect-[3/4] md:aspect-square relative overflow-hidden bg-surface-container-highest md:col-span-1 lg:col-span-2">
+<div class="absolute inset-4 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A striking close-up of golden ancient Egyptian artifacts resting on a textured, warm ivory surface. The lighting is harsh and directional, creating deep shadows that emphasize the intricate carvings and gleaming metal. The color palette is restricted to rich golds, deep browns, and stark whites. The image feels monumental, archival, and deeply historical, suited for a luxury museum catalog." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBY1pg6m77nR9yTK_3t62qhzd6P6yH_nqwJDDMYkduRjeb9ocn3RkEjtal6LzGbBnZrgw_L5H8j94SV73PfQME4xjrdg82CSpaKVPgS9swpsF-rVQJm1eY2HgfeLddvsHzSK1TvnAOYmA6N4-60znepOoCcRtuKELJfNYFxR3fG15whNCG48IRxq_M4WyakqI7nXR_G-v-vtYQoJ5Ss13wszKSJuyon3LXbYavoOkt5iVkK5CpFaebJ9Q')"></div>
+<div class="absolute inset-4 bg-black/30 flex items-center justify-center transition-opacity duration-300 group-hover:bg-black/40">
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white text-center px-4">Ancient Egypt</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- Trending Artists -->
+<section class="mb-24">
+<h2 class="font-title-lg text-title-lg mb-8 text-primary uppercase tracking-widest flex items-center justify-between">
+                Trending Artists
+                <button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+                    View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</h2>
+<div class="flex overflow-x-auto gap-8 pb-8 hide-scrollbar" style="scrollbar-width: none;">
+<div class="flex-none w-64 group cursor-pointer">
+<div class="w-full aspect-[4/5] bg-surface-container-highest mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A striking black and white portrait of an artist in their studio. The lighting is soft and cinematic, highlighting their focused expression. The background is slightly blurred, showing abstract canvases. The mood is creative, contemplative, and professional, perfectly suited for a high-end art gallery profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY4JRlN6tVrPBYJKBgUEBYbBI0rT1qgs21jIdmHwaPfSEbT6TYODxG5LgI7hATPMWTygpcWqjTBxXWFGr33HBx-5yQH7ZIjlBxNzrQ-yx4Zx5L_QRVAMXaRqzB-_6_gANAnNYNW5bumkTTJ84aeQuWsY1nzW4zbooxEpE_W3K8RQYd_LOAzQM7ixbGJxg_oOIrSKbDbGqYasCkEtroiPKnu6afgdWzDsQwwXv6pZ2hbVZn-xDFDOImaw"/>
+</div>
+<h4 class="font-body-lg text-body-lg text-primary mb-1">Artemisia Gentileschi</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Baroque Master</p>
+</div>
+<div class="flex-none w-64 group cursor-pointer">
+<div class="w-full aspect-[4/5] bg-surface-container-highest mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A conceptual photograph of a contemporary sculptor's hands working on a piece of rough stone. The image is tightly cropped, focusing on the texture of the stone and the tools. The lighting is dramatic, emphasizing the physical effort and raw material. The palette is monochromatic, mostly grays and whites. The aesthetic is raw yet highly refined." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAHQ2dLscLS91FPkRkjhvQtsq7tsBvMwLmNRaPMnHyDq1uT-BKay_YSWAs9Cm7L4eFUL36z9xhhsna4nJu4fu7dksa6qnq-Sq6IaBU58JqxE3S4VLLokCodPcX9uwJaMaRmhgoWspNGMQQpBdiiLWcHVnm2SfWFsiNY6db3qJJIg3DkgJ_W8V9ONKmceblxz46eJXQ5CiDynfLRIF9UK7R-WFNDpyA7mAEpjVRw-G-hog8m2Z4SBWPjg"/>
+</div>
+<h4 class="font-body-lg text-body-lg text-primary mb-1">Isamu Noguchi</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Modernist Sculpture</p>
+</div>
+<div class="flex-none w-64 group cursor-pointer">
+<div class="w-full aspect-[4/5] bg-surface-container-highest mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="An atmospheric portrait of a painter standing before a massive canvas in a light-filled, minimalist studio. The artist is in silhouette against the bright window, creating a sense of scale and mystery. The scene is quiet, focused, and deeply artistic. The color palette is minimal, relying on natural light and structural shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJXSr49JpmtiCvoXaZrTbo2EC-ZB3v0js-_smy-gdPbXqH1MQoWD8ItGmLv87hKQjsSf3ptvkFUljm_Zs8JnR3f5Q3VBpVDJhj8iZA6EZsE-EI1rRuDCRC0aOc47MFodOQ9yX-PWjlAdmVGPpVasTT_6igOsFqzmf4nINWEAFgzUDsGWZtcasnf6JDCnln3cBY8cIFSbZvEAlbCz5l7vPovDmQ-Vm2Cs3Ce6Vib0yLn4EpRt_9Ias7MA"/>
+</div>
+<h4 class="font-body-lg text-body-lg text-primary mb-1">Hilma af Klint</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Abstract Pioneer</p>
+</div>
+<div class="flex-none w-64 group cursor-pointer">
+<div class="w-full aspect-[4/5] bg-surface-container-highest mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A detailed, close-up photograph of vibrant, thick oil paint mixed on a wooden palette. The texture is palpable, with deep ridges and swirling colors. The lighting is soft and natural, emphasizing the materiality of the medium. The aesthetic is classic, artistic, and deeply connected to traditional painting techniques." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR-o_GjI_dsbWCy3jXrSnWLmXGSL9FxFzfsYGvX3U1jtrXmRYMM_2FKzd0YL2fbAvShpRWkVq8CtVIVxEYy6m2iEoeMuHdNwwIFfA6CiGigcLkJWwzHG2Kvj8y7NhcwQPb9GgTM91ZgZFO_Z1sgOwRSltunUuugsK19wsq7hi4IRbbUxeGaNC3-YcLIXzou-u0hWHS593-BgL-FM0M6caPy4eh_OxJAjHZta4SVE-JJnZFVj5sYh2WFA"/>
+</div>
+<h4 class="font-body-lg text-body-lg text-primary mb-1">Katsushika Hokusai</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Ukiyo-e Master</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface/95 dark:bg-inverse-surface/95 font-label-sm text-label-sm docked full-width bottom-0 z-50 border-t border-outline-variant/30 backdrop-blur-md flat no shadows fixed left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 md:hidden">
+<button class="flex flex-col items-center justify-center text-primary dark:text-on-primary font-bold border-t-2 border-primary pt-2 opacity-80 transition-opacity">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span>Discover</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container pt-2 hover:text-secondary dark:hover:text-secondary-fixed transition-colors opacity-80 transition-opacity">
+<span class="material-symbols-outlined mb-1">museum</span>
+<span>Museum</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container pt-2 hover:text-secondary dark:hover:text-secondary-fixed transition-colors opacity-80 transition-opacity">
+<span class="material-symbols-outlined mb-1">search</span>
+<span>Search</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container pt-2 hover:text-secondary dark:hover:text-secondary-fixed transition-colors opacity-80 transition-opacity">
+<span class="material-symbols-outlined mb-1">person</span>
+<span>Profile</span>
+</button>
+</nav>
+<script>
+        // Simple scroll effect for desktop nav
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('desktop-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-[#F9F7F2]');
+                nav.classList.remove('bg-[#F9F7F2]/90');
+                nav.style.boxShadow = '0 1px 0 0 #E5E1DA';
+            } else {
+                nav.classList.remove('bg-[#F9F7F2]');
+                nav.classList.add('bg-[#F9F7F2]/90');
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body></html>

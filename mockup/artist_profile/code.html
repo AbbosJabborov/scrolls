@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gustav Klimt - Artist Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bodoni+Moda:opsz,wght@6..96,400&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#ffdea5",
+                        "on-tertiary-container": "#86847e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#484742",
+                        "surface-variant": "#e5e2e1",
+                        "outline-variant": "#c4c7c7",
+                        "surface-bright": "#fdf8f8",
+                        "surface-dim": "#ddd9d8",
+                        "background": "#fdf8f8",
+                        "tertiary": "#000000",
+                        "secondary": "#775a19",
+                        "on-secondary-container": "#785a1a",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#cac6bf",
+                        "inverse-on-surface": "#f4f0ef",
+                        "primary": "#000000",
+                        "on-surface": "#1c1b1b",
+                        "surface-container-high": "#ebe7e6",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#fed488",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#fdf8f8",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-primary-container": "#858383",
+                        "tertiary-container": "#1c1c17",
+                        "tertiary-fixed": "#e6e2db",
+                        "on-surface-variant": "#444748",
+                        "on-background": "#1c1b1b",
+                        "primary-container": "#1c1b1b",
+                        "on-secondary-fixed": "#261900",
+                        "surface-tint": "#5f5e5e",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-primary-fixed-variant": "#474746",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#313030",
+                        "surface-container-low": "#f7f3f2",
+                        "on-tertiary-fixed": "#1c1c17",
+                        "outline": "#747878",
+                        "secondary-fixed-dim": "#e9c176",
+                        "inverse-primary": "#c8c6c5",
+                        "surface-container": "#f1edec",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "primary-fixed": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "unit": "8px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "headline-lg-mobile": ["Bodoni Moda"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Bodoni Moda"],
+                        "display-lg": ["Bodoni Moda"],
+                        "title-lg": ["Inter"],
+                        "headline-md": ["Bodoni Moda"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "label-sm": ["13px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "title-lg": ["20px", { "lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F9F7F2; /* Warm Ivory Base */
+            color: #1A1A1A; /* Primary Charcoal */
+        }
+        .editorial-container {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+        .artwork-frame {
+            border: 1px solid #E5E1DA;
+            padding: 16px;
+            background-color: #F9F7F2;
+        }
+        .ghost-chip {
+            border: 1px solid #E5E1DA;
+            background: transparent;
+        }
+        /* Custom scrollbar for an editorial feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F9F7F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c4c7c7;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #747878;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full flex justify-between items-center px-6 py-4 bg-gradient-to-b from-surface/40 to-transparent flat no shadows z-50">
+<button class="text-on-surface-variant hover:text-secondary-fixed transition-colors duration-300 scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="font-headline-md text-headline-md tracking-widest text-primary dark:text-on-primary">
+            SCROLLS
+        </div>
+<button class="text-on-surface-variant hover:text-secondary-fixed transition-colors duration-300 scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="editorial-container px-margin-mobile md:px-margin-desktop pt-32">
+<!-- Artist Header Profile -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-24 items-center">
+<div class="md:col-span-5 order-2 md:order-1">
+<div class="flex items-center gap-4 mb-6">
+<span class="ghost-chip px-3 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant">1862–1918</span>
+<span class="ghost-chip px-3 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant">Austrian</span>
+</div>
+<h1 class="font-display-lg text-display-lg mb-6 leading-tight">Gustav Klimt</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-lg leading-relaxed">
+                    A founding member and first president of the Vienna Secession, Gustav Klimt's work is characterized by an elegant synthesis of Symbolism and Art Nouveau. His 'Golden Phase' produced some of the most recognizable, opulent portraits of the early 20th century, elevating the decorative arts to profound psychological depths.
+                </p>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-8 py-3 rounded-none hover:bg-secondary transition-colors duration-300 tracking-widest">
+                        FOLLOW ARTIST
+                    </button>
+<button class="border border-primary text-primary font-label-caps text-label-caps px-8 py-3 rounded-none hover:bg-surface-variant transition-colors duration-300 tracking-widest">
+                        VIEW EXHIBITIONS
+                    </button>
+</div>
+</div>
+<div class="md:col-span-6 md:col-start-7 order-1 md:order-2 mb-8 md:mb-0">
+<div class="artwork-frame relative">
+<div class="aspect-[3/4] w-full overflow-hidden bg-surface-container-high">
+<img alt="Gustav Klimt Portrait" class="w-full h-full object-cover grayscale opacity-90 mix-blend-multiply" data-alt="A striking portrait photograph of the artist Gustav Klimt in his studio. The lighting is soft and natural, emphasizing the texture of his smock and the thoughtful, intense expression on his face. The setting is slightly hazy, hinting at an early 20th-century aesthetic with an editorial, high-contrast black and white treatment to match a luxury art magazine style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBygO1hkcLoiYN8A5JcESi6EABcvoS4zkAtPjKn8KmJaC9RWqnnZUPmSslPQNtS1rZA1cu-StKQkpLj22RmSMPfYGSXAeVQ7i4MugOQ4g7PY4fu5QWBsQIBG3bdHVS_Ic7JZCl73Z9PmweTBK5Xi28Jg48GTzyS02nCdi3iqdsB6iP1LALCAo9zP6wpnWYBfNExj7ktwPRHKs_rWDLG0yugPd8cNkRuQno578nnUFoeX2iHQ76uIsITDA"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Navigation Tabs (Page Level) -->
+<nav class="border-b border-outline-variant/30 mb-16 flex gap-8">
+<button class="font-label-sm text-label-sm text-primary border-b-2 border-primary pb-4">Famous Works</button>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors pb-4">Timeline</button>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors pb-4">Movement: Viennese Secession</button>
+</nav>
+<!-- Famous Works Grid -->
+<section class="mb-32">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-gutter gap-y-16">
+<!-- Work 1 -->
+<article class="flex flex-col">
+<div class="artwork-frame mb-6">
+<div class="aspect-[4/5] w-full bg-surface-container">
+<img alt="The Kiss" class="w-full h-full object-cover" data-alt="A highly detailed reproduction of Gustav Klimt's 'The Kiss' or a remarkably similar artwork in his signature Golden Phase style. The image is dominated by opulent, luminous gold leaf textures, intricate geometric and organic patterns, and two figures in a tender embrace. The lighting is museum-quality, highlighting the shimmering metallic surfaces against a slightly muted background, perfectly suited for a high-end editorial display." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKQNMFYnpuFRQh0HIOfqJOHE6p1vK-z_m1EZJJCMlnuppCnB4X83XRlvh6U7LgOeTS9i6gU61p8VfIIi_3Ml7Na4YY_bwHPiEDTFuPkCEIIrzf7YTsWmRwxa5TuOeJo7sGuhHI8DzfYT_6nu74g2NZkw4oCJclq_RiwmZtEYeiuxPFACpb9VqsXJHbTX1fDBqhfrPsYku4uu5B1fis9doDKYR7UusckOTWLpx-zXMPFnBewr0He1-dsQ"/>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-title-lg text-title-lg mb-2">The Kiss</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">1907–1908, Oil and gold leaf on canvas</p>
+</div>
+<button class="text-on-surface-variant hover:text-secondary transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite_border">favorite_border</span>
+</button>
+</div>
+</article>
+<!-- Work 2 -->
+<article class="flex flex-col md:mt-24">
+<div class="artwork-frame mb-6">
+<div class="aspect-square w-full bg-surface-container">
+<img alt="Portrait of Adele Bloch-Bauer I" class="w-full h-full object-cover" data-alt="A luxurious reproduction of Gustav Klimt's 'Portrait of Adele Bloch-Bauer I'. The artwork is a masterpiece of the Golden Phase, featuring an elegant woman adorned in a dress overflowing with Egyptian and Byzantine-inspired geometric motifs (eyes, triangles, squares) rendered in radiant gold and silver leaf. The lighting is pristine, emphasizing the contrast between the realistic face and the highly stylized, decorative environment, fitting a premium digital museum archive." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjYywfb-Kbwjt4kGNd02d8J-MWUt6H9z1FQ5OgpV8DbZVjSHNHPIX0ZSPlHFOxmTgma8aS5qSCsdc-syyvQDDVQcqy4GdNz2CwK1yc5jyjW3AFMclHxjwAZjM_WBuOxTreVr8cGGHiohEVvPJatf8vmkzHY06zrUJ-X1Bg0mjJRySR0-i63E0yMaE5XUtG6tzOXp1KlAergk73PuYG7kHVARalTYGNqdhJmD0iSZATeRpHnyyIzuMAgw"/>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-title-lg text-title-lg mb-2">Portrait of Adele Bloch-Bauer I</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">1907, Oil, silver, and gold leaf on canvas</p>
+</div>
+<button class="text-on-surface-variant hover:text-secondary transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite_border">favorite_border</span>
+</button>
+</div>
+</article>
+<!-- Work 3 -->
+<article class="flex flex-col">
+<div class="artwork-frame mb-6">
+<div class="aspect-[3/4] w-full bg-surface-container">
+<img alt="Flower Garden" class="w-full h-full object-cover" data-alt="A museum-quality image of a classic Klimt landscape painting, characterized by its dense, tapestry-like composition. A vibrant meadow bursting with colorful, stylized flowers or a serene birch forest reflecting his unique approach to pointillism and flattening of perspective. The colors are rich greens, vibrant floral hues, and soft natural light, maintaining a calm, intellectual editorial feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu2n2i4DJs_CoSoXQtNN6ARPLlVna0Pfyo9a2LVGHxPoAM3re891q0lCEDUNl_LA5M1XqOQah3adYqdJrdY2YofGtCuEJjEI5gI3q53YipmSk3QM7v7UddTCvZfVPaH1cQ3wDulzJ_GJtw1tm5B2t8AFyv3_JPe4daHVuy2e9vcXGfDIJGVSk4hD5stOInqjZ2zPbcEg08mt8SxsQvG7Zbgc01cTPg0rj1nDqJ4JE1I5Vzs1Vg67g-WA"/>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-title-lg text-title-lg mb-2">Flower Garden</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">1905–1907, Oil on canvas</p>
+</div>
+<button class="text-on-surface-variant hover:text-secondary transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite_border">favorite_border</span>
+</button>
+</div>
+</article>
+<!-- Work 4 -->
+<article class="flex flex-col md:mt-24">
+<div class="artwork-frame mb-6">
+<div class="aspect-[4/3] w-full bg-surface-container">
+<img alt="Death and Life" class="w-full h-full object-cover" data-alt="An exquisite, high-resolution detail shot of a Klimt allegory painting, perhaps 'Death and Life' or 'Jurisprudence'. The image focuses on the stark contrast between pale, ethereal human figures and dark, richly patterned spaces. The composition highlights the swirling, organic Art Nouveau lines and the deep, melancholic undertones typical of his Symbolist work. The lighting is moody yet clear, perfect for a high-end minimalist design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgqlNIrbsmRpbzKt-nmsWVYp1OM22Vu70E4ELVjDr9FfTKOiwLvTwzm1CQhwJ51x_EIUgFBOJYa5vbdksp57lGXPV-qz4XnZGTcqVffBmeoc5I2kbTMv8CtyCOrE_4hAOOOYnU_rHON53KRUx8Wb50QNgMnxjRy6N7cVlNTadQCBA7gTo0zKAbM5P6BsSGX0J4vysjgCP1eW8w1OTries_LgxMmCdvr-MdC5niOs65_MqxLxRQgCQJig"/>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-title-lg text-title-lg mb-2">Death and Life</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">1908–1915, Oil on canvas</p>
+</div>
+<button class="text-on-surface-variant hover:text-secondary transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite_border">favorite_border</span>
+</button>
+</div>
+</article>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-surface/95 dark:bg-inverse-surface/95 border-t border-outline-variant/30 backdrop-blur-md flat no shadows z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container pt-2 hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="explore">explore</span>
+<span class="font-label-sm text-label-sm">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container pt-2 hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="museum">museum</span>
+<span class="font-label-sm text-label-sm">Museum</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-on-primary font-bold border-t-2 border-primary pt-2 opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="search">search</span>
+<span class="font-label-sm text-label-sm">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container pt-2 hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+</body></html>

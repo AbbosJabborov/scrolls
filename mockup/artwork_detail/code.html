@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Artwork Detail - The Kiss</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#ffdea5",
+                        "on-tertiary-container": "#86847e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#484742",
+                        "surface-variant": "#e5e2e1",
+                        "outline-variant": "#c4c7c7",
+                        "surface-bright": "#fdf8f8",
+                        "surface-dim": "#ddd9d8",
+                        "background": "#fdf8f8",
+                        "tertiary": "#000000",
+                        "secondary": "#775a19",
+                        "on-secondary-container": "#785a1a",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#cac6bf",
+                        "inverse-on-surface": "#f4f0ef",
+                        "primary": "#000000",
+                        "on-surface": "#1c1b1b",
+                        "surface-container-high": "#ebe7e6",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#fed488",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#fdf8f8",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-primary-container": "#858383",
+                        "tertiary-container": "#1c1c17",
+                        "tertiary-fixed": "#e6e2db",
+                        "on-surface-variant": "#444748",
+                        "on-background": "#1c1b1b",
+                        "primary-container": "#1c1b1b",
+                        "on-secondary-fixed": "#261900",
+                        "surface-tint": "#5f5e5e",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-primary-fixed-variant": "#474746",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#313030",
+                        "surface-container-low": "#f7f3f2",
+                        "on-tertiary-fixed": "#1c1c17",
+                        "outline": "#747878",
+                        "secondary-fixed-dim": "#e9c176",
+                        "inverse-primary": "#c8c6c5",
+                        "surface-container": "#f1edec",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "primary-fixed": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "unit": "8px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "headline-lg-mobile": ["Bodoni Moda"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Bodoni Moda"],
+                        "display-lg": ["Bodoni Moda"],
+                        "title-lg": ["Inter"],
+                        "headline-md": ["Bodoni Moda"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "label-sm": ["13px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "title-lg": ["20px", { "lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen font-body-md">
+<!-- Top Navigation for Article (Minimal, Back Button) -->
+<nav class="fixed top-0 left-0 w-full flex justify-between items-center px-4 md:px-margin-desktop py-4 bg-gradient-to-b from-surface/80 to-transparent backdrop-blur-sm z-50 transition-colors duration-300" id="topNav">
+<button aria-label="Go Back" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high transition-colors text-primary">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex space-x-4">
+<button aria-label="Bookmark" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high transition-colors text-primary">
+<span class="material-symbols-outlined" data-icon="bookmark_border">bookmark_border</span>
+</button>
+<button aria-label="Share" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high transition-colors text-primary">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-container-max mx-auto md:px-margin-desktop pb-24 md:pb-32 pt-0">
+<!-- Hero Header Image -->
+<header class="w-full h-[60vh] md:h-[80vh] relative mb-12 md:mb-24">
+<div class="w-full h-full border border-outline-variant p-4 md:p-gutter box-border">
+<img class="w-full h-full object-cover grayscale-[20%] sepia-[10%]" data-alt="A high-resolution, full-bleed detail shot of Gustav Klimt's 'The Kiss'. The image focuses on the intricate, shimmering gold leaf patterns and geometric shapes that adorn the lovers' robes, set against a dark, moody bronze and gold background. The lighting highlights the rich textures and opulent materials, creating a luxurious, classical yet modern aesthetic typical of a premium art publication. The composition is tight on the embrace, emphasizing intimacy and decorative excess." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrz9sA6DkF9ac4F0PUtCwSbQTXIai-iYsmMdfRNS9tMEb9Gh5R1IPXBahbOzdByNoi-yr_7cRMQ0snmY29z9lMFJBg6l5jjsiilfR1wmpzLG-4q1E_kXDTxSO0H9tA_5NJ7VIMhMTvOHOcxA1SwWWgo_VhdGU-kvYCMXRQUlz4yAsLWp9sw6kRRApZaKbJFc1tYyaZf1yGWlfo9ILY5PUpe1N3xsXzT9YqRdUNSYiteGgzjF49ky4vJw"/>
+</div>
+<!-- Optional subtle caption overlay -->
+<div class="absolute bottom-6 right-6 md:bottom-12 md:right-12 px-4 py-2 bg-surface/90 backdrop-blur-md border border-outline-variant">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Gustav Klimt, 1907-1908</p>
+</div>
+</header>
+<!-- Article Container (Narrower for readability) -->
+<article class="max-w-3xl mx-auto px-4 md:px-0">
+<!-- Metadata & Title -->
+<div class="mb-16 md:mb-24 text-center md:text-left">
+<div class="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
+<span class="px-3 py-1 border border-outline-variant rounded-none font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Viennese Secession</span>
+<span class="px-3 py-1 border border-outline-variant rounded-none font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Symbolism</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary mb-6">The Kiss</h1>
+<p class="font-title-lg text-title-lg text-on-surface-variant italic mb-8">Der Kuss (Liebespaar)</p>
+<!-- Quick Facts Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 py-8 border-y border-outline-variant">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Artist</p>
+<p class="font-label-sm text-label-sm text-primary">Gustav Klimt</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Year</p>
+<p class="font-label-sm text-label-sm text-primary">1907–1908</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Medium</p>
+<p class="font-label-sm text-label-sm text-primary">Oil and gold leaf on canvas</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Location</p>
+<p class="font-label-sm text-label-sm text-primary">Österreichische Galerie Belvedere</p>
+</div>
+</div>
+</div>
+<!-- Content Section: The Story -->
+<section class="mb-16 md:mb-24">
+<h2 class="font-headline-md text-headline-md text-primary mb-6">The Story</h2>
+<div class="font-body-lg text-body-lg text-on-surface-variant space-y-6">
+<p>
+                        Painted during the height of what scholars call his "Golden Period," Gustav Klimt's <em>The Kiss</em> represents the apex of his symbolic exploration of romantic love and human connection. The canvas depicts an embracing couple concealed behind a large gold cloak, kneeling in a patch of intensely vibrant flowers at the edge of a precipice.
+                    </p>
+<p>
+                        The painting was created shortly after Klimt faced severe public criticism and scandal for his Vienna Ceiling Paintings, which were derided as "pornographic." In response, <em>The Kiss</em> is a defiant, opulent assertion of his artistic vision—transcending the earthly realm to present love as an ethereal, cosmic event.
+                    </p>
+</div>
+</section>
+<!-- Content Section: Why is this famous? (Accent/Highlight) -->
+<section class="mb-16 md:mb-24 relative p-8 md:p-12 bg-surface-container-low border border-secondary-fixed">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary-fixed to-secondary"></div>
+<h2 class="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="star" data-weight="fill">star</span>
+                    Why is this famous?
+                </h2>
+<div class="font-body-lg text-body-lg text-on-surface-variant space-y-6">
+<p>
+<em>The Kiss</em> is renowned not just for its subject matter, but for its revolutionary synthesis of multiple artistic styles and movements. It is the quintessential piece of the Viennese Secession movement, blending Art Nouveau's organic lines with the strict geometries of the Arts and Crafts movement.
+                    </p>
+<p>
+                        Klimt's extensive use of gold leaf, inspired by a trip he took to Ravenna, Italy, where he was profoundly moved by Byzantine mosaics, elevates the earthly act of a kiss into an object of religious veneration and timelessness. The contrast between the naturalistic, deeply emotive faces of the figures and the flat, highly decorative patterns of their clothing creates a compelling visual tension that continues to captivate audiences worldwide.
+                    </p>
+</div>
+</section>
+<!-- Content Section: Technical Details -->
+<section class="mb-16 md:mb-24">
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Technical Details</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="space-y-4">
+<div class="border-b border-outline-variant pb-4">
+<h3 class="font-title-lg text-title-lg text-primary mb-2">Materials</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Klimt employed conventional oil paint alongside elaborate techniques of applying gold and silver leaf. This required specialized skills more akin to a jeweler or artisan than a traditional painter.</p>
+</div>
+<div class="border-b border-outline-variant pb-4">
+<h3 class="font-title-lg text-title-lg text-primary mb-2">Dimensions</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">A perfect square, measuring 180 cm × 180 cm (71 in × 71 in), a format Klimt favored for its geometric stability and non-narrative focus.</p>
+</div>
+</div>
+<!-- Inline Image for detail -->
+<div class="w-full aspect-square border border-outline-variant p-2">
+<img class="w-full h-full object-cover" data-alt="A macro detail shot of the gold leaf texture in Gustav Klimt's 'The Kiss'. The image focuses purely on the abstract geometric shapes—rectangles, spirals, and concentric circles—rendered in various shades of gold, bronze, and silver leaf on canvas. The lighting is raking, emphasizing the three-dimensional, impasto-like texture and the reflective quality of the metallic materials. The style is abstract, highly detailed, and luxurious, fitting for a close-up analysis in a premium art editorial." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7O3v6jPllOUdP7dhwChytgY1YZZdbH_q2K0h1n-tSqunlT3uUvTD-614vO4rUgeW_4jsdqs6CuGjvJP2izUYCuJ9Os-qE-p2mIY4M-HBWo8OmIiPq9hn-fWA4HJW9DbEdoAcnX9jAyrnPGUUnGaKmkRLM2Ok_98gTB-bM3G6_p_a_tkq39_GJRvhErrn3KpLYOT7wqAswlLFrjnPK-dHBpWyKCsYYGjupBFtcO_UEkXm4CbgQZNTs-g"/>
+</div>
+</div>
+</section>
+</article>
+</main>
+<!-- Full Bleed Separator -->
+<div class="w-full h-[1px] bg-outline-variant max-w-container-max mx-auto my-0"></div>
+<!-- Related Artworks (Horizontal Scroll) -->
+<section class="w-full max-w-container-max mx-auto py-16 md:py-24 px-4 md:px-margin-desktop overflow-hidden">
+<div class="flex justify-between items-end mb-8 md:mb-12">
+<h2 class="font-headline-md text-headline-md text-primary">Explore the Golden Period</h2>
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 uppercase tracking-widest">
+                View All <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Horizontal Scroll Container -->
+<div class="flex gap-6 md:gap-8 overflow-x-auto hide-scrollbar pb-8 snap-x snap-mandatory">
+<!-- Card 1 -->
+<a class="group flex-none w-72 md:w-96 snap-start" href="#">
+<div class="w-full aspect-[3/4] border border-outline-variant p-3 mb-4 transition-transform duration-500 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:border-outline">
+<img class="w-full h-full object-cover" data-alt="A full portrait of Adele Bloch-Bauer I by Gustav Klimt. The subject is a woman wrapped in a resplendent, highly ornate gold dress, set against a shimmering gold background. Her face and hands are painted realistically, while her body dissolves into abstract, geometric patterns of gold and silver. The lighting is bright and flat, highlighting the decorative excess and Byzantine-like mosaic quality of the artwork. The aesthetic is luxurious, editorial, and classical." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFFpi76lrfxw4XfZjKL4PIajGpZOKiitSjLk7buFmWRqKlAtV3qYFAQ_WTDzXwOmi7j9jEglBoej2X09oW6cqeVBKr0K23Aw-We4OZGM-4orqgU48vWP8nZFMy4abofF8VnbxfcCGwCsqpVxU-LOz_bRHzqOdeVM2XbRYZ775n2IQCQBuSnDdV9KYN2uI3qRbUs-YlQCjBLfuAiEqq9JkMUGFgPIJFgzMUULrcXLB5WdL7enFe5x1ZyQ"/>
+</div>
+<h3 class="font-title-lg text-title-lg text-primary mb-1">Portrait of Adele Bloch-Bauer I</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">1907</p>
+</a>
+<!-- Card 2 -->
+<a class="group flex-none w-72 md:w-96 snap-start" href="#">
+<div class="w-full aspect-[3/4] border border-outline-variant p-3 mb-4 transition-transform duration-500 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:border-outline">
+<img class="w-full h-full object-cover" data-alt="A vertical crop of Gustav Klimt's 'Danaë'. The artwork depicts a woman curled up in a fetal position, asleep, enveloped in luxurious, diaphanous fabrics in rich purples and golds. A stream of golden coins descends towards her. The style is highly sensual, organic, and decorative, characteristic of Art Nouveau and Symbolism. The lighting highlights the pale skin of the subject against the deeply saturated, dark background, creating a moody, premium, and intimate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7IT6qGO24lcYakSwY6s4HXUQPcCdGsb_uDhGRxQwADd7FaF7Fu_IhrkLbnh610HX6yIrndUn5OQd4iWdWzvL2hNbMSuHvUnR3d0TwXOvRug2wnhaVWcidsKIO-DtPfyyLoHFXEwZUH1VYn-_oryYkF0YBJq65hnX6cNdZkt6sAyhZ-9JcFUPOmPqrd92ygeFSrM0fmDofc6996icC9i3WHxRf1rIDKXuWon2HRGCWPpmV07P3uKfzeg"/>
+</div>
+<h3 class="font-title-lg text-title-lg text-primary mb-1">Danaë</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">1907–1908</p>
+</a>
+<!-- Card 3 -->
+<a class="group flex-none w-72 md:w-96 snap-start" href="#">
+<div class="w-full aspect-[3/4] border border-outline-variant p-3 mb-4 transition-transform duration-500 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:border-outline">
+<img class="w-full h-full object-cover" data-alt="A detailed section of the 'Beethoven Frieze' by Gustav Klimt. The image shows elongated, stylized female figures representing 'The Hostile Forces'. They are painted in pale tones with elaborate, decorative hair and subtle metallic accents on a rough, textured plaster background. The composition is linear and frieze-like, showing the influence of Egyptian and Mycenaean art. The overall aesthetic is classical, symbolic, and slightly austere, fitting a high-end editorial context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyvvRX1H7RqO0mOQfMDx4Aoa9wGB8huqynYqI2wjrmwYrWUTG__Lm93ZjblqB5GzvogeKz7_RVGeK2LTP5u6Rm8erDb8Kg1dpFjfncJTWxMLPj0Xa_edzCW9Yn76uxuFy2NI8V1Qpl-fRfuzN3F1x84vLckjjWr-oBkwRRTXeRHsfKWkHDagL2wy0ckVALP2cly3s6XsjCa7oYxEmTVaBEftMy0kDsoIc3zfg0e1FHCVf4I4XCt1gjxA"/>
+</div>
+<h3 class="font-title-lg text-title-lg text-primary mb-1">Beethoven Frieze</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">1902</p>
+</a>
+</div>
+</section>
+<!-- Bottom Navigation Shell (Suppressed based on rules: Transactional/Task-Focused sub-page with a Back button) -->
+<!-- The prompt implies a focused detail view with a back button, so global nav is hidden to prioritize content canvas. -->
+<script>
+        // Simple script to handle nav background opacity on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('topNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-surface');
+                nav.classList.remove('bg-surface/80');
+                nav.classList.add('shadow-sm');
+            } else {
+                nav.classList.remove('bg-surface');
+                nav.classList.add('bg-surface/80');
+                nav.classList.remove('shadow-sm');
+            }
+        });
+    </script>
+</body></html>

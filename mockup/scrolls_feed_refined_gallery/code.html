@@ -1,0 +1,287 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Scrolls - Main Feed</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#ffdea5",
+                    "on-tertiary-container": "#86847e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#484742",
+                    "surface-variant": "#e5e2e1",
+                    "outline-variant": "#c4c7c7",
+                    "surface-bright": "#fdf8f8",
+                    "surface-dim": "#ddd9d8",
+                    "background": "#fdf8f8",
+                    "tertiary": "#000000",
+                    "secondary": "#775a19",
+                    "on-secondary-container": "#785a1a",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#cac6bf",
+                    "inverse-on-surface": "#f4f0ef",
+                    "primary": "#000000",
+                    "on-surface": "#1c1b1b",
+                    "surface-container-high": "#ebe7e6",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#fed488",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface": "#fdf8f8",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#1c1b1b",
+                    "on-primary-container": "#858383",
+                    "tertiary-container": "#1c1c17",
+                    "tertiary-fixed": "#e6e2db",
+                    "on-surface-variant": "#444748",
+                    "on-background": "#1c1b1b",
+                    "primary-container": "#1c1b1b",
+                    "on-secondary-fixed": "#261900",
+                    "surface-tint": "#5f5e5e",
+                    "surface-container-highest": "#e5e2e1",
+                    "on-primary-fixed-variant": "#474746",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#313030",
+                    "surface-container-low": "#f7f3f2",
+                    "on-tertiary-fixed": "#1c1c17",
+                    "outline": "#747878",
+                    "secondary-fixed-dim": "#e9c176",
+                    "inverse-primary": "#c8c6c5",
+                    "surface-container": "#f1edec",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "primary-fixed": "#e5e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "container-max": "1440px",
+                    "unit": "8px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "label-caps": [
+                            "Inter"
+                    ],
+                    "headline-lg-mobile": [
+                            "Bodoni Moda"
+                    ],
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "headline-lg": [
+                            "Bodoni Moda"
+                    ],
+                    "display-lg": [
+                            "Bodoni Moda"
+                    ],
+                    "title-lg": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Bodoni Moda"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-sm": [
+                            "13px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg": [
+                            "64px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "title-lg": [
+                            "20px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        /* Editorial adjustments */
+        body {
+            background-color: #1A1A1A; /* Deep charcoal for the feed */
+            color: #F9F7F2; /* Warm Ivory text on dark background */
+        }
+        /* Custom scrollbar for web */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="h-screen w-screen overflow-hidden flex flex-col font-sans antialiased text-on-surface">
+<!-- Main Viewport -->
+<main class="flex-grow relative h-full w-full max-w-container-max mx-auto overflow-y-scroll snap-y snap-mandatory scroll-smooth pb-[90px]">
+<!-- Single Feed Item (Full Screen) -->
+<section class="h-[884px] w-full snap-start relative flex flex-col justify-center items-center p-0 md:p-0">
+<!-- Immersive Artwork Container -->
+<div class="relative w-full h-full flex justify-center items-center p-8">
+<img alt="The Kiss by Gustav Klimt" class="w-full h-full object-contain" data-alt="A highly detailed reproduction of 'The Kiss' by Gustav Klimt (1907-1908). The painting depicts a couple embracing, swathed in elaborate robes decorated in a style influenced by the contemporary Art Nouveau style and the organic forms of the earlier Arts and Crafts movement. The background is a shimmering expanse of gold leaf, punctuated by intricate geometric and floral patterns in deep browns, muted greens, and soft reds. The lighting emphasizes the luminous quality of the gold, creating a rich, opulent, and profoundly intimate atmosphere. The composition is vertically oriented, set against a dark, minimalist gallery-like background to enhance the artwork's brilliance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNdoMY34kPoeCvzYWkdHTxXoyHKH_nDdufhI3GChLgsgJ_vtHAskCSVMoITaNZp2r9a4w6JLa4I5tqPfFaR61Qt1Hsln7O9omivfg4TaWDin9tXHxpd2W-f85yAQcZwyDcHd5lGXEZ4vwRP_7Lps1cjXEf5IvvIDO0cZcrGGGSOVa3-jh1pHu8r6yRvRiJzqS8qxbB3pYXnyg2mJEl17QRcDZ-i38xsCh_mdcJVTn-KudjlfXX8NInZw">
+</div>
+<!-- Right-side Interaction Rail (Absolute to viewport for this item) -->
+<div class="absolute right-4 bottom-[20%] md:right-12 md:bottom-1/4 flex flex-col items-center space-y-6 z-10">
+<!-- Artist Avatar with Follow -->
+<div class="relative group cursor-pointer">
+<div class="w-12 h-12 rounded-full border border-surface-variant overflow-hidden">
+<img alt="Gustav Klimt Avatar" class="object-cover w-full h-full" data-alt="A classic, black and white portrait photograph of the artist Gustav Klimt. He has a prominent beard and intense gaze, typical of early 20th-century artist portraits. The image is cropped in a tight circle, acting as a profile picture avatar in a digital interface. The lighting is dramatic and moody, reflecting the profound nature of his artistic contributions." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd9R6oipaKegAB_VqvYtNws54RdRdZAFEjhgnBdL7fNdWUwgd1eM-9VvSSZ70cweqvIi9FYNjcaY3_Ok56ckD6jg4CuJzbdv--zkpONiqU5LQJsk5Kwu3BmRx1IY_MRuWDxS8r2Qsu71hKPaUZcr6vlXF_AKRQ63ZgHSUUCV3cCQcijAWTtAflufMdb6E0OA2qT6Q1Vw5asb4MnSvQQGp8fCI4M36u-TnvieN9RsO0-oqbbtTW9TpVfQ">
+</div>
+<button class="absolute -bottom-2 transform w-6 h-6 bg-secondary text-on-secondary rounded-full flex items-center justify-center border border-[#1A1A1A] hover:scale-110 transition-transform right-0">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+<!-- Like Action -->
+<button class="flex flex-col items-center group">
+<span class="material-symbols-outlined text-[32px] font-light text-white group-hover:text-secondary transition-colors" data-icon="favorite">favorite</span>
+<span class="font-label-sm text-label-sm mt-1 text-white opacity-80">12k</span>
+</button>
+<!-- Comment Action -->
+<button class="flex flex-col items-center group">
+<span class="material-symbols-outlined text-[32px] font-light text-white group-hover:text-secondary transition-colors" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-sm text-label-sm mt-1 text-white opacity-80">428</span>
+</button>
+<!-- Save/Bookmark Action -->
+<button class="flex flex-col items-center group">
+<span class="material-symbols-outlined text-[32px] font-light text-white group-hover:text-secondary transition-colors" data-icon="bookmark">bookmark</span>
+</button>
+<!-- Share Action -->
+<button class="flex flex-col items-center group">
+<span class="material-symbols-outlined text-[32px] font-light text-white group-hover:text-secondary transition-colors" data-icon="send">send</span>
+</button>
+</div>
+<!-- Bottom Info Editorial Overlay -->
+<div class="absolute bottom-0 left-0 w-full px-4 md:px-margin-desktop pb-[110px] bg-gradient-to-t from-black via-black/70 to-transparent z-10 flex justify-between items-end pointer-events-none pt-48">
+<div class="max-w-[75%] md:max-w-2xl pointer-events-auto">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-2 text-[#F9F7F2]">THE KISS</h1>
+<div class="flex items-center space-x-2 mb-3">
+<span class="font-label-caps text-label-caps text-white border border-white/40 px-2 py-1 rounded">Gustav Klimt</span>
+<span class="font-label-sm text-label-sm text-white/80">· 1907–1908</span>
+</div>
+<p class="font-body-md text-body-md line-clamp-2 md:line-clamp-none max-w-lg mb-4 text-white/60 font-light text-label-sm">
+                        An icon of Viennese Art Nouveau, shimmering with gold leaf and profound intimacy.
+                    </p>
+<a class="inline-flex items-center font-label-caps text-label-caps text-secondary-fixed hover:text-white transition-colors group" href="#">
+<span class="border-b border-secondary-fixed pb-0.5 group-hover:border-white transition-colors">Read the story</span>
+<span class="material-symbols-outlined ml-1 text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Next Feed Item (Placeholder for scroll demonstration) -->
+<section class="h-[884px] w-full snap-start relative flex flex-col justify-center items-center p-4 md:p-margin-desktop bg-[#151515]">
+<div class="font-headline-md text-headline-md text-surface-variant text-center opacity-50">
+                 Swipe / Scroll for more
+             </div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only based on rules, but feed implies mobile-first layout) -->
+<!-- Applying structural styles from JSON directly to class attributes -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-2 z-50 bg-[#1A1A1A]/95 border-t border-white/10 backdrop-blur-md md:hidden pb-2 bg-black/80">
+<!-- Discover (Active Tab based on 'Main Feed Screen for Scrolls' / 'discovery feed') -->
+<a class="flex flex-col items-center justify-center text-white font-bold border-t-2 border-white pt-2 w-16 opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="explore" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="font-label-sm text-label-sm mt-1 opacity-60">Discover</span>
+</a>
+<!-- Museum (Inactive) -->
+<a class="flex flex-col items-center justify-center text-white/60 pt-2 w-16 hover:text-secondary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px] font-light" data-icon="museum">museum</span>
+<span class="font-label-sm text-label-sm mt-1 opacity-60">Museum</span>
+</a>
+<!-- Search (Inactive) -->
+<a class="flex flex-col items-center justify-center text-white/60 pt-2 w-16 hover:text-secondary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px] font-light" data-icon="search">search</span>
+<span class="font-label-sm text-label-sm mt-1 opacity-60">Search</span>
+</a>
+<!-- Profile (Inactive) -->
+<a class="flex flex-col items-center justify-center text-white/60 pt-2 w-16 hover:text-secondary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px] font-light" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm mt-1 opacity-60">Profile</span>
+</a>
+</nav>
+
+
+</body></html>

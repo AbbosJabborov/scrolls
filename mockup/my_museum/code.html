@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Museum - Saved Collections</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "secondary-fixed": "#ffdea5",
+                            "on-tertiary-container": "#86847e",
+                            "surface-container-lowest": "#ffffff",
+                            "on-tertiary-fixed-variant": "#484742",
+                            "surface-variant": "#e5e2e1",
+                            "outline-variant": "#c4c7c7",
+                            "surface-bright": "#fdf8f8",
+                            "surface-dim": "#ddd9d8",
+                            "background": "#fdf8f8",
+                            "tertiary": "#000000",
+                            "secondary": "#775a19",
+                            "on-secondary-container": "#785a1a",
+                            "error-container": "#ffdad6",
+                            "tertiary-fixed-dim": "#cac6bf",
+                            "inverse-on-surface": "#f4f0ef",
+                            "primary": "#000000",
+                            "on-surface": "#1c1b1b",
+                            "surface-container-high": "#ebe7e6",
+                            "on-tertiary": "#ffffff",
+                            "on-primary": "#ffffff",
+                            "secondary-container": "#fed488",
+                            "on-error": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "surface": "#fdf8f8",
+                            "error": "#ba1a1a",
+                            "on-primary-fixed": "#1c1b1b",
+                            "on-primary-container": "#858383",
+                            "tertiary-container": "#1c1c17",
+                            "tertiary-fixed": "#e6e2db",
+                            "on-surface-variant": "#444748",
+                            "on-background": "#1c1b1b",
+                            "primary-container": "#1c1b1b",
+                            "on-secondary-fixed": "#261900",
+                            "surface-tint": "#5f5e5e",
+                            "surface-container-highest": "#e5e2e1",
+                            "on-primary-fixed-variant": "#474746",
+                            "on-secondary": "#ffffff",
+                            "inverse-surface": "#313030",
+                            "surface-container-low": "#f7f3f2",
+                            "on-tertiary-fixed": "#1c1c17",
+                            "outline": "#747878",
+                            "secondary-fixed-dim": "#e9c176",
+                            "inverse-primary": "#c8c6c5",
+                            "surface-container": "#f1edec",
+                            "on-secondary-fixed-variant": "#5d4201",
+                            "primary-fixed-dim": "#c8c6c5",
+                            "primary-fixed": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "gutter": "24px",
+                            "margin-desktop": "64px",
+                            "container-max": "1440px",
+                            "unit": "8px",
+                            "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                            "label-caps": [
+                                    "Inter"
+                            ],
+                            "headline-lg-mobile": [
+                                    "Bodoni Moda"
+                            ],
+                            "label-sm": [
+                                    "Inter"
+                            ],
+                            "body-lg": [
+                                    "Inter"
+                            ],
+                            "headline-lg": [
+                                    "Bodoni Moda"
+                            ],
+                            "display-lg": [
+                                    "Bodoni Moda"
+                            ],
+                            "title-lg": [
+                                    "Inter"
+                            ],
+                            "headline-md": [
+                                    "Bodoni Moda"
+                            ],
+                            "body-md": [
+                                    "Inter"
+                            ]
+                    },
+                    "fontSize": {
+                            "label-caps": [
+                                    "12px",
+                                    {
+                                            "lineHeight": "1.2",
+                                            "letterSpacing": "0.1em",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "headline-lg-mobile": [
+                                    "32px",
+                                    {
+                                            "lineHeight": "1.2",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "label-sm": [
+                                    "13px",
+                                    {
+                                            "lineHeight": "1.4",
+                                            "fontWeight": "500"
+                                    }
+                            ],
+                            "body-lg": [
+                                    "18px",
+                                    {
+                                            "lineHeight": "1.6",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "headline-lg": [
+                                    "48px",
+                                    {
+                                            "lineHeight": "1.2",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "display-lg": [
+                                    "64px",
+                                    {
+                                            "lineHeight": "1.1",
+                                            "letterSpacing": "-0.02em",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "title-lg": [
+                                    "20px",
+                                    {
+                                            "lineHeight": "1.5",
+                                            "letterSpacing": "0.01em",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "headline-md": [
+                                    "32px",
+                                    {
+                                            "lineHeight": "1.3",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "body-md": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "1.6",
+                                            "fontWeight": "400"
+                                    }
+                            ]
+                    }
+            },
+                },
+            }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        body {
+            background-color: #F9F7F2; /* Warm Ivory base */
+            color: #1A1A1A; /* Primary Charcoal */
+        }
+        
+        .collection-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .collection-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .glass-overlay {
+            background: rgba(26, 26, 26, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        
+        .artwork-frame {
+            border: 1px solid #E5E1DA; /* Stone Gray */
+            padding: 16px;
+            background-color: #ffffff; /* pure white matte */
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col relative pb-24 md:pb-0">
+<!-- Top Navigation Web (Hidden on Mobile) -->
+<header class="hidden md:flex fixed top-0 left-0 w-full justify-between items-center px-6 py-4 bg-surface/95 backdrop-blur-md z-50 transition-colors duration-300">
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md tracking-widest text-primary">SCROLLS</h1>
+</div>
+<nav class="flex gap-8 items-center font-label-sm text-label-sm">
+<a class="text-on-surface-variant hover:text-secondary-fixed transition-colors duration-300" href="#">Discover</a>
+<a class="text-primary font-bold border-b border-primary pb-1" href="#">Museum</a>
+<a class="text-on-surface-variant hover:text-secondary-fixed transition-colors duration-300" href="#">Search</a>
+<a class="text-on-surface-variant hover:text-secondary-fixed transition-colors duration-300" href="#">Profile</a>
+</nav>
+<div>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</div>
+</header>
+<!-- Top Navigation Mobile (Hidden on Desktop) -->
+<header class="md:hidden fixed top-0 left-0 w-full flex justify-between items-center px-6 py-4 bg-transparent z-50 bg-gradient-to-b from-surface/40 to-transparent">
+<button class="text-primary hover:text-secondary-fixed transition-colors duration-300 scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md tracking-widest text-primary">SCROLLS</h1>
+<button class="text-primary hover:text-secondary-fixed transition-colors duration-300 scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 md:pt-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-baseline mb-16 gap-8">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary mb-4 md:mb-6">My Museum</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">A curated sanctuary for your personal collection. Organize, reflect, and rediscover the artworks that resonate with you.</p>
+</div>
+<button class="shrink-0 inline-flex items-center gap-2 bg-primary text-on-primary font-label-caps text-label-caps px-6 py-4 rounded-none hover:bg-secondary-fixed hover:text-on-secondary-fixed transition-colors duration-300 group">
+<span class="material-symbols-outlined text-[18px] group-hover:rotate-90 transition-transform duration-300" data-icon="add">add</span>
+                NEW COLLECTION
+            </button>
+</div>
+<!-- Collections Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter pb-32">
+<!-- Collection Card 1: Favorites -->
+<div class="collection-card group cursor-pointer h-full flex flex-col">
+<div class="artwork-frame flex-grow mb-6 relative overflow-hidden aspect-[4/5] bg-surface-container-low">
+<!-- Masonry Preview -->
+<div class="absolute inset-4 grid grid-cols-2 grid-rows-2 gap-2">
+<div class="col-span-2 row-span-1 bg-surface-dim overflow-hidden relative">
+<img alt="Favorite 1" class="absolute w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A detailed close-up of a classical oil painting showing intricate brushstrokes on a woman's face. The lighting is soft and warm, highlighting the delicate textures of the canvas and the masterful blending of skin tones. The overall aesthetic is rich, historical, and deeply textured, fitting a luxury digital museum context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0We3J2lAlTYAiixxK1diMuulvw6BO8WKDjNcdV9047elfzVW9UTueCtn2ISBIaENas3X6zrL4R-qVMzwEcvKPy0kSle-RPbXFSaA2w8kEwDtIMj0qE__QVkAGuEI4qv8bVh5NH3Yn476AzJh7HV1atKm35WrHg02CSeevQYrdrC9HGnMLusn5sXAhDvVt5mC6z_kSZIJfY6d_JhLqAro8Iux8n-7myxhl2sIPuHZhkbrpnP4PP8oFnQ"/>
+</div>
+<div class="col-span-1 row-span-1 bg-surface-dim overflow-hidden relative">
+<img alt="Favorite 2" class="absolute w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A stark, minimalist black and white photograph of an architectural detail. The contrast is extremely high, with deep charcoal blacks and pristine ivory whites. The composition is geometric and precise, emphasizing form and shadow over narrative. The style is modern, editorial, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSucuOazuuVDul8OW6fhIwGIEZNZk90nVxQ6Qs3pGWmDS3rRIHHZ3HalC8jCLZqOu0gQ5iYfKdg55JL29zTttLbTsO47xBcLseeX_MsWC6hlU7MG1NYZkpHPk2DZABjbwGyixSZqsaCVRpex4NRNyoKx8Lw11cXrGhD8IKarvn8UPlQT61TrKqEiVfCRfs49BDuVjh0igLgM4pW5PaltH0deRcIT6L-HGfxemwtSW-MamkfcWhwqGMkw"/>
+</div>
+<div class="col-span-1 row-span-1 bg-surface-dim overflow-hidden relative">
+<img alt="Favorite 3" class="absolute w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An abstract expressionist painting featuring broad, sweeping strokes of warm ochre and deep indigo. The texture is thick and impasto, catching the light in a dynamic way. The mood is energetic yet contained within a structured, modern layout. The colors are rich but slightly muted, maintaining an elegant gallery feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2c3eLEb0FqR1XRCb5x5EpGB2CMveKCq2sxE17M36HDVXq5RimOuZ7aB1lAMKxyFlsvdpTvD36-ARFlr5yAMCcx29Kw1JMTAfPkkYBIKJ_QnazkOjEssXEJu7FwUrtOEOnA-z1n99S9JMMHdcTWQK7SfMECja_P8eWKnBh9rHWhKpfLHyhOs2N97acwB5z3M1KJ8IcpemEyNsL8eXmq2tbOsZwk3Xiu7dYuPPbDhkttgI6hNaMZfwt3g"/>
+</div>
+</div>
+</div>
+<div>
+<h3 class="font-title-lg text-title-lg text-primary mb-2 flex items-center justify-between">
+                        Favorites
+                        <span class="material-symbols-outlined text-on-surface-variant text-[20px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-icon="arrow_forward">arrow_forward</span>
+</h3>
+<div class="flex gap-2">
+<span class="inline-block border border-outline-variant px-3 py-1 font-label-sm text-label-sm text-on-surface-variant">142 Works</span>
+<span class="inline-block border border-outline-variant px-3 py-1 font-label-sm text-label-sm text-on-surface-variant">Last updated today</span>
+</div>
+</div>
+</div>
+<!-- Collection Card 2: Want to Learn -->
+<div class="collection-card group cursor-pointer h-full flex flex-col">
+<div class="artwork-frame flex-grow mb-6 relative overflow-hidden aspect-[4/5] bg-surface-container-low">
+<div class="absolute inset-4 overflow-hidden">
+<img alt="Want to Learn Cover" class="absolute w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A striking contemporary digital art piece displaying complex generative patterns. The colors are predominantly deep charcoal and subtle ivory, with sharp, precise lines mapping out mathematical forms. The piece feels intellectual, modern, and slightly enigmatic, perfectly suited for an educational curation within a premium app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAliUcs1j2eUk3YZ3Wt-vIE7YMBE_YmU5eFWc4msknsKjhn_HTJmOLgHLrnihTvq95_zmhMJf4heiYCcQoWNOp6Pnz8mF1SLYNB0tyzshAhziC_YUCiisQPd6xQo9p8Hu3KfpsUb5BknezD-6j8KMjPsmtmDYAuDdrd7bQkIRkLaIWeeLt3M0Oo53YTsoy7RGIEkpd7nBvsAoKOnn1knVaVlSBH7WDfAjeE38imkcFh7W4ZrwgsSe18gQ"/>
+</div>
+</div>
+<div>
+<h3 class="font-title-lg text-title-lg text-primary mb-2 flex items-center justify-between">
+                        Want to Learn
+                        <span class="material-symbols-outlined text-on-surface-variant text-[20px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-icon="arrow_forward">arrow_forward</span>
+</h3>
+<div class="flex gap-2">
+<span class="inline-block border border-outline-variant px-3 py-1 font-label-sm text-label-sm text-on-surface-variant">28 Works</span>
+<span class="inline-block border border-outline-variant px-3 py-1 font-label-sm text-label-sm text-on-surface-variant">Mixed Periods</span>
+</div>
+</div>
+</div>
+<!-- Collection Card 3: Renaissance Study -->
+<div class="collection-card group cursor-pointer h-full flex flex-col">
+<div class="artwork-frame flex-grow mb-6 relative overflow-hidden aspect-[4/5] bg-surface-container-low">
+<div class="absolute inset-4 grid grid-cols-1 grid-rows-2 gap-2">
+<div class="row-span-1 bg-surface-dim overflow-hidden relative">
+<img alt="Renaissance 1" class="absolute w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A highly detailed close-up of a Renaissance marble sculpture, focusing on the intricate carving of drapery folds. The lighting is dramatic chiaroscuro, highlighting the smooth texture of the stone against a deep, dark background. The aesthetic is classical, monumental, and exquisitely refined, fitting a scholarly collection." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe_OulRgwQyqPcIm0MNDF-esPJUSlGb-OZGII_32Hdz-qqfDk8Y1JH_TrqyeDbsM7Hhh49XUuJ39bj1f4zN6dxT9htVeGbeqcy8kE4A0pT4mDOROAkYLX5Tcc6HXuyUQAD4TJmYJD7QAQla3py2vDNLKa6HN4zI0NfHdF5-MZu9PV-8T3s6AgF57vb3c0Mqk1YGipPNw4VYMHkN3R_8lDAN8swe2tt2pFIphUSrNbC5RjvmMV7qM7b5w"/>
+</div>
+<div class="row-span-1 bg-surface-dim overflow-hidden relative">
+<img alt="Renaissance 2" class="absolute w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A section of a 16th-century fresco painting showing figures in dynamic poses. The colors are muted earth tones—terracotta, faded lapis lazuli, and ochre. The texture suggests aged plaster, and the style is highly structured and anatomically precise. The mood is historic and awe-inspiring." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDC-9dZlW-d3I9Wt0w_1YBjHLWn8zDA1ksZKuOgzxdJuCPfh6pX8cB8UWNSUvZr1pTaB5C1Pvy3yqzgAVkqfw_nc2ZX_ziRG03-_0BqDBoDiI6G14q1zp_n3P9EUKitYw_vFvyvtVjrfvEgq8YRx5KxJP708-YMqmzXsEXUbeGkIo0M7-L0mz2DAHT1kt4cMF_vdj3cUquIJmit5dWfTWN4y68CapgjLf2vQowd_Xm37cP790Y6DUZxg"/>
+</div>
+</div>
+</div>
+<div>
+<h3 class="font-title-lg text-title-lg text-primary mb-2 flex items-center justify-between">
+                        Renaissance Study
+                        <span class="material-symbols-outlined text-on-surface-variant text-[20px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-icon="arrow_forward">arrow_forward</span>
+</h3>
+<div class="flex gap-2">
+<span class="inline-block border border-outline-variant px-3 py-1 font-label-sm text-label-sm text-on-surface-variant">56 Works</span>
+<span class="inline-block border border-outline-variant px-3 py-1 font-label-sm text-label-sm text-on-surface-variant">14th - 17th C.</span>
+</div>
+</div>
+</div>
+<!-- Collection Card 4: Impressionism -->
+<div class="collection-card group cursor-pointer h-full flex flex-col">
+<div class="artwork-frame flex-grow mb-6 relative overflow-hidden aspect-[4/5] bg-surface-container-low">
+<div class="absolute inset-4 overflow-hidden">
+<img alt="Impressionism Cover" class="absolute w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An expansive impressionist landscape painting depicting a sunlit garden. The brushstrokes are loose and visible, capturing the fleeting effects of light rather than precise detail. The color palette is bright and atmospheric, with soft greens, blues, and warm yellow highlights. The overall feeling is serene, airy, and beautifully textured." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAs599tJOQ8zZAb5J-8hqs9ZtPbwItH7jnIOJfb4Jpv-E7Zy9rzxJViLYi5xiv8O7lkucWbceAbPWfHG-q83_w3q3_8_brgKvtF-XIi7-CZDHdxGb4cxHHd0VtGSMh9eLnnynxsRb-G8IL-uNO_Ai6TYUo8IDnN3WZHIrlQpLD_ddwLwto9nu1dFZw_d49NTLVCX-SdYwlPvbLlzhF4UgTUG04S6NfkLF6OP1yqRrBmAzZZYW2LTEK4g"/>
+</div>
+</div>
+<div>
+<h3 class="font-title-lg text-title-lg text-primary mb-2 flex items-center justify-between">
+                        Impressionism
+                        <span class="material-symbols-outlined text-on-surface-variant text-[20px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-icon="arrow_forward">arrow_forward</span>
+</h3>
+<div class="flex gap-2">
+<span class="inline-block border border-outline-variant px-3 py-1 font-label-sm text-label-sm text-on-surface-variant">89 Works</span>
+<span class="inline-block border border-outline-variant px-3 py-1 font-label-sm text-label-sm text-on-surface-variant">Late 19th C.</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-surface/95 border-t border-outline-variant/30 backdrop-blur-md z-50">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-colors pt-2">
+<span class="material-symbols-outlined mb-1" data-icon="explore">explore</span>
+<span class="font-label-sm text-label-sm">Discover</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary font-bold border-t-2 border-primary pt-2 opacity-80 transition-opacity">
+<span class="material-symbols-outlined mb-1 icon-fill" data-icon="museum">museum</span>
+<span class="font-label-sm text-label-sm">Museum</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-colors pt-2">
+<span class="material-symbols-outlined mb-1" data-icon="search">search</span>
+<span class="font-label-sm text-label-sm">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-colors pt-2">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</button>
+</nav>
+</body></html>
