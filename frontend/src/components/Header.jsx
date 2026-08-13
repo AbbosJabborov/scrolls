@@ -1,7 +1,7 @@
 import React from 'react';
-import { Search, BookOpen } from 'lucide-react';
+import { Settings, BookOpen } from 'lucide-react';
 
-export default function Header({ onOpenSearch, onSelectTab, activeTab, savedCount = 0, themeMode = 'dark' }) {
+export default function Header({ onOpenSettings, onSelectTab, activeTab, savedCount = 0, themeMode = 'dark' }) {
   const logoSrc = themeMode === 'day' ? '/logo/logo_beige.png' : '/logo/logo_dark.png';
 
   return (
@@ -22,7 +22,7 @@ export default function Header({ onOpenSearch, onSelectTab, activeTab, savedCoun
         />
       </div>
 
-      {/* Header Actions - Search & Desktop Museum Link */}
+      {/* Header Actions - Settings & Desktop Museum Link */}
       <div className="header-actions flex items-center gap-2 md:gap-4">
         {/* Desktop Museum Collection Tab */}
         <button
@@ -40,15 +40,16 @@ export default function Header({ onOpenSearch, onSelectTab, activeTab, savedCoun
           <span>MY MUSEUM ({savedCount})</span>
         </button>
 
+        {/* Settings Gear Button (Replaces Search Button) */}
         <button
           type="button"
-          onClick={onOpenSearch}
-          title="Search Artworks & Artists"
+          onClick={onOpenSettings}
+          title="Curator Settings"
           className={`p-2 bg-transparent border-0 outline-none cursor-pointer transition-colors ${
             themeMode === 'day' ? 'text-black/80 hover:text-[#c5a059]' : 'text-white/80 hover:text-[#c5a059]'
           }`}
         >
-          <Search size={22} />
+          <Settings size={22} />
         </button>
       </div>
     </header>

@@ -31,6 +31,7 @@ export default function App() {
   const [activeDetailArtId, setActiveDetailArtId] = useState(null);
   const [activeArtistName, setActiveArtistName] = useState(null);
   const [showSearchModal, setShowSearchModal] = useState(false);
+  const [showSettingsFromHeader, setShowSettingsFromHeader] = useState(false);
   const [shareArtwork, setShareArtwork] = useState(null);
 
   const [currentUser, setCurrentUser] = useState(null);
@@ -288,7 +289,10 @@ export default function App() {
         activeTab={activeTab}
         isMuted={isMuted}
         onToggleMute={toggleMute}
-        onOpenSearch={() => setShowSearchModal(true)}
+        onOpenSettings={() => {
+          setActiveTab('profile');
+          setShowSettingsFromHeader(true);
+        }}
         currentUser={currentUser}
         themeMode={themeMode}
       />
@@ -315,6 +319,8 @@ export default function App() {
           onOpenArtistProfile={(name) => setActiveArtistName(name)}
           themeMode={themeMode}
           onToggleTheme={toggleTheme}
+          showSettingsFromHeader={showSettingsFromHeader}
+          onCloseSettingsFromHeader={() => setShowSettingsFromHeader(false)}
         />
       ) : (
         <main className="feed-snap-container" ref={containerRef}>
