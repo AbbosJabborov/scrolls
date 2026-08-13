@@ -50,7 +50,7 @@ export const INITIAL_ARTWORKS = [
     likesCount: 231500,
     savesCount: 52100,
     sharesCount: 29400,
-    audioTitle: "Beethoven — Symphony No. 5",
+    audioTitle: "Beethoven — Moonlight Sonata",
     audioComposer: "Ludwig van Beethoven",
     audioUrl: "/audio/beethoven.mp3",
     comments: []
@@ -190,7 +190,7 @@ export const INITIAL_ARTWORKS = [
     likesCount: 176200,
     savesCount: 45300,
     sharesCount: 14200,
-    audioTitle: "Debussy — Arabesque No. 1",
+    audioTitle: "Debussy — Clair de Lune",
     audioComposer: "Claude Debussy",
     audioUrl: "/audio/debussy.mp3",
     comments: []
@@ -246,7 +246,7 @@ export const INITIAL_ARTWORKS = [
     likesCount: 395000,
     savesCount: 89000,
     sharesCount: 51000,
-    audioTitle: "Vivaldi — Summer (Presto)",
+    audioTitle: "Vivaldi — Four Seasons (Spring)",
     audioComposer: "Antonio Vivaldi",
     audioUrl: "/audio/vivaldi.mp3",
     comments: []
