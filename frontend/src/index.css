@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
 /* ==========================================================================
    SCROLLS - Modern Museum & Curated Archive Design System (Google Stitches)
    ========================================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
   --color-surface: #fdf8f8;
