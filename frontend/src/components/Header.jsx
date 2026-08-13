@@ -4,12 +4,12 @@ import { Search } from 'lucide-react';
 export default function Header({ onOpenSearch }) {
   return (
     <header className="app-header">
-      {/* Brand Logo Image Only */}
+      {/* Brand Logo - Dark Logo, 50% Bigger with Rounded Corners */}
       <div className="logo-container">
         <img
-          src="/logo/logo_beige.png"
+          src="/logo/logo_dark.png"
           alt="Scrolls Logo"
-          className="h-7 w-auto object-contain"
+          className="h-11 w-auto object-contain rounded-xl overflow-hidden shadow-sm"
         />
       </div>
 
