@@ -1,0 +1,65 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: scrolls_backend
+    restart: always
+    env_file:
+      - .env
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py seed_artworks &&
+             python manage.py collectstatic --noinput &&
+             gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=${DEBUG:-False}
+      - SECRET_KEY=${SECRET_KEY:-scrolls_secret_key_change_in_production}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-*}
+      - DB_ENGINE=django.db.backends.postgresql
+      - DB_NAME=${POSTGRES_DB:-scrolls_db}
+      - DB_USER=${POSTGRES_USER:-claive}
+      - DB_PASSWORD=${POSTGRES_PASSWORD:-scrolls_pass_2026}
+      - DB_HOST=${POSTGRES_HOST:-db}
+      - DB_PORT=${POSTGRES_PORT:-5432}
+    depends_on:
+      - db
+    networks:
+      - scrolls_net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: scrolls_frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - scrolls_net
+
+  db:
+    image: postgres:16-alpine
+    container_name: scrolls_db
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-scrolls_db}
+      POSTGRES_USER: ${POSTGRES_USER:-claive}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-scrolls_pass_2026}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - scrolls_net
+
+networks:
+  scrolls_net:
+    driver: bridge
+
+volumes:
+  postgres_data:
