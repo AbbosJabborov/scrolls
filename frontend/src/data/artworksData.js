@@ -25,11 +25,7 @@ export const INITIAL_ARTWORKS = [
     audioTitle: "Chopin — Nocturne Op. 9 No. 2",
     audioComposer: "Frédéric Chopin",
     audioUrl: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Chopin_-_Nocturne_Op._9_No._2_%28orchestral%29.ogg",
-    comments: [
-      { id: "c1", user: "ArtLover_99", avatar: "🎨", text: "The detail on the gold leaf ornamentation is out of this world!", time: "2h ago", likes: 342 },
-      { id: "c2", user: "ViennaTraveler", avatar: "🏛️", text: "Saw this in person at Belvedere Museum last summer. Standing in front of it is a religious experience.", time: "5h ago", likes: 219 },
-      { id: "c3", user: "GoldenEra", avatar: "✨", text: "The contrast between the geometric patterns on the man and floral circles on the woman is pure genius.", time: "1d ago", likes: 88 }
-    ]
+    comments: []
   },
   {
     id: "art-2",
@@ -57,10 +53,7 @@ export const INITIAL_ARTWORKS = [
     audioTitle: "Beethoven — Symphony No. 5 (Allegro)",
     audioComposer: "Ludwig van Beethoven",
     audioUrl: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Ride_of_the_Valkyries.ogg",
-    comments: [
-      { id: "c4", user: "ModernExistential", avatar: "😱", text: "Me every Monday morning looking at my inbox.", time: "1h ago", likes: 1240 },
-      { id: "c5", user: "CuratorMind", avatar: "🖼️", text: "Fun fact: Munch created four versions of this composition! Two in paint and two in pastel.", time: "4h ago", likes: 450 }
-    ]
+    comments: []
   },
   {
     id: "art-3",
@@ -88,10 +81,7 @@ export const INITIAL_ARTWORKS = [
     audioTitle: "Debussy — Clair de Lune",
     audioComposer: "Claude Debussy",
     audioUrl: "https://upload.wikimedia.org/wikipedia/commons/b/be/Clair_de_lune_%28Claude_Debussy%29_Suite_bergamasque.ogg",
-    comments: [
-      { id: "c6", user: "CosmicDreamer", avatar: "🌌", text: "The fluid dynamics of the swirling clouds actually mirror turbulent fluid turbulence in physics!", time: "30m ago", likes: 890 },
-      { id: "c7", user: "PostImpressionist", avatar: "🌻", text: "Vincent used color to convey emotion rather than reality. Absolutely timeless.", time: "3h ago", likes: 512 }
-    ]
+    comments: []
   },
   {
     id: "art-4",
@@ -119,9 +109,7 @@ export const INITIAL_ARTWORKS = [
     audioTitle: "Bach — Air on the G String",
     audioComposer: "Johann Sebastian Bach",
     audioUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Air_on_the_G_String_from_Suite_No._3_in_D_major_BWV_1068.ogg",
-    comments: [
-      { id: "c8", user: "PearlEnthusiast", avatar: "💎", text: "Notice how the pearl is actually painted with just two quick strokes of light!", time: "1h ago", likes: 670 }
-    ]
+    comments: []
   },
   {
     id: "art-5",
@@ -149,9 +137,7 @@ export const INITIAL_ARTWORKS = [
     audioTitle: "Vivaldi — Four Seasons (Spring)",
     audioComposer: "Antonio Vivaldi",
     audioUrl: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Vivaldi_Spring_mvt_1_Allegro_John_Harrison_violin.ogg",
-    comments: [
-      { id: "c9", user: "LouvreGuide", avatar: "🇫🇷", text: "The sfumato technique blends colors so subtly that there are no sharp edges anywhere on her face.", time: "45m ago", likes: 1120 }
-    ]
+    comments: []
   },
   {
     id: "art-6",
@@ -179,9 +165,7 @@ export const INITIAL_ARTWORKS = [
     audioTitle: "Satie — Gymnopédie No. 1",
     audioComposer: "Erik Satie",
     audioUrl: "https://upload.wikimedia.org/wikipedia/commons/5/50/Gymnopedie_No_1.ogg",
-    comments: [
-      { id: "c10", user: "WaveWatcher", avatar: "🌊", text: "The claws of spray reaching towards the fishermen in the boats give it such dramatic tension!", time: "2h ago", likes: 430 }
-    ]
+    comments: []
   },
   {
     id: "art-7",
@@ -209,9 +193,7 @@ export const INITIAL_ARTWORKS = [
     audioTitle: "Debussy — Arabesque No. 1",
     audioComposer: "Claude Debussy",
     audioUrl: "https://upload.wikimedia.org/wikipedia/commons/5/50/Gymnopedie_No_1.ogg",
-    comments: [
-      { id: "c11", user: "GardenEnthusiast", avatar: "🌿", text: "You can almost feel the cool shade and hear the gentle rippling water.", time: "6h ago", likes: 290 }
-    ]
+    comments: []
   },
   {
     id: "art-8",
@@ -239,9 +221,7 @@ export const INITIAL_ARTWORKS = [
     audioTitle: "Beethoven — Moonlight Sonata",
     audioComposer: "Ludwig van Beethoven",
     audioUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Beethoven_Moonlight_Sonata_movement_1.ogg",
-    comments: [
-      { id: "c12", user: "Philosopher_X", avatar: "🏔️", text: "The Rückenfigur technique (figure seen from behind) invites us to see the world through the wanderer's eyes.", time: "3h ago", likes: 812 }
-    ]
+    comments: []
   },
   {
     id: "art-9",
@@ -269,9 +249,7 @@ export const INITIAL_ARTWORKS = [
     audioTitle: "Vivaldi — Summer (Presto)",
     audioComposer: "Antonio Vivaldi",
     audioUrl: "https://upload.wikimedia.org/wikipedia/commons/9/90/Vivaldi_Summer_mvt_3_Presto_John_Harrison_violin.ogg",
-    comments: [
-      { id: "c13", user: "FlorentineSun", avatar: "🏛️", text: "The graceful linear curves and flowing golden hair define early Renaissance beauty.", time: "5h ago", likes: 520 }
-    ]
+    comments: []
   }
 ];
 
