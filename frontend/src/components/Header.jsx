@@ -1,8 +1,9 @@
 import React from 'react';
-import { Settings, BookOpen } from 'lucide-react';
+import { Search, Settings, BookOpen } from 'lucide-react';
 
-export default function Header({ onOpenSettings, onSelectTab, activeTab, savedCount = 0, themeMode = 'dark' }) {
+export default function Header({ onOpenSearch, onOpenSettings, onSelectTab, activeTab, savedCount = 0, themeMode = 'dark' }) {
   const logoSrc = themeMode === 'day' ? '/logo/logo_beige.png' : '/logo/logo_dark.png';
+  const isProfile = activeTab === 'profile';
 
   return (
     <header className={`app-header flex items-center justify-between px-4 md:px-8 py-3 backdrop-blur-md border-b fixed top-0 left-0 right-0 z-40 transition-colors ${
@@ -22,7 +23,7 @@ export default function Header({ onOpenSettings, onSelectTab, activeTab, savedCo
         />
       </div>
 
-      {/* Header Actions - Settings & Desktop Museum Link */}
+      {/* Header Actions - Search on Discover/Museum, Settings on Profile */}
       <div className="header-actions flex items-center gap-2 md:gap-4">
         {/* Desktop Museum Collection Tab */}
         <button
@@ -40,17 +41,30 @@ export default function Header({ onOpenSettings, onSelectTab, activeTab, savedCo
           <span>MY MUSEUM ({savedCount})</span>
         </button>
 
-        {/* Settings Gear Button (Replaces Search Button) */}
-        <button
-          type="button"
-          onClick={onOpenSettings}
-          title="Curator Settings"
-          className={`p-2 bg-transparent border-0 outline-none cursor-pointer transition-colors ${
-            themeMode === 'day' ? 'text-black/80 hover:text-[#c5a059]' : 'text-white/80 hover:text-[#c5a059]'
-          }`}
-        >
-          <Settings size={22} />
-        </button>
+        {/* Dynamic Action Button: Search for Feed/Museum vs Settings for Profile */}
+        {isProfile ? (
+          <button
+            type="button"
+            onClick={onOpenSettings}
+            title="Curator Settings"
+            className={`p-2 bg-transparent border-0 outline-none cursor-pointer transition-colors ${
+              themeMode === 'day' ? 'text-black/80 hover:text-[#c5a059]' : 'text-white/80 hover:text-[#c5a059]'
+            }`}
+          >
+            <Settings size={22} className="text-[#c5a059]" />
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={onOpenSearch}
+            title="Search Artworks & Artists"
+            className={`p-2 bg-transparent border-0 outline-none cursor-pointer transition-colors ${
+              themeMode === 'day' ? 'text-black/80 hover:text-[#c5a059]' : 'text-white/80 hover:text-[#c5a059]'
+            }`}
+          >
+            <Search size={22} />
+          </button>
+        )}
       </div>
     </header>
   );

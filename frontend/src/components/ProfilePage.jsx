@@ -241,24 +241,12 @@ export default function ProfilePage({
         className="hidden"
       />
 
-      <div className="max-w-4xl mx-auto space-y-6">
-        {/* Header Bar - Username removed from top left, line below removed */}
-        <div className="flex items-center justify-end pt-4 pb-1">
-          <button
-            type="button"
-            onClick={() => setShowSettings(true)}
-            className="p-2 rounded-full hover:bg-current/10 transition-colors cursor-pointer border-0 bg-transparent"
-            title="Profile Settings"
-          >
-            <Settings size={22} className="text-[#c5a059]" />
-          </button>
-        </div>
-
-        {/* Profile Card Header */}
-        <div className="text-center space-y-3 pt-2">
-          {/* Attachable Profile Image (No Green Check Button) */}
+      <div className="max-w-4xl mx-auto space-y-5">
+        {/* Profile Card Header (Duplicate settings button removed) */}
+        <div className="text-center space-y-2 pt-4">
+          {/* Attachable Profile Image */}
           <div
-            className="relative inline-block mx-auto cursor-pointer group"
+            className="relative inline-block mx-auto cursor-pointer group mb-1"
             onClick={() => fileInputRef.current?.click()}
             title="Click to upload profile image"
           >
@@ -280,28 +268,28 @@ export default function ProfilePage({
           </div>
 
           <div>
-            {/* Editable Display Name */}
+            {/* Editable Display Name (Gold text, 10% brighter warm brown background) */}
             {isEditingName ? (
-              <div className="flex items-center justify-center gap-2 max-w-xs mx-auto">
+              <div className="flex items-center justify-center gap-2 max-w-xs mx-auto mb-1">
                 <input
                   type="text"
                   value={tempName}
                   onChange={(e) => setTempName(e.target.value)}
                   placeholder="Enter your name"
-                  className={`px-3 py-1 bg-current/10 border ${borderClass} rounded-lg text-sm text-center focus:outline-none focus:border-[#c5a059]`}
+                  className="px-3.5 py-1.5 bg-[#24201b] border border-[#c5a059]/40 text-[#c5a059] rounded-xl text-base font-serif text-center focus:outline-none focus:border-[#c5a059] shadow-inner font-normal"
                   autoFocus
                 />
                 <button
                   type="button"
                   onClick={handleSaveName}
-                  className="p-1.5 bg-[#c5a059] text-black rounded-lg hover:bg-[#ffdea5] transition-colors"
+                  className="p-1.5 bg-[#c5a059] text-black rounded-xl hover:bg-[#ffdea5] transition-colors cursor-pointer shadow"
                 >
-                  <Check size={16} />
+                  <Check size={18} />
                 </button>
               </div>
             ) : (
-              <div className="flex items-center justify-center gap-2">
-                <h1 className="font-serif text-2xl md:text-3xl font-normal">
+              <div className="flex items-center justify-center gap-1.5">
+                <h1 className="font-serif text-2xl md:text-3xl font-normal text-current">
                   {displayName || currentUser.username}
                 </h1>
                 <button
@@ -313,22 +301,22 @@ export default function ProfilePage({
                   className="p-1 text-[#c5a059] hover:opacity-80 bg-transparent border-0 cursor-pointer"
                   title="Edit Name"
                 >
-                  <Edit3 size={16} />
+                  <Edit3 size={15} />
                 </button>
               </div>
             )}
 
-            {/* Subtext: @username instead of email */}
-            <p className="font-sans text-xs opacity-60 mt-1">@{currentUser.username}</p>
+            {/* Subtext: @username with 0.5x tightened distance */}
+            <p className="font-sans text-xs opacity-60 mt-0">@{currentUser.username}</p>
 
-            <div className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 bg-[#c5a059]/15 border border-[#c5a059]/40 rounded-full text-[11px] font-label-caps text-[#c5a059] tracking-wider">
+            <div className="mt-2.5 inline-flex items-center gap-1.5 px-3 py-1 bg-[#c5a059]/15 border border-[#c5a059]/40 rounded-full text-[11px] font-label-caps text-[#c5a059] tracking-wider">
               <Sparkles size={12} />
               <span>MUSEUM PATRON & CURATOR</span>
             </div>
           </div>
 
           {/* TikTok-Style 3-Stat Counter Bar (Toned Down Borders) */}
-          <div className={`flex justify-center items-center gap-8 py-3 border-y ${borderClass} max-w-md mx-auto`}>
+          <div className={`flex justify-center items-center gap-8 py-3 mt-4 border-y ${borderClass} max-w-md mx-auto`}>
             <button
               type="button"
               onClick={() => setActiveProfileTab('saved')}
