@@ -1,4 +1,14 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+const getApiBaseUrl = () => {
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    return 'https://api-scrolls.claive.uz/api';
+  }
+  return 'http://localhost:8000/api';
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 export async function fetchBackendArtworks(category = 'All Classics') {
   try {
@@ -33,7 +43,7 @@ export async function toggleSaveBackend(artworkId) {
   try {
     const res = await fetch(`${API_BASE_URL}/social/artworks/${artworkId}/save/`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
     });
     if (!res.ok) return null;
     return await res.json();
