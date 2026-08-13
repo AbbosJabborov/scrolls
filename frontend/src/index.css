@@ -18,8 +18,28 @@
   --color-dark-bg: #1a1a1a;
   --color-warm-ivory: #f9f7f2;
 
+  --var-bg: #121212;
+  --var-text: #F9F7F2;
+
   --font-serif: 'Bodoni Moda', Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body.day-mode {
+  --var-bg: #f9f7f2;
+  --var-text: #1c1b1b;
+  --color-dark-bg: #f9f7f2;
+  --color-warm-ivory: #1c1b1b;
+  background-color: #f9f7f2 !important;
+  color: #1c1b1b !important;
+}
+
+.bg-var-bg {
+  background-color: var(--var-bg);
+}
+
+.text-var-text {
+  color: var(--var-text);
 }
 
 * {

@@ -8,14 +8,14 @@ import CommentsDrawer from './components/CommentsDrawer';
 import ArtworkDetailModal from './components/ArtworkDetailModal';
 import ArtistProfileModal from './components/ArtistProfileModal';
 import SavedGalleryPage from './components/SavedGalleryPage';
+import ProfilePage from './components/ProfilePage';
 import ShareModal from './components/ShareModal';
 import SearchModal from './components/SearchModal';
-import AuthModal from './components/AuthModal';
 
 export default function App() {
   const [artworks, setArtworks] = useState(INITIAL_ARTWORKS);
   const [selectedCategory, setSelectedCategory] = useState('All Classics');
-  const [activeTab, setActiveTab] = useState('for-you');
+  const [activeTab, setActiveTab] = useState('for-you'); // 'for-you' | 'museum' | 'profile'
 
   const [activeArtworkId, setActiveArtworkId] = useState(INITIAL_ARTWORKS[0].id);
 
@@ -31,12 +31,26 @@ export default function App() {
   const [activeDetailArtId, setActiveDetailArtId] = useState(null);
   const [activeArtistName, setActiveArtistName] = useState(null);
   const [showSearchModal, setShowSearchModal] = useState(false);
-  const [showAuthModal, setShowAuthModal] = useState(false);
   const [shareArtwork, setShareArtwork] = useState(null);
 
   const [currentUser, setCurrentUser] = useState(null);
+  const [themeMode, setThemeMode] = useState(() => localStorage.getItem('scrolls_theme') || 'dark');
 
   const containerRef = useRef(null);
+
+  // Sync theme mode to document body class
+  useEffect(() => {
+    if (themeMode === 'day') {
+      document.body.classList.add('day-mode');
+    } else {
+      document.body.classList.remove('day-mode');
+    }
+    localStorage.setItem('scrolls_theme', themeMode);
+  }, [themeMode]);
+
+  const toggleTheme = () => {
+    setThemeMode((prev) => (prev === 'day' ? 'dark' : 'day'));
+  };
 
   // Load User Profile on Mount
   useEffect(() => {
@@ -258,6 +272,7 @@ export default function App() {
   };
 
   const savedArtworks = artworks.filter((a) => savedIds.has(a.id));
+  const likedArtworks = artworks.filter((a) => likedIds.has(a.id));
 
   const handleLogout = () => {
     logoutUser();
@@ -274,17 +289,32 @@ export default function App() {
         isMuted={isMuted}
         onToggleMute={toggleMute}
         onOpenSearch={() => setShowSearchModal(true)}
-        onOpenProfile={() => setShowAuthModal(true)}
         currentUser={currentUser}
+        themeMode={themeMode}
       />
 
-      {/* Main View Area: Reel Feed vs Dedicated Museum Page */}
+      {/* Main View Area: Reel Feed vs Museum Page vs TikTok Profile Page */}
       {activeTab === 'museum' ? (
         <SavedGalleryPage
           savedArtworks={savedArtworks}
           onSelectArtwork={scrollToArtworkId}
           onRemoveSave={toggleSave}
           onGoToDiscover={() => setActiveTab('for-you')}
+        />
+      ) : activeTab === 'profile' ? (
+        <ProfilePage
+          currentUser={currentUser}
+          onLoginSuccess={(user) => setCurrentUser(user)}
+          onLogout={handleLogout}
+          savedArtworks={savedArtworks}
+          likedArtworks={likedArtworks}
+          followedArtists={followedArtists}
+          onSelectArtwork={scrollToArtworkId}
+          onRemoveSave={toggleSave}
+          onToggleFollowArtist={toggleFollowArtist}
+          onOpenArtistProfile={(name) => setActiveArtistName(name)}
+          themeMode={themeMode}
+          onToggleTheme={toggleTheme}
         />
       ) : (
         <main className="feed-snap-container" ref={containerRef}>
@@ -320,10 +350,9 @@ export default function App() {
       <BottomNavBar
         activeTab={activeTab}
         onTabChange={setActiveTab}
-        savedCount={savedIds.size}
         onOpenSearch={() => setShowSearchModal(true)}
-        onOpenProfile={() => setShowAuthModal(true)}
         currentUser={currentUser}
+        themeMode={themeMode}
       />
 
       {/* Modals & Drawers */}
@@ -370,19 +399,6 @@ export default function App() {
           artworks={artworks}
           onClose={() => setShowSearchModal(false)}
           onSelectArtwork={scrollToArtworkId}
-        />
-      )}
-
-      {showAuthModal && (
-        <AuthModal
-          currentUser={currentUser}
-          onLoginSuccess={(user) => setCurrentUser(user)}
-          onLogout={handleLogout}
-          onClose={() => setShowAuthModal(false)}
-          savedCount={savedIds.size}
-          followedArtists={followedArtists}
-          onToggleFollowArtist={toggleFollowArtist}
-          onOpenArtistProfile={(name) => setActiveArtistName(name)}
         />
       )}
     </div>
