@@ -112,7 +112,7 @@ export default function ArtworkDetailModal({ artwork, onClose, onToggleLike, onT
               {artwork.title}
             </h1>
             <p className="font-sans text-sm text-[#c5a059] italic">
-              Masterpiece from {artwork.museum || 'Art Institute of Chicago'}
+              Artwork from {artwork.museum || 'Art Institute of Chicago'}
             </p>
           </div>
 
@@ -140,7 +140,7 @@ export default function ArtworkDetailModal({ artwork, onClose, onToggleLike, onT
             </div>
           </div>
 
-          {/* The Story Section */}
+          {/* Read More Section */}
           <section className={`space-y-3 p-6 rounded-xl border ${
             isDay 
               ? 'bg-white border-[#E5E1DA]' 
@@ -148,7 +148,7 @@ export default function ArtworkDetailModal({ artwork, onClose, onToggleLike, onT
           }`}>
             <h2 className={`font-serif text-2xl flex items-center gap-2 ${isDay ? 'text-black' : 'text-white'}`}>
               <BookOpen size={20} className="text-[#c5a059]" />
-              <span>The Story</span>
+              <span>Read More</span>
             </h2>
             <p className={`font-sans text-sm leading-relaxed ${isDay ? 'text-[#444748]' : 'text-white/80'}`}>
               {artwork.fullDescription || artwork.shortDescription}

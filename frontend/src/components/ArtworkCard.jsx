@@ -186,7 +186,7 @@ export default function ArtworkCard({
           type="button"
           className="action-btn-item"
           onClick={() => onOpenShare(artwork)}
-          title="Share Masterpiece"
+          title="Share Artwork"
         >
           <div className="action-icon-wrap">
             <Share2 size={22} color={defaultIconColor} />
@@ -213,7 +213,7 @@ export default function ArtworkCard({
       {/* Bottom Left Editorial Info Overlay */}
       <div className="card-info-editorial">
         {/* Title in Bodoni Moda Serif */}
-        <h1 className="artwork-title-serif">{artwork.title}</h1>
+        <h1 className="artwork-title-serif line-clamp-2">{artwork.title}</h1>
 
         <div className="flex items-center space-x-2 my-1">
           <span
@@ -229,13 +229,13 @@ export default function ArtworkCard({
           {artwork.shortDescription}
         </p>
 
-        {/* Read Full Story Button */}
+        {/* Read More Button */}
         <button
           type="button"
           className="read-story-link"
           onClick={() => onOpenDetail(artwork.id)}
         >
-          <span>Read the story</span>
+          <span>Read more</span>
           <ArrowRight size={14} />
         </button>
 

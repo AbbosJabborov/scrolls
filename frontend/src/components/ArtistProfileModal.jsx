@@ -94,7 +94,7 @@ export default function ArtistProfileModal({
         <div className="flex items-center justify-center space-x-8 my-4 py-3 border-y border-current/10 w-full max-w-sm">
           <div className="text-center">
             <p className="font-bold text-sm font-serif text-[#c5a059]">{artistWorks.length}</p>
-            <p className="text-[10px] opacity-60 uppercase tracking-wider mt-0.5">Masterpieces</p>
+            <p className="text-[10px] opacity-60 uppercase tracking-wider mt-0.5">Artworks</p>
           </div>
           <div className="h-6 w-[1px] bg-current/10" />
           <div className="text-center max-w-[160px]">
@@ -142,12 +142,12 @@ export default function ArtistProfileModal({
         </div>
       </div>
 
-      {/* Famous Masterpieces Grid */}
+      {/* Famous Artworks Grid */}
       <div className="max-w-xl mx-auto w-full px-4 my-8 pb-12">
         <div className="flex items-center justify-between mb-4">
           <h3 className="font-label-caps text-xs text-[#c5a059] tracking-widest uppercase flex items-center gap-2">
             <Palette size={14} />
-            <span>Masterpieces ({artistWorks.length})</span>
+            <span>Artworks ({artistWorks.length})</span>
           </h3>
           <span className="text-[11px] opacity-60 font-light">Tap to view</span>
         </div>

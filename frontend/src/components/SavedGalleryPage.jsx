@@ -27,7 +27,7 @@ export default function SavedGalleryPage({
 
           <div className="flex items-center gap-3">
             <span className="px-3 py-1 bg-white/5 border border-white/15 rounded-full text-[11px] font-label-caps text-[#c5a059] tracking-wider font-semibold">
-              {savedArtworks.length} {savedArtworks.length === 1 ? 'MASTERPIECE' : 'MASTERPIECES'} SAVED
+              {savedArtworks.length} {savedArtworks.length === 1 ? 'ARTWORK' : 'ARTWORKS'} SAVED
             </span>
           </div>
         </div>
