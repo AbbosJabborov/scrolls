@@ -51,6 +51,9 @@ export default function ArtworkCard({
         origin: { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight },
         colors: ['#fe2c55', '#c5a059', '#ffffff']
       });
+    } else {
+      // Single tap on center screen area: play / pause soundtrack audio!
+      onToggleAudio();
     }
 
     lastTapRef.current = now;

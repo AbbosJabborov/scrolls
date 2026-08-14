@@ -24,7 +24,7 @@ export default function App() {
   const [savedIds, setSavedIds] = useState(new Set());
   const [followedArtists, setFollowedArtists] = useState(new Set());
 
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const audioRef = useRef(null);
 
@@ -432,6 +432,7 @@ export default function App() {
           onToggleSave={toggleSave}
           isLiked={likedIds.has(activeDetailArtId)}
           isSaved={savedIds.has(activeDetailArtId)}
+          themeMode={themeMode}
         />
       )}
 
