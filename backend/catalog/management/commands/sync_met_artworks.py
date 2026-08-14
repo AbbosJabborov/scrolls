@@ -246,6 +246,69 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.SUCCESS(f"[{synced_count}] Fine Art Painting: '{title}' by {artist_name}"))
 
         except Exception as err:
-            self.stderr.write(f"Note: API fetch error: {err}")
+            self.stderr.write(f"Note: Art Institute API fetch error: {err}")
+
+        # 3. Fetch live fine art masterpieces from The Metropolitan Museum of Art (The Met) API
+        met_search_url = "https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId=11&hasImages=true&isHighlight=true&q=painting"
+        try:
+            req = urllib.request.Request(met_search_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
+            with urllib.request.urlopen(req, timeout=15) as res:
+                met_data = json.loads(res.read().decode())
+                object_ids = met_data.get('objectIDs', [])[:limit]
+
+                for obj_id in object_ids:
+                    detail_url = f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{obj_id}"
+                    try:
+                        d_req = urllib.request.Request(detail_url, headers={'User-Agent': 'Mozilla/5.0'})
+                        with urllib.request.urlopen(d_req, timeout=10) as d_res:
+                            obj = json.loads(d_res.read().decode())
+                            image_url = obj.get('primaryImageSmall') or obj.get('primaryImage')
+                            title = obj.get('title')
+                            artist_name = obj.get('artistDisplayName') or 'Unknown Master'
+
+                            if not image_url or not title:
+                                continue
+
+                            year = obj.get('objectDate') or 'c. 17th–19th Century'
+                            medium = obj.get('medium') or 'Oil on canvas'
+                            origin = obj.get('culture') or obj.get('country') or 'European'
+                            category = obj.get('department') or 'European Paintings'
+
+                            artist, _ = Artist.objects.get_or_create(
+                                name=artist_name,
+                                defaults={
+                                    'photo_url': random.choice(DEFAULT_ARTIST_PHOTOS),
+                                    'short_bio': f"Renowned master painter featured in The Metropolitan Museum of Art collections.",
+                                    'nationality': origin
+                                }
+                            )
+
+                            soundtrack = random.choice(CLASSICAL_SOUNDTRACKS)
+
+                            artwork, created = Artwork.objects.update_or_create(
+                                title=title,
+                                artist=artist,
+                                defaults={
+                                    'year': year,
+                                    'medium': medium,
+                                    'dimensions': obj.get('dimensions') or 'Gallery Canvas',
+                                    'museum': 'The Metropolitan Museum of Art',
+                                    'location': 'New York City, USA',
+                                    'image_url': image_url,
+                                    'short_description': f"A masterpiece painting by {artist_name} ({year}), preserved at The Metropolitan Museum of Art.",
+                                    'full_description': f"'{title}' is a celebrated fine art painting created by {artist_name}. Medium: {medium}.",
+                                    'category': category,
+                                    'tags': [category, 'Painting', 'TheMet', 'PublicDomain'],
+                                    'audio_title': soundtrack['audio_title'],
+                                    'audio_composer': soundtrack['audio_composer'],
+                                    'audio_url': soundtrack['audio_url']
+                                }
+                            )
+                            synced_count += 1
+                            self.stdout.write(self.style.SUCCESS(f"[{synced_count}] Met Masterpiece: '{title}' by {artist_name}"))
+                    except Exception as inner_e:
+                        continue
+        except Exception as met_err:
+            self.stderr.write(f"Note: Met API fetch error: {met_err}")
 
         self.stdout.write(self.style.SUCCESS(f"Successfully synced {synced_count} fine art paintings into Scrolls!"))
