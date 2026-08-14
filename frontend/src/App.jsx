@@ -11,6 +11,7 @@ import SavedGalleryPage from './components/SavedGalleryPage';
 import ProfilePage from './components/ProfilePage';
 import ShareModal from './components/ShareModal';
 import SearchModal from './components/SearchModal';
+import InstallPWA from './components/InstallPWA';
 
 export default function App() {
   const [artworks, setArtworks] = useState(INITIAL_ARTWORKS);
@@ -460,6 +461,9 @@ export default function App() {
           onSelectArtwork={scrollToArtworkId}
         />
       )}
+
+      {/* PWA Custom Install Prompt Banner */}
+      <InstallPWA themeMode={themeMode} />
     </div>
   );
 }
